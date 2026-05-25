@@ -1,28 +1,71 @@
 import React, { useState } from 'react';
-import { dummyArticles } from '../dummy-data/news-data';
+import { getArticles, getTechTricks, getAiTools } from '../utils/dataStore';
 import SearchBar from '../components/SearchBar';
 import NewsCard from '../components/NewsCard';
 
 const Search = ({ params = {}, onNavigate }) => {
   const initialQuery = params.query || '';
   const [searchQuery, setSearchQuery] = useState(initialQuery);
-  const [results, setResults] = useState(
-    initialQuery
-      ? dummyArticles.filter(art => art.title.toLowerCase().includes(initialQuery.toLowerCase()))
-      : dummyArticles.slice(0, 6)
-  );
+
+  const performSearch = (query) => {
+    const allArticles = getArticles();
+    const allTech = getTechTricks();
+    const allTools = getAiTools();
+
+    if (!query.trim()) {
+      return allArticles.slice(0, 6);
+    }
+
+    const q = query.toLowerCase();
+
+    // Filter news articles
+    const matchedArticles = allArticles.filter(art => 
+      art.title.toLowerCase().includes(q) ||
+      art.category.toLowerCase().includes(q) ||
+      (art.excerpt && art.excerpt.toLowerCase().includes(q))
+    );
+
+    // Filter tech tricks and map to article shape
+    const matchedTech = allTech.filter(trick => 
+      trick.name.toLowerCase().includes(q) ||
+      trick.category.toLowerCase().includes(q) ||
+      (trick.excerpt && trick.excerpt.toLowerCase().includes(q))
+    ).map(t => ({
+      id: t.id,
+      title: t.name,
+      category: t.category,
+      excerpt: t.excerpt,
+      featuredImage: t.featuredImage,
+      author: t.author,
+      publishDate: t.publishDate,
+      readingTime: t.readingTime,
+      isTechTrick: true,
+      slug: t.slug
+    }));
+
+    // Filter AI tools and map to article shape
+    const matchedTools = allTools.filter(tool => 
+      tool.name.toLowerCase().includes(q) ||
+      tool.category.toLowerCase().includes(q) ||
+      (tool.description && tool.description.toLowerCase().includes(q))
+    ).map(tool => ({
+      id: tool.id,
+      title: `${tool.name} — AI Tool`,
+      category: 'AI Tools',
+      excerpt: tool.description,
+      featuredImage: { url: tool.logo, alt: tool.name },
+      isAiTool: true,
+      slug: tool.slug
+    }));
+
+    return [...matchedArticles, ...matchedTech, ...matchedTools];
+  };
+
+  const [results, setResults] = useState(() => performSearch(initialQuery));
 
   const handleSearch = (query) => {
     setSearchQuery(query);
-    if (!query.trim()) { setResults(dummyArticles.slice(0, 6)); return; }
-    const q = query.toLowerCase();
-    const filtered = dummyArticles.filter(
-      (art) =>
-        art.title.toLowerCase().includes(q) ||
-        art.category.toLowerCase().includes(q) ||
-        (art.excerpt && art.excerpt.toLowerCase().includes(q))
-    );
-    setResults(filtered);
+    setResults(performSearch(query));
   };
 
   return (
@@ -51,8 +94,8 @@ const Search = ({ params = {}, onNavigate }) => {
           </div>
         ) : (
           <div className="grid-3-col">
-            {results.map((article) => (
-              <NewsCard key={article.id} article={article} onNavigate={onNavigate} />
+            {results.map((article, index) => (
+              <NewsCard key={`${article.id}-${index}`} article={article} onNavigate={onNavigate} />
             ))}
           </div>
         )}

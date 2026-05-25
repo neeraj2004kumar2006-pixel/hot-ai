@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { updateMetaTags } from '../utils/helpers';
 
 const Privacy = ({ onNavigate }) => {
+  useEffect(() => {
+    updateMetaTags({
+      title: "Privacy Policy - Hot AI's Data Collection & Security Practices",
+      description: "Hot AI's privacy policy explaining our minimal data collection practices, security measures, third-party services, and your rights regarding personal information.",
+      canonicalUrl: "https://hotai.news/page/privacy"
+    });
+  }, []);
+
   return (
     <div style={{ paddingBottom: '30px' }} aria-labelledby="privacy-page-title">
       <div 
@@ -65,6 +74,7 @@ const Privacy = ({ onNavigate }) => {
           <li><strong>Plausible Analytics:</strong> Anonymous website analytics. No cookies, no personal data collection.</li>
           <li><strong>Vercel:</strong> Hosting platform. They maintain strict security standards and comply with GDPR.</li>
           <li><strong>Cloudflare:</strong> DNS and CDN services. Provides DDoS protection and performance optimization.</li>
+          <li><strong>Cloudflare Page Rules:</strong> Dynamic caching.</li>
         </ul>
       </div>
 
@@ -93,9 +103,6 @@ const Privacy = ({ onNavigate }) => {
           We may update this Privacy Policy periodically. The latest version will always be available on this page. Significant changes will be communicated through our newsletter and site notifications.
         </p>
       </div>
-      <meta name="title" content="Privacy Policy - Hot AI's Data Collection & Security Practices" />
-      <meta name="description" content="Hot AI's privacy policy explaining our minimal data collection practices, security measures, third-party services, and your rights regarding personal information." />
-      <link rel="canonical" href="https://hotai.news/page/privacy" />
     </div>
   );
 };

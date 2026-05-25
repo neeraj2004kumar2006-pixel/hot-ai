@@ -1,7 +1,5 @@
 import React from 'react';
-import { dummyArticles } from '../dummy-data/news-data';
-import { techTricksData } from '../dummy-data/tech-data';
-import { aiToolsData } from '../dummy-data/tool-data';
+import { getArticles, getTechTricks, getAiTools } from '../utils/dataStore';
 import { useAuthContext } from '../context/AuthContext';
 
 const AdminNav = ({ active, onNavigate }) => (
@@ -20,14 +18,21 @@ const AdminNav = ({ active, onNavigate }) => (
 
 const AdminDashboard = ({ onNavigate }) => {
   const { logout } = useAuthContext();
-  const totalPosts = dummyArticles.length + techTricksData.length;
-  const categories = [...new Set([...dummyArticles.map(a => a.category), ...techTricksData.map(t => t.category)])];
-  const published = dummyArticles.filter(a => a.status === 'published').length;
-  const tools = aiToolsData.length;
+  const articles = getArticles();
+  const techTricks = getTechTricks();
+  const tools = getAiTools();
 
-  const handleLogout = () => { logout(); window.location.reload(); };
+  const totalPosts = articles.length + techTricks.length;
+  const categories = [...new Set([...articles.map(a => a.category), ...techTricks.map(t => t.category)])];
+  const published = articles.filter(a => a.status === 'published').length + techTricks.filter(t => t.status === 'published').length;
+  const toolsCount = tools.length;
 
-  const recentPosts = [...dummyArticles, ...techTricksData]
+  const handleLogout = () => {
+    logout();
+    onNavigate('home');
+  };
+
+  const recentPosts = [...articles, ...techTricks]
     .sort((a, b) => b.publishDate - a.publishDate)
     .slice(0, 5);
 
@@ -35,7 +40,7 @@ const AdminDashboard = ({ onNavigate }) => {
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
         <h1 style={{ fontSize: '1.5rem', fontWeight: '800', color: '#FFF' }}>Admin Dashboard</h1>
-        <button onClick={handleLogout} style={{ background: 'transparent', border: '1px solid var(--danger)', color: 'var(--danger)', padding: '6px 16px', borderRadius: 'var(--btn-radius)', fontSize: '0.8rem', fontWeight: '700', transition: 'var(--transition)' }}
+        <button onClick={handleLogout} style={{ background: 'transparent', border: '1px solid var(--danger)', color: 'var(--danger)', padding: '6px 16px', borderRadius: 'var(--btn-radius)', fontSize: '0.8rem', fontWeight: '700', transition: 'var(--transition)', cursor: 'pointer' }}
           onMouseOver={(e) => { e.currentTarget.style.background = 'var(--danger)'; e.currentTarget.style.color = '#FFF'; }}
           onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--danger)'; }}
         >Logout</button>
@@ -43,15 +48,21 @@ const AdminDashboard = ({ onNavigate }) => {
 
       <AdminNav active="admin-dashboard" onNavigate={onNavigate} />
 
+      {/* Demo Banner */}
+      <div style={{ background: 'rgba(123,97,255,0.1)', border: '1px solid var(--primary)', borderRadius: 'var(--card-radius)', padding: '12px 16px', marginBottom: '28px', color: 'var(--text-secondary)', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <span style={{ color: 'var(--primary)', fontWeight: 'bold' }}>ℹ️ Demo Mode:</span>
+        <span>Changes are saved locally to your browser's LocalStorage and will persist across reloads.</span>
+      </div>
+
       {/* Stats */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '16px', marginBottom: '36px' }}>
         {[
           { label: 'Total Posts', value: totalPosts, color: 'var(--primary)' },
           { label: 'Categories', value: categories.length, color: 'var(--secondary)' },
           { label: 'Published', value: published, color: 'var(--success)' },
-          { label: 'AI Tools', value: tools, color: 'var(--warning)' }
+          { label: 'AI Tools', value: toolsCount, color: 'var(--warning)' }
         ].map(({ label, value, color }) => (
-          <div key={label} className="premium-card" style={{ padding: '20px', textAlign: 'center' }}>
+          <div key={label} className="premium-card" style={{ padding: '20px', textAlign: 'center', height: 'auto' }}>
             <div style={{ fontSize: '2rem', fontWeight: '900', color, marginBottom: '6px' }}>{value}</div>
             <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: '600' }}>{label}</div>
           </div>
@@ -95,3 +106,4 @@ const AdminDashboard = ({ onNavigate }) => {
 };
 
 export default AdminDashboard;
+export { AdminNav };

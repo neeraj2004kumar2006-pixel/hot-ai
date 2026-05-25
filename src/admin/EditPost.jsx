@@ -1,10 +1,21 @@
 import React from 'react';
-import { dummyArticles } from '../dummy-data/news-data';
+import { getArticles, getTechTricks, getAiTools } from '../utils/dataStore';
 import CreatePost from './CreatePost';
 
 const EditPost = ({ params = {}, onNavigate }) => {
   const articleId = params.id ? Number(params.id) : null;
-  const article = articleId ? dummyArticles.find(a => a.id === articleId) : null;
+  const contentType = params.type || 'article'; // 'article' | 'tech' | 'tool'
+
+  let article = null;
+  if (articleId) {
+    if (contentType === 'article') {
+      article = getArticles().find(a => a.id === articleId);
+    } else if (contentType === 'tech') {
+      article = getTechTricks().find(t => t.id === articleId);
+    } else if (contentType === 'tool') {
+      article = getAiTools().find(t => t.id === articleId);
+    }
+  }
 
   if (!article) {
     return (
@@ -14,7 +25,7 @@ const EditPost = ({ params = {}, onNavigate }) => {
           The post you're trying to edit could not be found.
         </p>
         {onNavigate && (
-          <button onClick={() => onNavigate('admin-manage')} style={{ background: 'var(--primary)', color: '#FFF', padding: '10px 20px', borderRadius: 'var(--btn-radius)', fontSize: '0.85rem', fontWeight: '700' }}>
+          <button onClick={() => onNavigate('admin-manage')} style={{ background: 'var(--primary)', color: '#FFF', padding: '10px 20px', borderRadius: 'var(--btn-radius)', fontSize: '0.85rem', fontWeight: '700', border: 'none', cursor: 'pointer' }}>
             Back to Manage Posts
           </button>
         )}
@@ -23,16 +34,34 @@ const EditPost = ({ params = {}, onNavigate }) => {
   }
 
   const initialValues = {
-    title: article.title,
+    title: article.title || article.name,
     category: article.category,
-    excerpt: article.excerpt,
-    content: article.content,
+    excerpt: article.excerpt || article.description || '',
+    content: article.content || '',
     seoTitle: article.seoTitle || '',
     seoDescription: article.seoDescription || '',
-    tags: article.tags || []
+    tags: article.tags || [],
+    featuredImage: article.featuredImage || null,
+    logo: article.logo || '',
+    pricing: article.pricing || 'freemium',
+    website: article.website || '',
+    features: article.features || [],
+    useCases: article.useCases || [],
+    pros: article.pros || [],
+    cons: article.cons || [],
+    alternatives: article.alternatives || [],
+    status: article.status || 'published'
   };
 
-  return <CreatePost initialValues={initialValues} isEdit={true} onNavigate={onNavigate} />;
+  return (
+    <CreatePost
+      initialValues={initialValues}
+      isEdit={true}
+      onNavigate={onNavigate}
+      editId={articleId}
+      editType={contentType}
+    />
+  );
 };
 
 export default EditPost;

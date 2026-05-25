@@ -1,12 +1,36 @@
-import React from 'react';
-import { dummyArticles } from '../dummy-data/news-data';
+import React, { useState, useEffect } from 'react';
+import { getArticles, getTechTricks, getAiTools } from '../utils/dataStore';
 import { generateSlug, truncateText } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
 
-const RelatedPosts = ({ currentCategory, currentId, onNavigate }) => {
-  const related = dummyArticles
-    .filter(a => a.category === currentCategory && a.id !== currentId)
-    .slice(0, 3);
+const RelatedPosts = ({ currentCategory, currentTags = [], currentId, onNavigate }) => {
+  const [related, setRelated] = useState([]);
+
+  useEffect(() => {
+    // Collect all posts
+    const allContent = [
+      ...getArticles(),
+      ...getTechTricks(),
+      ...getAiTools()
+    ].filter(a => a.status !== 'draft' && a.id !== currentId);
+
+    // Score them based on relation
+    const scored = allContent.map(post => {
+      let score = 0;
+      if (post.category === currentCategory) score += 10;
+      
+      const postTags = Array.isArray(post.tags) ? post.tags : [];
+      const commonTags = postTags.filter(t => currentTags.includes(t)).length;
+      score += commonTags * 2;
+      
+      return { post, score };
+    });
+
+    // Sort by score descending, then by newest (ID descending as proxy)
+    scored.sort((a, b) => b.score - a.score || b.post.id - a.post.id);
+    
+    setRelated(scored.map(s => s.post).slice(0, 3));
+  }, [currentCategory, currentTags, currentId]);
 
   if (related.length === 0) return null;
 

@@ -1,9 +1,10 @@
 import React from 'react';
-import { dummyArticles } from '../dummy-data/news-data';
+import { getArticles } from '../utils/dataStore';
 import NewsCard from '../components/NewsCard';
 
 const Trending = ({ onNavigate }) => {
-  const trendingArticles = dummyArticles.slice(0, 6);
+  const articles = getArticles();
+  const trendingArticles = articles.slice(0, 6);
 
   return (
     <div style={{ paddingBottom: '30px' }} aria-labelledby="trending-page-title">
@@ -17,14 +18,17 @@ const Trending = ({ onNavigate }) => {
       </div>
 
       <div className="grid-3-col" style={{ marginTop: '20px' }}>
-        {trendingArticles.map((article, index) => (
-          <div key={article.id} style={{ position: 'relative' }}>
-            <div style={{ position: 'absolute', top: '-10px', right: '15px', fontSize: '3.5rem', fontWeight: '900', color: 'var(--primary)', opacity: 0.12, zIndex: 10, pointerEvents: 'none', lineHeight: '1', fontFamily: 'system-ui' }}>
-              0{index + 1}
+        {trendingArticles.map((article, index) => {
+          const rankStr = index + 1 < 10 ? `0${index + 1}` : `${index + 1}`;
+          return (
+            <div key={article.id} style={{ position: 'relative' }}>
+              <div style={{ position: 'absolute', top: '-10px', right: '15px', fontSize: '3.5rem', fontWeight: '900', color: 'var(--primary)', opacity: 0.12, zIndex: 10, pointerEvents: 'none', lineHeight: '1', fontFamily: 'system-ui' }}>
+                {rankStr}
+              </div>
+              <NewsCard article={article} onNavigate={onNavigate} />
             </div>
-            <NewsCard article={article} onNavigate={onNavigate} />
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

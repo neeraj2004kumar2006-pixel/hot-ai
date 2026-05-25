@@ -1,7 +1,9 @@
 import React from 'react';
-import { aiToolsData } from '../dummy-data/tool-data';
+import { getAiTools } from '../utils/dataStore';
 
-const AiTools = () => {
+const AiTools = ({ onNavigate }) => {
+  const tools = getAiTools();
+
   return (
     <div style={{ paddingBottom: '30px' }} aria-labelledby="tools-page-title">
       <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '12px', marginBottom: '24px' }}>
@@ -14,7 +16,7 @@ const AiTools = () => {
       </div>
 
       <div className="grid-3-col" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))' }}>
-        {aiToolsData.map((tool) => (
+        {tools.map((tool) => (
           <div key={tool.id} className="premium-card" style={{ padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '15px' }}>
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>

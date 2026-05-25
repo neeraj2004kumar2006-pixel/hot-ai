@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { updateMetaTags } from '../utils/helpers';
 
 const Editorial = ({ onNavigate }) => {
+  useEffect(() => {
+    updateMetaTags({
+      title: "Our Editorial Process - Hot AI's Content Standards & Verification",
+      description: "How Hot AI researches, writes, tests, and verifies every piece of content. Learn about our rigorous editorial standards, AI tool review process, and corrections policy.",
+      canonicalUrl: "https://hotai.news/page/editorial"
+    });
+  }, []);
+
   return (
     <div style={{ paddingBottom: '30px' }} aria-labelledby="editorial-page-title">
       <div 
@@ -75,9 +84,6 @@ const Editorial = ({ onNavigate }) => {
           <li><strong>Reader Feedback:</strong> We welcome reader feedback and corrections via our contact form.</li>
         </ul>
       </div>
-      <meta name="title" content="Our Editorial Process - Hot AI's Content Standards & Verification" />
-      <meta name="description" content="How Hot AI researches, writes, tests, and verifies every piece of content. Learn about our rigorous editorial standards, AI tool review process, and corrections policy." />
-      <link rel="canonical" href="https://hotai.news/page/editorial" />
     </div>
   );
 };

@@ -1,7 +1,9 @@
 import React from 'react';
-import { techTricksData } from '../dummy-data/tech-data';
+import { getTechTricks } from '../utils/dataStore';
 
 const TechTricks = ({ onNavigate }) => {
+  const tricks = getTechTricks();
+
   return (
     <div style={{ paddingBottom: '30px' }} aria-labelledby="tricks-page-title">
       <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '12px', marginBottom: '24px' }}>
@@ -14,7 +16,7 @@ const TechTricks = ({ onNavigate }) => {
       </div>
 
       <div className="grid-3-col" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))' }}>
-        {techTricksData.map((trick) => (
+        {tricks.map((trick) => (
           <div key={trick.id} className="premium-card" style={{ padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '15px' }}>
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
@@ -32,7 +34,7 @@ const TechTricks = ({ onNavigate }) => {
             <div style={{ borderTop: '1px solid var(--border)', paddingTop: '12px' }}>
               <span
                 style={{ fontSize: '0.75rem', color: 'var(--primary)', fontWeight: '700', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
-                onClick={() => onNavigate && onNavigate('search', { query: trick.name })}
+                onClick={() => onNavigate && onNavigate('article', { id: trick.id, slug: trick.slug })}
               >
                 Read Guide
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">

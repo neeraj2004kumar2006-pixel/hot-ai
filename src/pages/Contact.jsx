@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { updateMetaTags } from '../utils/helpers';
 
 const Contact = ({ onNavigate }) => {
-  const [formData, setFormData] = React.useState({
+  useEffect(() => {
+    updateMetaTags({
+      title: "Contact Hot AI - Get in Touch with Our Editorial Team",
+      description: "Reach out to Hot AI's editorial team for inquiries, feedback, partnership opportunities, or technical support. We respond to all messages within 24 business hours.",
+      canonicalUrl: "https://hotai.news/page/contact"
+    });
+  }, []);
+
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
 
+  const [submitted, setSubmitted] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Thank you for your message! We will respond within 24 hours.');
+    if (formData.name.trim() && formData.email.trim() && formData.message.trim()) {
+      setSubmitted(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    }
   };
 
   return (
@@ -61,43 +75,52 @@ const Contact = ({ onNavigate }) => {
         <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
           Send Us a Message
         </h2>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          <div>
-            <label htmlFor="contact-name" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Name</label>
-            <input id="contact-name" type="text" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})}
-              placeholder="Your full name" style={{ width: '100%', padding: '10px 14px', background: '#131622', border: '1px solid var(--border)', borderRadius: 'var(--btn-radius)', fontSize: '0.88rem', color: '#FFF' }} />
+        {submitted ? (
+          <div style={{ textAlign: 'center', padding: '40px 20px', background: 'rgba(0,214,143,0.1)', border: '1px solid var(--success)', borderRadius: 'var(--card-radius)' }}>
+            <span style={{ fontSize: '2rem', marginBottom: '12px', display: 'block' }}>✉️</span>
+            <h3 style={{ color: '#00D68F', fontSize: '1.25rem', fontWeight: '800', marginBottom: '8px' }}>Message Sent Successfully</h3>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Thank you for reaching out! Our team will get back to you within 24 business hours.</p>
+            <button onClick={() => setSubmitted(false)} style={{ background: 'var(--primary)', color: '#FFF', border: 'none', padding: '8px 18px', borderRadius: 'var(--btn-radius)', fontSize: '0.8rem', fontWeight: '700', marginTop: '16px', cursor: 'pointer' }}>Send Another Message</button>
           </div>
-          <div>
-            <label htmlFor="contact-email" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Email</label>
-            <input id="contact-email" type="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})}
-              placeholder="your@email.com" style={{ width: '100%', padding: '10px 14px', background: '#131622', border: '1px solid var(--border)', borderRadius: 'var(--btn-radius)', fontSize: '0.88rem', color: '#FFF' }} />
-          </div>
-          <div>
-            <label htmlFor="contact-subject" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Subject</label>
-            <select id="contact-subject" value={formData.subject} onChange={(e) => setFormData({...formData, subject: e.target.value})}
-              style={{ width: '100%', padding: '10px 14px', background: '#131622', border: '1px solid var(--border)', borderRadius: 'var(--btn-radius)', fontSize: '0.88rem', color: '#FFF', cursor: 'pointer' }}>
-              <option value="">Select a subject...</option>
-              <option value="general">General Inquiry</option>
-              <option value="editorial">Editorial Question</option>
-              <option value="partnership">Partnership Opportunity</option>
-              <option value="bug-report">Bug Report</option>
-              <option value="feedback">Feedback or Suggestion</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="contact-message" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Message</label>
-            <textarea id="contact-message" rows="6" required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}
-              placeholder="Tell us about your question, feedback, or idea..." style={{ width: '100%', padding: '10px 14px', background: '#131622', border: '1px solid var(--border)', borderRadius: 'var(--btn-radius)', fontSize: '0.88rem', color: '#FFF', resize: 'vertical', lineHeight: '1.7' }} />
-          </div>
-          <button type="submit" style={{
-            background: 'var(--primary)', color: '#FFF', padding: '12px',
-            borderRadius: 'var(--btn-radius)', fontSize: '0.85rem', fontWeight: '700',
-            transition: 'var(--transition)'
-          }}
-            onMouseOver={(e) => e.currentTarget.style.filter = 'brightness(1.1)'}
-            onMouseOut={(e) => e.currentTarget.style.filter = 'none'}
-          >Send Message</button>
-        </form>
+        ) : (
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <div>
+              <label htmlFor="contact-name" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Name</label>
+              <input id="contact-name" type="text" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})}
+                placeholder="Your full name" style={{ width: '100%', padding: '10px 14px', background: '#131622', border: '1px solid var(--border)', borderRadius: 'var(--btn-radius)', fontSize: '0.88rem', color: '#FFF' }} />
+            </div>
+            <div>
+              <label htmlFor="contact-email" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Email</label>
+              <input id="contact-email" type="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})}
+                placeholder="your@email.com" style={{ width: '100%', padding: '10px 14px', background: '#131622', border: '1px solid var(--border)', borderRadius: 'var(--btn-radius)', fontSize: '0.88rem', color: '#FFF' }} />
+            </div>
+            <div>
+              <label htmlFor="contact-subject" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Subject</label>
+              <select id="contact-subject" value={formData.subject} onChange={(e) => setFormData({...formData, subject: e.target.value})}
+                style={{ width: '100%', padding: '10px 14px', background: '#131622', border: '1px solid var(--border)', borderRadius: 'var(--btn-radius)', fontSize: '0.88rem', color: '#FFF', cursor: 'pointer' }}>
+                <option value="">Select a subject...</option>
+                <option value="general">General Inquiry</option>
+                <option value="editorial">Editorial Question</option>
+                <option value="partnership">Partnership Opportunity</option>
+                <option value="bug-report">Bug Report</option>
+                <option value="feedback">Feedback or Suggestion</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="contact-message" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Message</label>
+              <textarea id="contact-message" rows="6" required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}
+                placeholder="Tell us about your question, feedback, or idea..." style={{ width: '100%', padding: '10px 14px', background: '#131622', border: '1px solid var(--border)', borderRadius: 'var(--btn-radius)', fontSize: '0.88rem', color: '#FFF', resize: 'vertical', lineHeight: '1.7' }} />
+            </div>
+            <button type="submit" style={{
+              background: 'var(--primary)', color: '#FFF', padding: '12px',
+              borderRadius: 'var(--btn-radius)', fontSize: '0.85rem', fontWeight: '700',
+              transition: 'var(--transition)', border: 'none', cursor: 'pointer'
+            }}
+              onMouseOver={(e) => e.currentTarget.style.filter = 'brightness(1.1)'}
+              onMouseOut={(e) => e.currentTarget.style.filter = 'none'}
+            >Send Message</button>
+          </form>
+        )}
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
@@ -108,9 +131,6 @@ const Contact = ({ onNavigate }) => {
           Our editorial team is available Monday through Friday, 9am to 5pm EST. We aim to respond to all inquiries within 24 business hours.
         </p>
       </div>
-      <meta name="title" content="Contact Hot AI - Get in Touch with Our Editorial Team" />
-      <meta name="description" content="Reach out to Hot AI's editorial team for inquiries, feedback, partnership opportunities, or technical support. We respond to all messages within 24 business hours." />
-      <link rel="canonical" href="https://hotai.news/page/contact" />
     </div>
   );
 };

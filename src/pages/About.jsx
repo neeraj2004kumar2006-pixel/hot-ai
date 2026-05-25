@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { updateMetaTags } from '../utils/helpers';
 
 const About = ({ onNavigate }) => {
+  useEffect(() => {
+    updateMetaTags({
+      title: "About Hot AI - Our Mission, Team & Editorial Standards",
+      description: "Learn about Hot AI's mission to deliver authentic AI news, practical tech tutorials, and verified AI tool reviews. Meet our team of experienced developers and AI researchers.",
+      canonicalUrl: "https://hotai.news/page/about"
+    });
+  }, []);
+
   return (
     <div style={{ paddingBottom: '30px' }} aria-labelledby="about-page-title">
       <div 
@@ -56,7 +65,7 @@ const About = ({ onNavigate }) => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
             <div style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', backgroundColor: '#131622', marginBottom: '15px' }}>
-              <img src="/assets/images/sarah-johnson.webp" alt="Sarah Johnson" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=60" alt="Sarah Johnson" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#FFFFFF', marginBottom: '5px' }}>Sarah Johnson</h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Senior AI Researcher & Editor-in-Chief</p>
@@ -64,7 +73,7 @@ const About = ({ onNavigate }) => {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
             <div style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', backgroundColor: '#131622', marginBottom: '15px' }}>
-              <img src="/assets/images/michael-chen.webp" alt="Michael Chen" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=60" alt="Michael Chen" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#FFFFFF', marginBottom: '5px' }}>Michael Chen</h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Developer Advocate & Technical Writer</p>
@@ -72,7 +81,7 @@ const About = ({ onNavigate }) => {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
             <div style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', backgroundColor: '#131622', marginBottom: '15px' }}>
-              <img src="/assets/images/alex-rivera.webp" alt="Alex Rivera" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=60" alt="Alex Rivera" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#FFFFFF', marginBottom: '5px' }}>Alex Rivera</h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Mobile Optimization Specialist</p>
@@ -80,9 +89,6 @@ const About = ({ onNavigate }) => {
           </div>
         </div>
       </div>
-      <meta name="title" content="About Hot AI - Our Mission, Team & Editorial Standards" />
-      <meta name="description" content="Learn about Hot AI's mission to deliver authentic AI news, practical tech tutorials, and verified AI tool reviews. Meet our team of experienced developers and AI researchers." />
-      <link rel="canonical" href="https://hotai.news/page/about" />
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import React from 'react';
-import { dummyArticles } from '../dummy-data/news-data';
+import { getArticles } from '../utils/dataStore';
 import NewsCard from '../components/NewsCard';
 
 const Category = ({ params = {}, onNavigate }) => {
   const categoryName = params.name || 'AI News';
-  const filteredArticles = dummyArticles.filter(
+  const articles = getArticles();
+  const filteredArticles = articles.filter(
     (art) => art.category.toLowerCase() === categoryName.toLowerCase()
   );
 

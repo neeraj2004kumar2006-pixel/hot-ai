@@ -1,43 +1,92 @@
-import React, { useEffect } from 'react';
-import { dummyArticles } from '../dummy-data/news-data';
+import React, { useEffect, useState } from 'react';
+import { getArticles } from '../utils/dataStore';
 import RelatedPosts from '../components/RelatedPosts';
 import AdBanner from '../components/AdBanner';
-import { generateSlug } from '../utils/helpers';
+import { generateSlug, updateMetaTags } from '../utils/helpers';
 import ImageWithFallback from '../components/ImageWithFallback';
 
 const Article = ({ params = {}, onNavigate }) => {
-  const articleId = parseInt(params.id, 10) || 1;
-  const article = dummyArticles.find((art) => art.id === articleId) || dummyArticles[0];
+  const articleId = parseInt(params.id, 10);
+  const articles = getArticles();
+  const currentIndex = articles.findIndex((art) => art.id === articleId);
+  const article = currentIndex !== -1 ? articles[currentIndex] : articles[0];
+
+  const [copied, setCopied] = useState(false);
+
+  // If there are no articles at all (edge case)
+  if (!article) {
+    return (
+      <div style={{ textAlign: 'center', padding: '60px 20px' }}>
+        <h2 style={{ fontSize: '1.3rem', fontWeight: '800', color: '#FFF' }}>Article Not Found</h2>
+        <button onClick={() => onNavigate('home')} style={{ background: 'var(--primary)', color: '#FFF', padding: '8px 18px', borderRadius: 'var(--btn-radius)', marginTop: '16px' }}>Go Home</button>
+      </div>
+    );
+  }
+
+  const hasPrev = currentIndex > 0;
+  const hasNext = currentIndex !== -1 && currentIndex < articles.length - 1;
 
   const handlePrevClick = () => {
-    const prevId = Math.max(1, articleId - 1);
-    const prevArt = dummyArticles.find((art) => art.id === prevId);
-    if (prevArt) onNavigate('article', { id: prevId, slug: generateSlug(prevArt.title) });
+    if (hasPrev) {
+      const prevArt = articles[currentIndex - 1];
+      onNavigate('article', { id: prevArt.id, slug: generateSlug(prevArt.title) });
+    }
   };
 
   const handleNextClick = () => {
-    const nextId = Math.min(dummyArticles.length, articleId + 1);
-    const nextArt = dummyArticles.find((art) => art.id === nextId);
-    if (nextArt) onNavigate('article', { id: nextId, slug: generateSlug(nextArt.title) });
+    if (hasNext) {
+      const nextArt = articles[currentIndex + 1];
+      onNavigate('article', { id: nextArt.id, slug: generateSlug(nextArt.title) });
+    }
   };
 
   // Progress bar
   useEffect(() => {
+    if (article) {
+      document.title = `${article.seoTitle || article.title} - Hot AI`;
+      updateMetaTags({
+        title: `${article.seoTitle || article.title} - Hot AI`,
+        description: article.seoDescription || article.excerpt || article.title,
+        url: window.location.href,
+        image: article.featuredImage?.url,
+        type: 'article',
+        articleData: article
+      });
+    }
+
     const bar = document.getElementById('article-progress-bar');
     if (!bar) return;
     const update = () => {
-      const pct = Math.min(100, Math.max(0, (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100));
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100)) : 0;
       bar.style.width = `${pct}%`;
     };
     window.addEventListener('scroll', update);
     update();
     return () => window.removeEventListener('scroll', update);
-  }, []);
+  }, [articleId]);
 
   const formatDate = (d) => d instanceof Date ? d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
 
   // Split content into paragraphs for ad injection
-  const paragraphs = article.content.split('\n\n');
+  const paragraphs = article.content ? article.content.split('\n\n') : [];
+
+  // Share Handlers
+  const handleShare = (platform) => {
+    const url = window.location.href;
+    const title = article.title;
+
+    if (platform === 'X') {
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank');
+    } else if (platform === 'Copy') {
+      navigator.clipboard.writeText(url).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      });
+    } else if (platform === 'Email') {
+      window.location.href = `mailto:?subject=${encodeURIComponent(title)}&body=Check this out: ${encodeURIComponent(url)}`;
+    }
+  };
 
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto' }}>
@@ -73,21 +122,23 @@ const Article = ({ params = {}, onNavigate }) => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border)', paddingBottom: '15px', marginBottom: '25px', flexWrap: 'wrap', gap: '12px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{ width: '36px', height: '36px', borderRadius: '50%', overflow: 'hidden', flexShrink: 0 }}>
-              <ImageWithFallback src={article.author.avatar} alt={article.author.name} width={36} height={36} />
+              <ImageWithFallback src={article.author?.avatar} alt={article.author?.name} width={36} height={36} />
             </div>
             <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: '600', color: '#FFFFFF' }}>{article.author.name}</div>
-              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{article.author.role}</div>
+              <div style={{ fontSize: '0.85rem', fontWeight: '600', color: '#FFFFFF' }}>{article.author?.name}</div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{article.author?.role}</div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '8px' }} aria-label="Share">
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }} aria-label="Share">
+            {copied && <span style={{ fontSize: '0.7rem', color: 'var(--success)', fontWeight: 'bold' }}>Link Copied!</span>}
             {[
               { label: 'X', icon: '𝕏' },
               { label: 'Copy', icon: '🔗' },
               { label: 'Email', icon: '✉️' }
             ].map(({ label, icon }) => (
-              <span key={label} title={`Share via ${label}`} style={{ width: '28px', height: '28px', borderRadius: '50%', border: '1px solid var(--border)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', cursor: 'pointer', transition: 'var(--transition)' }}
+              <span key={label} title={`Share via ${label}`} onClick={() => handleShare(label)}
+                style={{ width: '28px', height: '28px', borderRadius: '50%', border: '1px solid var(--border)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', cursor: 'pointer', transition: 'var(--transition)' }}
                 onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--primary)'}
                 onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--border)'}
               >{icon}</span>
@@ -97,7 +148,7 @@ const Article = ({ params = {}, onNavigate }) => {
 
         {/* Tags */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '25px' }}>
-          {article.tags.map((tag, i) => (
+          {(article.tags || []).map((tag, i) => (
             <span key={i} style={{ fontSize: '0.75rem', background: 'rgba(123,97,255,0.15)', color: 'var(--secondary)', padding: '4px 12px', borderRadius: '4px', fontWeight: '600' }}>
               #{tag}
             </span>
@@ -105,9 +156,11 @@ const Article = ({ params = {}, onNavigate }) => {
         </div>
 
         {/* Cover Image */}
-        <div style={{ width: '100%', aspectRatio: '16/9', borderRadius: 'var(--card-radius)', overflow: 'hidden', marginBottom: '30px' }}>
-          <ImageWithFallback src={article.featuredImage.url} alt={article.featuredImage.alt} width={article.featuredImage.width} height={article.featuredImage.height} loading="eager" />
-        </div>
+        {article.featuredImage && (
+          <div style={{ width: '100%', aspectRatio: '16/9', borderRadius: 'var(--card-radius)', overflow: 'hidden', marginBottom: '30px' }}>
+            <ImageWithFallback src={article.featuredImage.url} alt={article.featuredImage.alt} width={article.featuredImage.width} height={article.featuredImage.height} loading="eager" />
+          </div>
+        )}
 
         {/* Progress Bar */}
         <div style={{ height: '4px', background: '#2B2F3D', borderRadius: '2px', marginBottom: '30px' }}>
@@ -129,10 +182,10 @@ const Article = ({ params = {}, onNavigate }) => {
 
         {/* Prev / Next */}
         <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', padding: '20px 0', margin: '40px 0' }}>
-          <button onClick={handlePrevClick} disabled={articleId === 1} style={{ opacity: articleId === 1 ? 0.4 : 1, display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-secondary)' }}>
+          <button onClick={handlePrevClick} disabled={!hasPrev} style={{ opacity: !hasPrev ? 0.4 : 1, display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-secondary)', cursor: hasPrev ? 'pointer' : 'default', background: 'none', border: 'none' }}>
             ← Previous
           </button>
-          <button onClick={handleNextClick} disabled={articleId === dummyArticles.length} style={{ opacity: articleId === dummyArticles.length ? 0.4 : 1, display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-secondary)' }}>
+          <button onClick={handleNextClick} disabled={!hasNext} style={{ opacity: !hasNext ? 0.4 : 1, display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-secondary)', cursor: hasNext ? 'pointer' : 'default', background: 'none', border: 'none' }}>
             Next →
           </button>
         </div>
@@ -142,7 +195,7 @@ const Article = ({ params = {}, onNavigate }) => {
       <AdBanner slot="articlePreRelated" />
 
       {/* Related Posts */}
-      <RelatedPosts currentCategory={article.category} currentId={article.id} onNavigate={onNavigate} />
+      <RelatedPosts currentCategory={article.category} currentTags={article.tags} currentId={article.id} onNavigate={onNavigate} />
     </div>
   );
 };

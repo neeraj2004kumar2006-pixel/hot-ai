@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { updateMetaTags } from '../utils/helpers';
 
 const Terms = ({ onNavigate }) => {
+  useEffect(() => {
+    updateMetaTags({
+      title: "Terms of Service - Hot AI's Usage Policies & Legal Requirements",
+      description: "Hot AI's terms of service outlining acceptable use policies, content licensing, user conduct requirements, and liability limitations.",
+      canonicalUrl: "https://hotai.news/page/terms"
+    });
+  }, []);
+
   return (
     <div style={{ paddingBottom: '30px' }} aria-labelledby="terms-page-title">
       <div 
@@ -97,9 +106,6 @@ const Terms = ({ onNavigate }) => {
           Questions about these Terms should be directed to legal@hotai.news.
         </p>
       </div>
-      <meta name="title" content="Terms of Service - Hot AI's Usage Policies & Legal Requirements" />
-      <meta name="description" content="Hot AI's terms of service outlining acceptable use policies, content licensing, user conduct requirements, and liability limitations." />
-      <link rel="canonical" href="https://hotai.news/page/terms" />
     </div>
   );
 };

@@ -1,39 +1,38 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { login as authLogin, logout as authLogout, isAuthenticated, getSession } from '../utils/auth';
+import { login as authLogin, logout as authLogout, isAuthenticated, validateSession } from '../utils/auth';
 
 const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const [session, setSession] = useState(null);
+  const [session, setSession] = useState(null); // Keep for compatibility
   const [isLoading, setIsLoading] = useState(true);
   const [authed, setAuthed] = useState(false);
 
   useEffect(() => {
-    const existing = getSession();
-    const valid = isAuthenticated();
-    setSession(valid ? existing : null);
-    setAuthed(valid);
-    setIsLoading(false);
+    const checkAuth = async () => {
+      const valid = await validateSession();
+      setAuthed(valid);
+      setIsLoading(false);
+    };
+    checkAuth();
   }, []);
 
-  const login = (id, password) => {
-    if (authLogin(id, password)) {
-      setSession(getSession());
+  const login = async (id, password) => {
+    const success = await authLogin(id, password);
+    if (success) {
       setAuthed(true);
       return true;
     }
     return false;
   };
 
-  const logout = () => {
-    authLogout();
-    setSession(null);
+  const logout = async () => {
+    await authLogout();
     setAuthed(false);
   };
 
-  const refreshSession = () => {
-    const valid = isAuthenticated();
-    setSession(valid ? getSession() : null);
+  const refreshSession = async () => {
+    const valid = await validateSession();
     setAuthed(valid);
   };
 

@@ -1,45 +1,51 @@
-// Authentication utility functions — NO React imports
-const STORAGE_KEY = 'hotai_admin_auth';
-const SESSION_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+// Authentication utility functions utilizing secure backend
+const STORAGE_KEY = 'hotai_admin_auth'; // Kept just for UI state flag (not actual token)
 
-export const login = (id, password) => {
-  const ADMIN_ID = import.meta.env.VITE_ADMIN_ID;
-  const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
-
-  if (id === ADMIN_ID && password === ADMIN_PASSWORD) {
-    const expiresAt = Date.now() + SESSION_DURATION;
-    const token = btoa(`${id}:${Date.now()}`);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ token, expiresAt }));
-    return true;
-  }
-  return false;
-};
-
-export const logout = () => {
-  localStorage.removeItem(STORAGE_KEY);
-};
-
-export const getSession = () => {
+export const login = async (id, password) => {
   try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : null;
-  } catch { return null; }
+    const res = await fetch('http://localhost:3001/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, password })
+    });
+    const data = await res.json();
+    if (data.success) {
+      localStorage.setItem(STORAGE_KEY, 'true'); // Just a flag
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.error('Login error:', error);
+    return false;
+  }
+};
+
+export const logout = async () => {
+  try {
+    await fetch('http://localhost:3001/api/logout', { method: 'POST' });
+  } catch (e) {}
+  localStorage.removeItem(STORAGE_KEY);
 };
 
 export const isAuthenticated = () => {
-  const session = getSession();
-  if (session && session.expiresAt > Date.now()) return true;
-  if (session) localStorage.removeItem(STORAGE_KEY);
+  return localStorage.getItem(STORAGE_KEY) === 'true';
+};
+
+// Returns a promise that checks the real session on the server
+export const validateSession = async () => {
+  try {
+    const res = await fetch('http://localhost:3001/api/verify');
+    const data = await res.json();
+    if (data.success) {
+      localStorage.setItem(STORAGE_KEY, 'true');
+      return true;
+    }
+  } catch (e) {}
+  localStorage.removeItem(STORAGE_KEY);
   return false;
 };
 
-export const validateSession = () => isAuthenticated();
-
-export const setSession = (data) => {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
-  catch { /* silent */ }
-};
-
-export const clearSession = () => {
-  localStorage.removeItem(STORAGE_KEY);
-};
+// Deprecated in favor of httpOnly cookies, kept for compatibility signatures
+export const getSession = () => isAuthenticated();
+export const setSession = () => {};
+export const clearSession = logout;

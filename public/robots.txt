@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Disallow admin routes from being indexed if they happen to be crawled
+Disallow: /*/admin-*
+
+Sitemap: https://hotai.com/sitemap.xml

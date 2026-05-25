@@ -39,14 +39,15 @@ const AdminLoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
     if (isOpen) { setEmail(''); setPassword(''); setError(''); setShowPassword(false); }
   }, [isOpen]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isLocked) { setError(`Locked for ${lockTime}s. Try again later.`); return; }
 
     const trimmedId = email.trim();
     const trimmedPass = password.trim();
 
-    if (login(trimmedId, trimmedPass)) {
+    const success = await login(trimmedId, trimmedPass);
+    if (success) {
       setError(''); setAttempts(0);
       if (onLoginSuccess) onLoginSuccess();
       onClose();

@@ -3,11 +3,17 @@ import { truncateText, generateSlug } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
 
 const NewsCard = ({ article, onNavigate }) => {
-  const slug = generateSlug(article.title);
+  const slug = article.slug || generateSlug(article.title);
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (onNavigate) onNavigate('article', { id: article.id, slug });
+    if (onNavigate) {
+      if (article.isAiTool) {
+        onNavigate('ai-tools');
+      } else {
+        onNavigate('article', { id: article.id, slug });
+      }
+    }
   };
 
   const dateStr = article.publishDate instanceof Date
@@ -31,8 +37,9 @@ const NewsCard = ({ article, onNavigate }) => {
 
       <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', flex: 1, gap: '8px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-          <span>{dateStr}</span>
-          {article.readingTime && <><span>•</span><span>{article.readingTime}</span></>}
+          {dateStr && <span>{dateStr}</span>}
+          {dateStr && article.readingTime && <span>•</span>}
+          {article.readingTime && <span>{article.readingTime}</span>}
         </div>
 
         <h3
@@ -55,11 +62,11 @@ const NewsCard = ({ article, onNavigate }) => {
         )}
 
         <a
-          href={`#/article/${slug}`}
+          href={article.isAiTool ? '#/ai-tools' : `#/article/${slug}`}
           onClick={handleClick}
           style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--primary)', display: 'inline-flex', alignItems: 'center', gap: '4px', marginTop: '4px', width: 'fit-content' }}
         >
-          Read More
+          {article.isAiTool ? 'View Directory' : 'Read More'}
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
           </svg>
