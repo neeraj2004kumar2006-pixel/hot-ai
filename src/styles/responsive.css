@@ -1,0 +1,130 @@
+/* Responsive styling for Hot AI - Mobile First Architecture */
+
+/* Grid and Flex Layout Helpers */
+.grid-3-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+/* Home Sidebar is hidden on mobile by default */
+.desktop-sidebar {
+  display: none;
+}
+
+/* Layout definitions */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.trending-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.related-posts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+/* Extra Small (320px+) */
+@media (min-width: 320px) {
+  .main-content {
+    padding: 70px 12px 40px;
+  }
+}
+
+/* Mobile landscape and small tablets (576px+) */
+@media (min-width: 576px) {
+  .trending-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .related-posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet Portrait and Up (768px+) */
+@media (min-width: 768px) {
+  .grid-3-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+  .hero-section {
+    grid-template-columns: 1fr;
+  }
+  .related-posts-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .main-content {
+    padding: 80px 20px 40px;
+  }
+}
+
+/* Small Laptops (992px+) */
+@media (min-width: 992px) {
+  .hero-section {
+    grid-template-columns: 1.6fr 1fr;
+  }
+  .trending-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Desktop and Up (1024px+) */
+@media (min-width: 1024px) {
+  .grid-3-col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .two-column-layout {
+    grid-template-columns: 1fr 320px;
+  }
+
+  .desktop-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .trending-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Large Desktop (1440px+) */
+@media (min-width: 1440px) {
+  .main-content {
+    padding: 80px 24px 48px;
+  }
+}
+
+/* Mobile nav overrides */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-burger-btn {
+    display: flex !important;
+  }
+}

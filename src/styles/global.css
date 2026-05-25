@@ -1,0 +1,176 @@
+/* Hot AI - Global Style Variables, Reset, and Typography System */
+:root {
+  /* Color Tokens */
+  --bg-color: #0F1117;
+  --card-bg: #1A1D29;
+  --primary: #00A8FF;
+  --secondary: #7B61FF;
+  --text: #FFFFFF;
+  --text-secondary: #B0B7C3;
+  --border: #2B2F3D;
+  --surface: #131622;
+  --success: #00D68F;
+  --danger: #FF6B6B;
+  --warning: #FFD93D;
+
+  /* Layout Tokens */
+  --card-radius: 16px;
+  --btn-radius: 8px;
+  --font-stack: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --max-width: 1200px;
+
+  /* Typography Scale */
+  --font-h1: 2rem;
+  --font-h2: 1.35rem;
+  --font-h3: 1.1rem;
+  --font-body: 0.95rem;
+  --font-meta: 0.8rem;
+  --font-caption: 0.72rem;
+  --font-small: 0.65rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text);
+  font-family: var(--font-stack);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Premium Layout Structure */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 80px 20px 40px;
+}
+
+/* Section Title */
+.section-title {
+  font-size: var(--font-h2);
+  font-weight: 700;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-left: 4px solid var(--primary);
+  padding-left: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Universal Card */
+.premium-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.premium-card:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: var(--primary);
+}
+
+/* Category Badge */
+.category-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  width: fit-content;
+}
+
+/* Ad slot — collapses when empty, no layout shift */
+.ad-slot:empty {
+  display: none;
+}
+
+/* Scrollbar hides */
+.category-tabs-container::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Shimmer animation for image loading */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Spinner animation for loading states */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Admin nav styles */
+.admin-nav {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--surface);
+  border-radius: var(--btn-radius);
+  margin-bottom: 24px;
+}
+
+.admin-nav button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: var(--font-meta);
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.admin-nav button:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.05);
+}
+
+.admin-nav button.active {
+  background: var(--primary);
+  color: #FFFFFF;
+}
