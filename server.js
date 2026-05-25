@@ -21,8 +21,10 @@ const ADMIN_ID = process.env.ADMIN_ID || 'admin_hotai';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'HotAI@2026Secure';
 const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_jwt_key_hot_ai_2026';
 
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+
 app.use(cors({
-  origin: 'http://localhost:5173', // Vite default
+  origin: FRONTEND_URL,
   credentials: true
 }));
 app.use(express.json());
@@ -65,8 +67,8 @@ app.post('/api/login', (req, res) => {
     const token = jwt.sign({ id, role: 'admin' }, JWT_SECRET, { expiresIn: '24h' });
     res.cookie('hotai_auth_token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'none',
+	  secure: true,
       maxAge: 24 * 60 * 60 * 1000 // 24 hours
     });
     return res.json({ success: true, message: 'Logged in' });

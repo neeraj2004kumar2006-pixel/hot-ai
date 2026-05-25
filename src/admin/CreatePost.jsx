@@ -100,15 +100,15 @@ const CreatePost = ({ initialValues, isEdit, onNavigate, editId, editType }) => 
 
     const formData = new FormData();
     formData.append('image', file);
+    
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
     try {
       showToast('Uploading image...', 'loading');
-      const res = await fetch('http://localhost:3001/api/upload', {
+      const res = await fetch(`${API_URL}/api/upload`, {
         method: 'POST',
         body: formData,
-        headers: {
-          // Cookies are automatically sent due to withCredentials if configured, but let's keep it simple
-        }
+        credentials: 'include'
       });
       const data = await res.json();
       if (data.success) {

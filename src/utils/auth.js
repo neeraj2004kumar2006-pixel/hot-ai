@@ -1,12 +1,14 @@
 // Authentication utility functions utilizing secure backend
 const STORAGE_KEY = 'hotai_admin_auth'; // Kept just for UI state flag (not actual token)
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 export const login = async (id, password) => {
   try {
-    const res = await fetch('http://localhost:3001/api/login', {
+    const res = await fetch(`${API_URL}/api/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, password })
+      body: JSON.stringify({ id, password }),
+      credentials: 'include'
     });
     const data = await res.json();
     if (data.success) {
@@ -22,7 +24,10 @@ export const login = async (id, password) => {
 
 export const logout = async () => {
   try {
-    await fetch('http://localhost:3001/api/logout', { method: 'POST' });
+    await fetch(`${API_URL}/api/logout`, { 
+      method: 'POST',
+      credentials: 'include'
+    });
   } catch (e) {}
   localStorage.removeItem(STORAGE_KEY);
 };
@@ -34,7 +39,9 @@ export const isAuthenticated = () => {
 // Returns a promise that checks the real session on the server
 export const validateSession = async () => {
   try {
-    const res = await fetch('http://localhost:3001/api/verify');
+    const res = await fetch(`${API_URL}/api/verify`, {
+      credentials: 'include'
+    });
     const data = await res.json();
     if (data.success) {
       localStorage.setItem(STORAGE_KEY, 'true');
