@@ -1,5 +1,6 @@
 import React from 'react';
 import NewsCard from './NewsCard';
+import PremiumCarousel from './PremiumCarousel';
 
 const FeaturedSection = ({ articles = [], onNavigate }) => {
   const featuredArticles = articles.slice(4, 10);
@@ -11,11 +12,13 @@ const FeaturedSection = ({ articles = [], onNavigate }) => {
     <section style={{ marginBottom: '40px' }} aria-labelledby="featured-title">
       <h2 id="featured-title" className="section-title">Featured AI News</h2>
 
-      <div className="grid-3-col">
+      <PremiumCarousel itemGap="20px">
         {featuredArticles.map((article) => (
-          <NewsCard key={article.id} article={article} onNavigate={onNavigate} />
+          <div key={article.id} style={{ minWidth: '280px', maxWidth: '300px', height: '100%' }}>
+            <NewsCard article={article} onNavigate={onNavigate} />
+          </div>
         ))}
-      </div>
+      </PremiumCarousel>
     </section>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getArticles, getTechTricks, getAiTools } from '../utils/dataStore';
 import { generateSlug, truncateText } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
+import PremiumCarousel from './PremiumCarousel';
 
 const RelatedPosts = ({ currentCategory, currentTags = [], currentId, onNavigate }) => {
   const [related, setRelated] = useState([]);
@@ -38,12 +39,12 @@ const RelatedPosts = ({ currentCategory, currentTags = [], currentId, onNavigate
     <section style={{ marginTop: '40px', paddingTop: '30px', borderTop: '1px solid var(--border)' }}>
       <h2 className="section-title">Related Posts</h2>
 
-      <div className="related-posts-grid">
+      <PremiumCarousel itemGap="20px">
         {related.map((article) => (
           <div
             key={article.id}
             className="premium-card"
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: 'pointer', minWidth: '280px', maxWidth: '300px', height: '100%' }}
             onClick={() => onNavigate('article', { id: article.id, slug: generateSlug(article.title) })}
           >
             <div style={{ width: '100%', aspectRatio: '16/10', overflow: 'hidden' }}>
@@ -72,7 +73,7 @@ const RelatedPosts = ({ currentCategory, currentTags = [], currentId, onNavigate
             </div>
           </div>
         ))}
-      </div>
+      </PremiumCarousel>
     </section>
   );
 };

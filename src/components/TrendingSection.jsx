@@ -2,6 +2,7 @@ import React from 'react';
 import { generateSlug, truncateText } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
 import { motion } from 'framer-motion';
+import PremiumCarousel from './PremiumCarousel';
 
 const TrendingSection = ({ articles = [], onNavigate }) => {
   const trendingArticles = articles.slice(0, 5);
@@ -18,12 +19,12 @@ const TrendingSection = ({ articles = [], onNavigate }) => {
     <section style={{ marginBottom: '60px', position: 'relative' }} aria-labelledby="trending-title">
       <h2 id="trending-title" className="section-title">Trending Now</h2>
 
-      <div style={{ display: 'flex', gap: '20px', overflowX: 'auto', paddingBottom: '30px', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
+      <PremiumCarousel itemGap="20px">
         {trendingArticles.map((article, index) => (
           <motion.div
             key={article.id}
             className="layered-card-wrapper"
-            style={{ minWidth: '280px', maxWidth: '280px', cursor: 'pointer', flexShrink: 0 }}
+            style={{ minWidth: '280px', maxWidth: '280px', cursor: 'pointer', height: '100%' }}
             onClick={(e) => handleArticleClick(e, article)}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -80,7 +81,7 @@ const TrendingSection = ({ articles = [], onNavigate }) => {
             </motion.div>
           </motion.div>
         ))}
-      </div>
+      </PremiumCarousel>
     </section>
   );
 };
