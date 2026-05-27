@@ -58,9 +58,11 @@ const Article = ({ params = {}, onNavigate }) => {
         articleData: article
       });
     }
-  }, [articleId]);
+  }, [article, articleId]);
 
   const paragraphs = article.content ? article.content.split('\n\n') : [];
+  const words = paragraphs.join(' ').split(/\s+/).length;
+  const readTime = Math.max(1, Math.ceil(words / 200));
 
   const handleShare = (platform) => {
     const url = window.location.href;
@@ -93,8 +95,23 @@ const Article = ({ params = {}, onNavigate }) => {
           zIndex: 1000
         }}
       />
-      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 20px' }}>
-        <article>
+      <div style={{ display: 'flex', maxWidth: '1000px', margin: '0 auto', position: 'relative' }}>
+        {/* Floating Share Sidebar (Desktop Only) */}
+        <div style={{ width: '60px', display: 'flex', flexDirection: 'column', gap: '15px', paddingTop: '150px', position: 'sticky', top: '0', height: '100vh', paddingLeft: '20px' }}>
+          {['X', 'Copy', 'Email'].map((p, i) => (
+            <motion.button 
+              key={p} 
+              onClick={() => handleShare(p)} 
+              whileHover={{ scale: 1.1, backgroundColor: 'var(--primary)', color: '#fff', borderColor: 'var(--primary)' }}
+              style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', cursor: 'pointer', width: '40px', height: '40px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'var(--transition)' }}
+            >
+              {p === 'X' ? 'X' : p === 'Copy' ? '🔗' : '✉'}
+            </motion.button>
+          ))}
+        </div>
+
+        <div style={{ flex: 1, padding: '40px 20px', maxWidth: '800px' }}>
+          <article>
           {/* Breadcrumb */}
           <nav style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '16px', display: 'flex', gap: '6px', alignItems: 'center' }}>
             <span style={{ cursor: 'pointer' }} onClick={() => onNavigate('home')}>Home</span>
@@ -108,6 +125,10 @@ const Article = ({ params = {}, onNavigate }) => {
               <span className="category-badge">{article.category}</span>
               <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
                 {new Date(article.publishDate || Date.now()).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+              </span>
+              <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                {readTime} min read
               </span>
             </div>
           </AnimatedSection>
@@ -133,9 +154,6 @@ const Article = ({ params = {}, onNavigate }) => {
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 {copied && <span style={{ fontSize: '0.7rem', color: 'var(--success)', fontWeight: 'bold' }}>Link Copied!</span>}
-                {['X', 'Copy', 'Email'].map(p => (
-                  <button key={p} onClick={() => handleShare(p)} style={{ background: 'none', border: '1px solid var(--border)', cursor: 'pointer', padding: '5px 10px', borderRadius: '20px' }}>{p}</button>
-                ))}
               </div>
             </div>
           </AnimatedSection>
@@ -148,17 +166,23 @@ const Article = ({ params = {}, onNavigate }) => {
           </AnimatedSection>
 
           {/* Content */}
-          <AnimatedSection delay={0.4}>
-            <div className="article-content" style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--text)' }}>
-              {paragraphs.map((p, index) => (
-                <React.Fragment key={index}>
-                  <p style={{ marginBottom: '24px' }}>{p}</p>
-                  {index === 1 && <AdBanner slot="articleInline1" />}
-                  {index === 5 && <AdBanner slot="articleInline2" />}
-                </React.Fragment>
-              ))}
-            </div>
-          </AnimatedSection>
+          <div className="article-content" style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--text)' }}>
+            {paragraphs.map((p, index) => (
+              <React.Fragment key={index}>
+                <motion.p 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5 }}
+                  style={{ marginBottom: '24px' }}
+                >
+                  {p}
+                </motion.p>
+                {index === 1 && <AdBanner slot="articleInline1" />}
+                {index === 5 && <AdBanner slot="articleInline2" />}
+              </React.Fragment>
+            ))}
+          </div>
 
           {/* Tags */}
           <AnimatedSection delay={0.1}>
@@ -183,6 +207,7 @@ const Article = ({ params = {}, onNavigate }) => {
           <AdBanner slot="articlePreRelated" />
           <RelatedPosts currentId={article.id} category={article.category} onNavigate={onNavigate} />
         </AnimatedSection>
+        </div>
       </div>
     </>
   );

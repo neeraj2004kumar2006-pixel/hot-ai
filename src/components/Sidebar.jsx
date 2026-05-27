@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ArticleCard from './ArticleCard';
 import AdBanner from './AdBanner';
+import { motion } from 'framer-motion';
 
 const SIDEBAR_TOPICS = ["ChatGPT", "LLM Fine-Tuning", "Stable Diffusion", "Android ADB", "iOS Shortcuts", "Prompt Engineering"];
 
@@ -72,9 +73,16 @@ const Sidebar = ({ popularArticles = [], onNavigate }) => {
         </div>
       </div>
 
-      {/* Coming Soon */}
-      <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: 'var(--card-radius)', padding: '20px', textAlign: 'center' }}>
-        <div style={{ fontSize: '1.2rem', marginBottom: '8px' }}>📬</div>
+      {/* Coming Soon / Newsletter */}
+      <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: 'var(--card-radius)', padding: '24px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+        {/* Soft moving background effect */}
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          style={{ position: 'absolute', top: '-50%', left: '-50%', width: '200%', height: '200%', background: 'radial-gradient(circle, rgba(255, 94, 108, 0.1) 0%, transparent 60%)', zIndex: 0, pointerEvents: 'none' }} 
+        />
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>📬</div>
         <h4 style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--text)', marginBottom: '6px' }}>Newsletter Signup</h4>
         <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '14px' }}>
           Get weekly AI insights and tech tips delivered to your inbox.
@@ -123,6 +131,7 @@ const Sidebar = ({ popularArticles = [], onNavigate }) => {
             </button>
           </form>
         )}
+        </div>
       </div>
     </aside>
   );

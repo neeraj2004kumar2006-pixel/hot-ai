@@ -22,17 +22,18 @@ const NewsCard = ({ article, onNavigate }) => {
     : '';
 
   return (
-    <motion.article 
-      className="premium-card" 
-      style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}
-      whileHover={{ y: -6, scale: 1.01, boxShadow: '0 12px 30px rgba(0,0,0,0.06)' }}
-      transition={{ duration: 0.3, ease: 'easeOut' }}
-    >
-      <motion.div 
-        style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden', position: 'relative' }}
-        whileHover={{ scale: 1.05 }}
-        transition={{ duration: 0.4 }}
+    <div className="layered-card-wrapper" style={{ height: '100%' }}>
+      <motion.article 
+        className="premium-card" 
+        style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}
+        whileHover={{ y: -6, rotateZ: 0.5, boxShadow: '0 12px 30px rgba(0,0,0,0.06)' }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
       >
+        <motion.div 
+          style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden', position: 'relative', borderBottomLeftRadius: '20px', borderBottomRightRadius: '5px' }}
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.4 }}
+        >
         <ImageWithFallback
           src={article.featuredImage?.url}
           alt={article.featuredImage?.alt || article.title}
@@ -81,8 +82,9 @@ const NewsCard = ({ article, onNavigate }) => {
             <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
           </svg>
         </a>
-      </div>
-    </motion.article>
+        </div>
+      </motion.article>
+    </div>
   );
 };
 

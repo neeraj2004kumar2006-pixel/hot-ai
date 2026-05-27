@@ -14,13 +14,15 @@ const ArticleCard = ({ article, onNavigate }) => {
     : '';
 
   return (
-    <motion.div
-      style={{ display: 'flex', gap: '12px', alignItems: 'center', padding: '8px 8px', borderBottom: '1px solid var(--border)', cursor: 'pointer', borderRadius: '8px' }}
-      whileHover={{ backgroundColor: 'var(--surface)', scale: 1.02, x: 5 }}
-      transition={{ duration: 0.2 }}
-      onClick={handleClick}
-    >
-      <div style={{ width: '70px', height: '50px', borderRadius: '8px', overflow: 'hidden', flexShrink: 0 }}>
+    <div className="layered-card-wrapper">
+      <motion.div
+        className="premium-card"
+        style={{ display: 'flex', gap: '12px', alignItems: 'center', padding: '8px 8px', cursor: 'pointer', borderRadius: '8px' }}
+        whileHover={{ backgroundColor: 'var(--surface)', scale: 1.02, x: 5, rotateZ: -0.5 }}
+        transition={{ duration: 0.2 }}
+        onClick={handleClick}
+      >
+        <div style={{ width: '70px', height: '50px', borderRadius: '40% 10% 40% 10% / 10% 40% 10% 40%', overflow: 'hidden', flexShrink: 0 }}>
         <ImageWithFallback
           src={article.featuredImage?.url}
           alt={article.featuredImage?.alt || article.title}
@@ -39,8 +41,9 @@ const ArticleCard = ({ article, onNavigate }) => {
           {truncateText(article.title, 55)}
         </h4>
         <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{dateStr}</span>
-      </div>
-    </motion.div>
+        </div>
+      </motion.div>
+    </div>
   );
 };
 

@@ -4,6 +4,7 @@ import TrendingSection from '../components/TrendingSection';
 import FeaturedSection from '../components/FeaturedSection';
 import Sidebar from '../components/Sidebar';
 import AdBanner from '../components/AdBanner';
+import SectionDivider from '../components/SectionDivider';
 import { getArticles } from '../utils/dataStore';
 
 const Home = ({ onNavigate }) => {
@@ -17,10 +18,14 @@ const Home = ({ onNavigate }) => {
 
         <Hero articles={articles} onNavigate={onNavigate} />
 
+        <SectionDivider topColor="var(--bg-color)" bottomColor="var(--bg-color)" />
+
         <TrendingSection articles={articles} onNavigate={onNavigate} />
 
         {/* Mid-page banner — between trending and featured */}
         <AdBanner slot="homeMidBanner" />
+
+        <SectionDivider topColor="var(--bg-color)" bottomColor="var(--bg-color)" />
 
         <FeaturedSection articles={articles} onNavigate={onNavigate} />
       </main>

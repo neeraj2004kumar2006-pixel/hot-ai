@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import AdBanner from './components/AdBanner';
 import BackToTop from './components/BackToTop';
+import Atmosphere from './components/Atmosphere';
+import CustomCursor from './components/CustomCursor';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Pages
@@ -152,6 +154,8 @@ const App = () => {
   return (
     <AuthProvider>
       <div className="app-container">
+        <Atmosphere />
+        <CustomCursor />
         {!isAdmin && (
           <Header activePage={route.page} activeParams={route.params} onNavigate={handleNavigate} />
         )}

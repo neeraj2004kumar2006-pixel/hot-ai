@@ -1,6 +1,6 @@
-import React from 'react';
 import AdBanner from './AdBanner';
 import AnimatedSection from './AnimatedSection';
+import { motion } from 'framer-motion';
 
 const Footer = ({ onNavigate }) => {
   const handleLinkClick = (e, page, params = {}) => {
@@ -10,8 +10,18 @@ const Footer = ({ onNavigate }) => {
   };
 
   return (
-    <footer style={{ backgroundColor: 'var(--card-bg)', borderTop: '1px solid var(--border)', padding: '30px 20px 20px', marginTop: '40px' }} aria-label="Site Footer">
-      <div style={{ maxWidth: 'var(--max-width)', margin: '0 auto' }}>
+    <footer style={{ backgroundColor: 'var(--card-bg)', borderTop: '1px solid var(--border)', padding: '60px 20px 20px', marginTop: '40px', position: 'relative', overflow: 'hidden' }} aria-label="Site Footer">
+      {/* Background Decorative Shapes */}
+      <motion.div 
+        style={{ position: 'absolute', top: '-10%', left: '-5%', width: '40%', paddingTop: '40%', background: 'var(--soft-accent)', borderRadius: '50%', filter: 'blur(80px)', opacity: 0.1, zIndex: 0 }}
+        animate={{ scale: [1, 1.1, 1], x: [0, 20, 0] }} transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div 
+        style={{ position: 'absolute', bottom: '-10%', right: '-5%', width: '50%', paddingTop: '50%', background: 'var(--secondary)', borderRadius: '50%', filter: 'blur(100px)', opacity: 0.1, zIndex: 0 }}
+        animate={{ scale: [1, 1.05, 1], x: [0, -20, 0] }} transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      <div style={{ maxWidth: 'var(--max-width)', margin: '0 auto', position: 'relative', zIndex: 1 }}>
         {/* Compact footer ad */}
         <AnimatedSection>
           <AdBanner slot="footerBanner" />
