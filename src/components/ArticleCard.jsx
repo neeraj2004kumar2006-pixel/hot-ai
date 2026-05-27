@@ -47,4 +47,4 @@ const ArticleCard = ({ article, onNavigate }) => {
   );
 };
 
-export default ArticleCard;
+export default React.memo(ArticleCard);

@@ -88,4 +88,4 @@ const NewsCard = ({ article, onNavigate }) => {
   );
 };
 
-export default NewsCard;
+export default React.memo(NewsCard);
