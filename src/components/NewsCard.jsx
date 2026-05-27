@@ -26,12 +26,12 @@ const NewsCard = ({ article, onNavigate }) => {
       <motion.article 
         className="premium-card" 
         style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}
-        whileHover={{ y: -6, rotateZ: 0.5, boxShadow: '0 12px 30px rgba(0,0,0,0.06)' }}
+        whileHover={{ y: -4, boxShadow: '0 12px 30px rgba(0,0,0,0.06)' }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
       >
         <motion.div 
           style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden', position: 'relative', borderBottomLeftRadius: '20px', borderBottomRightRadius: '5px' }}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.4 }}
         >
         <ImageWithFallback

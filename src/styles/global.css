@@ -62,15 +62,6 @@ body {
   mix-blend-mode: multiply;
 }
 
-/* Hide default cursor on desktop for custom cursor */
-@media (pointer: fine) {
-  body {
-    cursor: none;
-  }
-  a, button, input, textarea, select, [role="button"] {
-    cursor: none !important;
-  }
-}
 
 a {
   color: inherit;
@@ -173,7 +164,7 @@ button {
 }
 
 .premium-card:hover {
-  transform: translateY(-2px) scale(1.01) rotateZ(0.5deg);
+  transform: translateY(-2px) scale(1.02);
   border-color: var(--primary);
 }
 

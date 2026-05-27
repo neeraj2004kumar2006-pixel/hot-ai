@@ -23,7 +23,7 @@ const TrendingSection = ({ articles = [], onNavigate }) => {
           <motion.div
             key={article.id}
             className="layered-card-wrapper"
-            style={{ minWidth: '320px', maxWidth: '320px', cursor: 'pointer', flexShrink: 0 }}
+            style={{ minWidth: '280px', maxWidth: '280px', cursor: 'pointer', flexShrink: 0 }}
             onClick={(e) => handleArticleClick(e, article)}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -33,11 +33,11 @@ const TrendingSection = ({ articles = [], onNavigate }) => {
             <motion.div 
               className="premium-card" 
               style={{ display: 'flex', flexDirection: 'column', height: '100%' }}
-              whileHover={{ y: -6, rotateZ: index % 2 === 0 ? 0.5 : -0.5 }}
+              whileHover={{ y: -4 }}
             >
               {/* Thumbnail */}
               <div style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden' }}>
-                <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.4 }} style={{ width: '100%', height: '100%' }}>
+                <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.4 }} style={{ width: '100%', height: '100%' }}>
                   <ImageWithFallback
                     src={article.featuredImage?.url}
                     alt={article.featuredImage?.alt || article.title}
