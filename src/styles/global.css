@@ -116,59 +116,42 @@ h1, h2, h3, h4, h5, h6, .logo {
 /* Universal Card */
 .premium-card {
   background-color: var(--card-bg);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 94, 108, 0.08); /* 1px soft warm edge */
   border-radius: var(--card-radius);
   overflow: hidden;
-  transition: var(--transition);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   height: 100%;
   position: relative;
   z-index: 2;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.03),
+    0 0 0 1px rgba(255, 94, 108, 0.02); /* Extremely subtle accent edge */
 }
 
-/* Layered depth for cards */
+/* Premium Hover Glow System */
+.premium-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 94, 108, 0.25);
+  box-shadow: 
+    0 12px 30px rgba(0, 0, 0, 0.06), /* Layer 1: expanded ambient shadow */
+    0 10px 35px rgba(255, 94, 108, 0.08), /* Layer 2: warm pink glow */
+    0 4px 15px rgba(254, 179, 0, 0.06); /* Layer 2: soft yellow glow blend */
+}
+
+@media (max-width: 768px) {
+  .premium-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.04), 0 6px 20px rgba(255, 94, 108, 0.05);
+  }
+}
+
+/* Layered depth for cards (Plates removed per user request) */
 .layered-card-wrapper {
   position: relative;
   border-radius: var(--card-radius);
   z-index: 1;
-}
-
-.layered-card-wrapper::before,
-.layered-card-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: var(--card-radius);
-  z-index: -1;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.layered-card-wrapper::before {
-  background-color: var(--soft-accent);
-  transform: translate(0px, 0px);
-}
-
-.layered-card-wrapper::after {
-  background-color: var(--secondary);
-  transform: translate(0px, 0px);
-  opacity: 0.5;
-}
-
-.layered-card-wrapper:hover::before {
-  transform: translate(-6px, 6px);
-}
-
-.layered-card-wrapper:hover::after {
-  transform: translate(6px, 12px);
-}
-
-.premium-card:hover {
-  transform: translateY(-2px) scale(1.02);
-  border-color: var(--primary);
 }
 
 /* Category Badge */

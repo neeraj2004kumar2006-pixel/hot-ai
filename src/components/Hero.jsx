@@ -126,7 +126,6 @@ const Hero = ({ articles = [], onNavigate }) => {
         <motion.article 
           className="premium-card" 
           style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}
-          whileHover={{ y: -4, boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
         >
           <motion.div 
@@ -194,7 +193,6 @@ const Hero = ({ articles = [], onNavigate }) => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 * idx, duration: 0.4 }}
-              whileHover={{ scale: 1.01, x: -4, backgroundColor: 'var(--surface)', boxShadow: '0 10px 20px rgba(0,0,0,0.05)' }}
             >
               <div style={{ width: '100px', aspectRatio: '4/3', borderRadius: '10px', overflow: 'hidden', flexShrink: 0 }}>
                 <ImageWithFallback

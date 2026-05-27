@@ -25,9 +25,9 @@ const NewsCard = ({ article, onNavigate }) => {
     <div className="layered-card-wrapper" style={{ height: '100%' }}>
       <motion.article 
         className="premium-card" 
-        style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}
-        whileHover={{ y: -4, boxShadow: '0 12px 30px rgba(0,0,0,0.06)' }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
+        onClick={handleClick}
+        style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}
+        transition={{ duration: 0.3 }}
       >
         <motion.div 
           style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden', position: 'relative', borderBottomLeftRadius: '20px', borderBottomRightRadius: '5px' }}

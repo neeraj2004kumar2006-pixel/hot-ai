@@ -18,7 +18,6 @@ const ArticleCard = ({ article, onNavigate }) => {
       <motion.div
         className="premium-card"
         style={{ display: 'flex', gap: '12px', alignItems: 'center', padding: '8px 8px', cursor: 'pointer', borderRadius: '8px' }}
-        whileHover={{ backgroundColor: 'var(--surface)', scale: 1.01, x: 2 }}
         transition={{ duration: 0.2 }}
         onClick={handleClick}
       >
