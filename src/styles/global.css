@@ -17,7 +17,8 @@
   /* Layout Tokens */
   --card-radius: 16px;
   --btn-radius: 8px;
-  --font-stack: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: 'Bubblegum Sans', cursive;
+  --font-body: 'Open Sans', sans-serif;
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --max-width: 1200px;
 
@@ -40,7 +41,7 @@
 body {
   background-color: var(--bg-color);
   color: var(--text);
-  font-family: var(--font-stack);
+  font-family: var(--font-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -98,15 +99,21 @@ button {
 
 /* Section Title */
 .section-title {
+  font-family: var(--font-heading);
   font-size: var(--font-h2);
-  font-weight: 700;
+  font-weight: 400 !important;
   margin-bottom: 24px;
   display: flex;
   align-items: center;
   gap: 10px;
   border-left: 4px solid var(--primary);
   padding-left: 12px;
-  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+h1, h2, h3, h4, h5, h6, .logo {
+  font-family: var(--font-heading);
+  font-weight: 400 !important;
   letter-spacing: 0.5px;
 }
 

@@ -42,12 +42,12 @@ const Hero = ({ articles = [], onNavigate }) => {
       
       {/* Background Cinematic Typography */}
       <motion.div 
-        style={{ position: 'absolute', top: '10%', left: '-5%', fontSize: '10vw', fontWeight: '900', color: 'var(--primary)', opacity: 0.03, pointerEvents: 'none', x: parallaxX1, y: parallaxY1, zIndex: -1, letterSpacing: '-0.05em' }}
+        style={{ position: 'absolute', top: '10%', left: '-5%', fontFamily: 'var(--font-heading)', fontSize: '10vw', color: 'var(--primary)', opacity: 0.03, pointerEvents: 'none', x: parallaxX1, y: parallaxY1, zIndex: -1, letterSpacing: '-0.05em' }}
       >
         FUTURE
       </motion.div>
       <motion.div 
-        style={{ position: 'absolute', bottom: '0%', right: '-5%', fontSize: '8vw', fontWeight: '900', color: 'var(--secondary)', opacity: 0.03, pointerEvents: 'none', x: parallaxX2, y: parallaxY2, zIndex: -1, letterSpacing: '-0.05em' }}
+        style={{ position: 'absolute', bottom: '0%', right: '-5%', fontFamily: 'var(--font-heading)', fontSize: '8vw', color: 'var(--secondary)', opacity: 0.03, pointerEvents: 'none', x: parallaxX2, y: parallaxY2, zIndex: -1, letterSpacing: '-0.05em' }}
       >
         DISCOVER
       </motion.div>

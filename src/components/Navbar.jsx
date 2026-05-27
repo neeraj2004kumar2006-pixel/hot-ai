@@ -41,9 +41,11 @@ const Navbar = ({ activePage, activeParams, onNavigate, isMobile, onCloseMobileM
       };
 
   const linkStyles = (isActive) => ({
-    fontSize: isMobile ? '1.1rem' : '0.9rem',
-    fontWeight: '600',
+    fontSize: isMobile ? '1.1rem' : '0.95rem',
+    fontWeight: isActive ? '400' : '600',
+    fontFamily: isActive ? 'var(--font-heading)' : 'var(--font-body)',
     color: isActive ? 'var(--primary)' : 'var(--text-secondary)',
+    letterSpacing: isActive ? '0.5px' : '0px',
     transition: 'var(--transition)',
     position: 'relative',
     cursor: 'pointer'

@@ -43,7 +43,7 @@ const Header = ({ activePage, activeParams, onNavigate }) => {
     <>
       <motion.header style={{ position: 'fixed', top: 0, left: 0, right: 0, height: headerHeight, backgroundColor: headerBg, backdropFilter: headerBlur, WebkitBackdropFilter: headerBlur, borderBottom: headerBorder, zIndex: 999, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px' }}>
         {/* Logo */}
-        <a href="#/" onClick={handleLogoClick} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '800', fontSize: '1.3rem', letterSpacing: '1px', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', userSelect: 'none' }}>
+        <a href="#/" onClick={handleLogoClick} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'var(--font-heading)', fontSize: '1.8rem', letterSpacing: '1px', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', userSelect: 'none' }}>
           HOT AI
         </a>
 
