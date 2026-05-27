@@ -141,27 +141,26 @@ const AdSenseRenderer = ({ sizes, responsive, slotId, isTest }) => {
   }, [adLoaded]);
 
   return (
-    <div style={{ width: '100%', textAlign: 'center', overflow: 'hidden' }}>
-      <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', opacity: 0.5, marginBottom: '2px', letterSpacing: '1px', textTransform: 'uppercase' }}>
-        {isTest ? 'TEST ADVERTISEMENT' : 'ADVERTISEMENT'}
-      </div>
-      <ins
-        ref={adRef}
-        className="adsbygoogle"
-        style={{ 
-          display: 'inline-block', 
-          width: responsive ? '100%' : `${sizes.width}px`, 
-          height: `${sizes.height}px`,
-          background: 'var(--surface)',
-          borderRadius: '6px'
-        }}
-        data-ad-client="ca-pub-6773478707926187"
-        data-ad-slot={slotId || "1234567890"} // Dummy for test
-        data-ad-format={responsive ? "auto" : undefined}
-        data-full-width-responsive={responsive ? "true" : "false"}
-        data-ad-test={isTest ? "on" : undefined}
-      />
-    </div>
+    <ins
+      ref={adRef}
+      className="adsbygoogle"
+      style={{ 
+        display: 'block', 
+        width: responsive ? '100%' : `${sizes.width}px`, 
+        minHeight: `${sizes.height}px`,
+        margin: '0 auto',
+        background: 'linear-gradient(90deg, var(--surface) 25%, var(--card-bg) 50%, var(--surface) 75%)',
+        backgroundSize: '200% 100%',
+        animation: 'shimmer 1.8s infinite',
+        borderRadius: '8px',
+        overflow: 'hidden'
+      }}
+      data-ad-client="ca-pub-6773478707926187"
+      data-ad-slot={slotId || "1234567890"} // Dummy for test
+      data-ad-format={responsive ? "auto" : undefined}
+      data-full-width-responsive={responsive ? "true" : "false"}
+      data-ad-test={isTest ? "on" : undefined}
+    />
   );
 };
 
@@ -182,9 +181,8 @@ const AdSlotContent = ({ provider, slotId, sizes, responsive, label, aspectRatio
   if (provider === 'ezoic' && slotId) {
     return (
       <div style={{ width: '100%', textAlign: 'center' }}>
-        <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', opacity: 0.5, marginBottom: '2px', letterSpacing: '1px', textTransform: 'uppercase' }}>Advertisement</div>
         {/* INSERT EZOIC CODE HERE: Replace div below with <div id={`ezoic-pub-ad-placeholder-${slotId}`} /> */}
-        <div style={{ width: responsive ? '100%' : `${sizes.width}px`, height: `${sizes.height}px`, background: 'var(--surface)', borderRadius: '6px', margin: '0 auto' }} id={`ezoic-pub-ad-placeholder-${slotId}`} />
+        <div style={{ width: responsive ? '100%' : `${sizes.width}px`, minHeight: `${sizes.height}px`, background: 'var(--surface)', borderRadius: '8px', margin: '0 auto' }} id={`ezoic-pub-ad-placeholder-${slotId}`} />
       </div>
     );
   }
@@ -192,9 +190,8 @@ const AdSlotContent = ({ provider, slotId, sizes, responsive, label, aspectRatio
   if (provider === 'manual' && slotId) {
     return (
       <div style={{ width: '100%', textAlign: 'center' }}>
-        <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', opacity: 0.5, marginBottom: '2px', letterSpacing: '1px', textTransform: 'uppercase' }}>Sponsored</div>
         {/* INSERT MANUAL BANNER HERE: Replace with <a href="sponsor-url"><img src="banner.jpg" /></a> */}
-        <div style={{ width: responsive ? '100%' : `${sizes.width}px`, height: `${sizes.height}px`, background: 'var(--surface)', borderRadius: '6px', margin: '0 auto' }} />
+        <div style={{ width: responsive ? '100%' : `${sizes.width}px`, minHeight: `${sizes.height}px`, background: 'var(--surface)', borderRadius: '8px', margin: '0 auto' }} />
       </div>
     );
   }
