@@ -18,14 +18,16 @@ const Home = ({ onNavigate }) => {
 
         <Hero articles={articles} onNavigate={onNavigate} />
 
-        <SectionDivider topColor="var(--bg-color)" bottomColor="var(--bg-color)" />
+        <SectionDivider topColor="var(--bg-color)" bottomColor="var(--surface)" />
 
-        <TrendingSection articles={articles} onNavigate={onNavigate} />
+        <div style={{ backgroundColor: 'var(--surface)', paddingBottom: '20px' }}>
+          <TrendingSection articles={articles} onNavigate={onNavigate} />
+        </div>
 
         {/* Mid-page banner — between trending and featured */}
         <AdBanner slot="homeMidBanner" />
 
-        <SectionDivider topColor="var(--bg-color)" bottomColor="var(--bg-color)" />
+        <SectionDivider topColor="var(--surface)" bottomColor="var(--bg-color)" />
 
         <FeaturedSection articles={articles} onNavigate={onNavigate} />
       </main>
