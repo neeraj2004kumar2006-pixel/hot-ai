@@ -123,27 +123,60 @@ const AdBanner = ({ slot, className = '' }) => {
 };
 
 /**
+ * Real AdSense Slot Renderer (handles actual push)
+ */
+const AdSenseRenderer = ({ sizes, responsive, slotId, isTest }) => {
+  const adRef = useRef(null);
+  const [adLoaded, setAdLoaded] = useState(false);
+
+  useEffect(() => {
+    if (!adLoaded && adRef.current) {
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        setAdLoaded(true);
+      } catch (e) {
+        console.error('AdSense error:', e);
+      }
+    }
+  }, [adLoaded]);
+
+  return (
+    <div style={{ width: '100%', textAlign: 'center', overflow: 'hidden' }}>
+      <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', opacity: 0.5, marginBottom: '2px', letterSpacing: '1px', textTransform: 'uppercase' }}>
+        {isTest ? 'TEST ADVERTISEMENT' : 'ADVERTISEMENT'}
+      </div>
+      <ins
+        ref={adRef}
+        className="adsbygoogle"
+        style={{ 
+          display: 'inline-block', 
+          width: responsive ? '100%' : `${sizes.width}px`, 
+          height: `${sizes.height}px`,
+          background: 'var(--surface)',
+          borderRadius: '6px'
+        }}
+        data-ad-client="ca-pub-6773478707926187"
+        data-ad-slot={slotId || "1234567890"} // Dummy for test
+        data-ad-format={responsive ? "auto" : undefined}
+        data-full-width-responsive={responsive ? "true" : "false"}
+        data-ad-test={isTest ? "on" : undefined}
+      />
+    </div>
+  );
+};
+
+/**
  * Inner content renderer — switches by provider.
  */
 const AdSlotContent = ({ provider, slotId, sizes, responsive, label, aspectRatio, onError, slotName }) => {
-  if (provider === 'test') {
-    return (
-      <div style={{ width: '100%', maxWidth: responsive ? '100%' : `${sizes.width}px`, aspectRatio: aspectRatio || `${sizes.width}/${sizes.height}`, maxHeight: `${sizes.height}px`, background: 'var(--surface)', border: '2px dashed var(--soft-accent)', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px', margin: '0 auto', overflow: 'hidden' }}>
-        <span style={{ fontSize: '0.85rem', color: 'var(--primary)', letterSpacing: '1.5px', textTransform: 'uppercase', fontWeight: 'bold' }}>TEST AD</span>
-        <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)' }}>Slot: {slotName || label}</span>
-        <span style={{ fontSize: '0.55rem', color: 'var(--text-secondary)', opacity: 0.6 }}>{sizes.width}×{sizes.height}</span>
-      </div>
-    );
+  if (provider === 'test' || (provider === 'adsense' && !slotId)) {
+    // Official AdSense Test Mode Implementation
+    return <AdSenseRenderer sizes={sizes} responsive={responsive} slotId={slotId} isTest={true} />;
   }
 
   if (provider === 'adsense' && slotId) {
-    return (
-      <div style={{ width: '100%', textAlign: 'center' }}>
-        <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', opacity: 0.5, marginBottom: '2px', letterSpacing: '1px', textTransform: 'uppercase' }}>Advertisement</div>
-        {/* INSERT ADSENSE CODE HERE: Replace div below with <ins className="adsbygoogle" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot={slotId} /> then call (adsbygoogle = window.adsbygoogle || []).push({}); */}
-        <div style={{ width: responsive ? '100%' : `${sizes.width}px`, height: `${sizes.height}px`, background: 'var(--surface)', borderRadius: '6px', margin: '0 auto' }} data-ad-slot={slotId} />
-      </div>
-    );
+    // Production AdSense Implementation
+    return <AdSenseRenderer sizes={sizes} responsive={responsive} slotId={slotId} isTest={false} />;
   }
 
   if (provider === 'ezoic' && slotId) {
