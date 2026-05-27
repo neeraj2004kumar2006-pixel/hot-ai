@@ -24,7 +24,7 @@ const Terms = ({ onNavigate }) => {
           style={{
             fontSize: '1.8rem',
             fontWeight: '800',
-            color: '#FFFFFF'
+            color: 'var(--text)'
           }}
         >
           Terms of Service
@@ -35,7 +35,7 @@ const Terms = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Acceptance of Terms
         </h2>
         <p style={{ fontSize: '1.05rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>
@@ -44,7 +44,7 @@ const Terms = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Use of Content
         </h2>
         <p style={{ fontSize: '1.05rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>
@@ -66,7 +66,7 @@ const Terms = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           User Conduct
         </h2>
         <p style={{ fontSize: '1.05rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>
@@ -81,7 +81,7 @@ const Terms = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Limitation of Liability
         </h2>
         <p style={{ fontSize: '1.05rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>
@@ -90,7 +90,7 @@ const Terms = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Changes to Terms
         </h2>
         <p style={{ fontSize: '1.05rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>
@@ -99,7 +99,7 @@ const Terms = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Contact Us
         </h2>
         <p style={{ fontSize: '1.05rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>

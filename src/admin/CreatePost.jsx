@@ -22,9 +22,9 @@ const UNSPLASH_IMAGES = [
 ];
 
 const inputStyle = {
-  width: '100%', padding: '10px 14px', background: '#131622',
+  width: '100%', padding: '10px 14px', background: 'var(--surface)',
   border: '1px solid var(--border)', borderRadius: 'var(--btn-radius)',
-  fontSize: '0.88rem', color: '#FFF'
+  fontSize: '0.88rem', color: 'var(--text)'
 };
 
 const labelStyle = {
@@ -236,7 +236,7 @@ const CreatePost = ({ initialValues, isEdit, onNavigate, editId, editType }) => 
         >← Back to Manage Posts</button>
       )}
 
-      <h1 style={{ fontSize: '1.5rem', fontWeight: '800', color: '#FFF', marginBottom: '28px' }}>
+      <h1 style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--text)', marginBottom: '28px' }}>
         {isEdit ? 'Edit Post' : 'Create New Post'}
       </h1>
 
@@ -261,9 +261,9 @@ const CreatePost = ({ initialValues, isEdit, onNavigate, editId, editType }) => 
                 style={{
                   flex: 1,
                   padding: '10px',
-                  background: contentType === t.id ? 'rgba(0,168,255,0.15)' : '#131622',
+                  background: contentType === t.id ? 'rgba(255,94,108,0.15)' : 'var(--surface)',
                   border: contentType === t.id ? '1px solid var(--primary)' : '1px solid var(--border)',
-                  color: contentType === t.id ? '#FFF' : 'var(--text-secondary)',
+                  color: contentType === t.id ? 'var(--text)' : 'var(--text-secondary)',
                   borderRadius: 'var(--btn-radius)',
                   fontWeight: '700',
                   fontSize: '0.82rem',
@@ -308,7 +308,7 @@ const CreatePost = ({ initialValues, isEdit, onNavigate, editId, editType }) => 
               borderRadius: '8px',
               padding: '20px',
               textAlign: 'center',
-              background: '#131622',
+              background: 'var(--surface)',
               position: 'relative',
               cursor: 'pointer',
               marginBottom: '10px'
@@ -326,7 +326,7 @@ const CreatePost = ({ initialValues, isEdit, onNavigate, editId, editType }) => 
 
           <div style={{ display: 'flex', gap: '10px', marginBottom: '8px' }}>
             <input id="post-image" type="text" value={imageInput} onChange={(e) => setImageInput(e.target.value)} placeholder="Or paste image URL..." style={inputStyle} />
-            <button type="button" onClick={() => setImageInput('')} style={{ background: '#FF6B6B', border: 'none', color: '#FFF', padding: '0 14px', borderRadius: 'var(--btn-radius)', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+            <button type="button" onClick={() => setImageInput('')} style={{ background: 'var(--danger)', border: 'none', color: 'var(--text)', padding: '0 14px', borderRadius: 'var(--btn-radius)', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer', whiteSpace: 'nowrap' }}>
               Clear
             </button>
           </div>
@@ -334,7 +334,7 @@ const CreatePost = ({ initialValues, isEdit, onNavigate, editId, editType }) => 
           {imageInput && (
             <div style={{ position: 'relative', width: contentType === 'tool' ? '80px' : '160px', aspectRatio: contentType === 'tool' ? '1/1' : '16/9', borderRadius: '6px', overflow: 'hidden', border: '1px solid var(--border)' }}>
               <img src={imageInput} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              <button type="button" onClick={() => setImageInput('')} style={{ position: 'absolute', top: '4px', right: '4px', background: 'rgba(0,0,0,0.6)', border: 'none', color: '#FFF', width: '20px', height: '20px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '0.7rem' }}>×</button>
+              <button type="button" onClick={() => setImageInput('')} style={{ position: 'absolute', top: '4px', right: '4px', background: 'rgba(0,0,0,0.6)', border: 'none', color: 'var(--text)', width: '20px', height: '20px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '0.7rem' }}>×</button>
             </div>
           )}
         </div>
@@ -415,7 +415,7 @@ const CreatePost = ({ initialValues, isEdit, onNavigate, editId, editType }) => 
             </label>
           )}
 
-          <button type="submit" style={{ flex: 1, padding: '12px', borderRadius: 'var(--btn-radius)', fontSize: '0.85rem', fontWeight: '700', background: 'var(--primary)', color: '#FFF', transition: 'var(--transition)', cursor: 'pointer', border: 'none' }}
+          <button type="submit" style={{ flex: 1, padding: '12px', borderRadius: 'var(--btn-radius)', fontSize: '0.85rem', fontWeight: '700', background: 'var(--primary)', color: 'var(--text)', transition: 'var(--transition)', cursor: 'pointer', border: 'none' }}
             onMouseOver={(e) => e.currentTarget.style.filter = 'brightness(1.1)'}
             onMouseOut={(e) => e.currentTarget.style.filter = 'none'}
           >{isEdit ? 'Update Post' : status === 'published' ? 'Publish Post' : 'Save Draft'}</button>

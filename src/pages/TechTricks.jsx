@@ -7,7 +7,7 @@ const TechTricks = ({ onNavigate }) => {
   return (
     <div style={{ paddingBottom: '30px' }} aria-labelledby="tricks-page-title">
       <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '12px', marginBottom: '24px' }}>
-        <h1 id="tricks-page-title" style={{ fontSize: '1.8rem', fontWeight: '800', color: '#FFFFFF' }}>
+        <h1 id="tricks-page-title" style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--text)' }}>
           Tech & Mobile Tricks
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '4px' }}>
@@ -27,7 +27,7 @@ const TechTricks = ({ onNavigate }) => {
                 <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{trick.readingTime}</span>
               </div>
 
-              <h3 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#FFFFFF', marginBottom: '10px' }}>{trick.name}</h3>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: '800', color: 'var(--text)', marginBottom: '10px' }}>{trick.name}</h3>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>{trick.excerpt}</p>
             </div>
 

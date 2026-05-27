@@ -71,13 +71,13 @@ const AdminLoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
         <button onClick={onClose} style={{ position: 'absolute', top: '16px', right: '16px', color: 'var(--text-secondary)', fontSize: '1.2rem', padding: '4px' }} aria-label="Close">×</button>
 
         <div style={{ textAlign: 'center', marginBottom: '28px' }}>
-          <div style={{ fontSize: '1.6rem', fontWeight: '800', background: 'linear-gradient(135deg, #00A8FF, #7B61FF)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '6px' }}>HOT AI</div>
-          <h1 style={{ fontSize: '1.15rem', fontWeight: '700', color: '#FFFFFF' }}>Admin Login</h1>
+          <div style={{ fontSize: '1.6rem', fontWeight: '800', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '6px' }}>HOT AI</div>
+          <h1 style={{ fontSize: '1.15rem', fontWeight: '700', color: 'var(--text)' }}>Admin Login</h1>
           <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '4px' }}>Enter credentials to access the dashboard</p>
         </div>
 
         {error && (
-          <div style={{ backgroundColor: '#2c1b1b', color: '#ff6b6b', padding: '12px', borderRadius: 'var(--btn-radius)', marginBottom: '18px', fontSize: '0.85rem', textAlign: 'center' }}>
+          <div style={{ backgroundColor: 'var(--surface)', color: 'var(--danger)', padding: '12px', borderRadius: 'var(--btn-radius)', marginBottom: '18px', fontSize: '0.85rem', textAlign: 'center' }}>
             {error}
           </div>
         )}
@@ -86,14 +86,14 @@ const AdminLoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
           <div>
             <label htmlFor="admin-email" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Admin ID</label>
             <input id="admin-email" type="text" required value={email} onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter admin ID" style={{ width: '100%', padding: '10px 14px', background: '#131622', border: '1px solid var(--border)', borderRadius: 'var(--btn-radius)', fontSize: '0.88rem', color: '#FFF' }} />
+              placeholder="Enter admin ID" style={{ width: '100%', padding: '10px 14px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--btn-radius)', fontSize: '0.88rem', color: 'var(--text)' }} />
           </div>
 
           <div>
             <label htmlFor="admin-pass" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Password</label>
             <div style={{ position: 'relative' }}>
               <input id="admin-pass" type={showPassword ? 'text' : 'password'} required value={password} onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••" style={{ width: '100%', padding: '10px 14px', paddingRight: '40px', background: '#131622', border: '1px solid var(--border)', borderRadius: 'var(--btn-radius)', fontSize: '0.88rem', color: '#FFF' }} />
+                placeholder="••••••••" style={{ width: '100%', padding: '10px 14px', paddingRight: '40px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--btn-radius)', fontSize: '0.88rem', color: 'var(--text)' }} />
               <button type="button" onClick={() => setShowPassword(!showPassword)}
                 style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
                 {showPassword ? '🙈' : '👁️'}
@@ -102,7 +102,7 @@ const AdminLoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
           </div>
 
           <button type="submit" disabled={isLocked} style={{
-            background: isLocked ? 'var(--border)' : 'var(--primary)', color: '#FFF', padding: '12px',
+            background: isLocked ? 'var(--border)' : 'var(--primary)', color: 'var(--text)', padding: '12px',
             borderRadius: 'var(--btn-radius)', fontSize: '0.85rem', fontWeight: '700', marginTop: '6px', transition: 'var(--transition)', opacity: isLocked ? 0.6 : 1
           }}>
             {isLocked ? `Locked (${lockTime}s)` : 'Login to Dashboard'}

@@ -20,12 +20,12 @@ const EditPost = ({ params = {}, onNavigate }) => {
   if (!article) {
     return (
       <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-        <h2 style={{ fontSize: '1.3rem', fontWeight: '800', color: '#FFF', marginBottom: '10px' }}>Post Not Found</h2>
+        <h2 style={{ fontSize: '1.3rem', fontWeight: '800', color: 'var(--text)', marginBottom: '10px' }}>Post Not Found</h2>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '24px' }}>
           The post you're trying to edit could not be found.
         </p>
         {onNavigate && (
-          <button onClick={() => onNavigate('admin-manage')} style={{ background: 'var(--primary)', color: '#FFF', padding: '10px 20px', borderRadius: 'var(--btn-radius)', fontSize: '0.85rem', fontWeight: '700', border: 'none', cursor: 'pointer' }}>
+          <button onClick={() => onNavigate('admin-manage')} style={{ background: 'var(--primary)', color: 'var(--text)', padding: '10px 20px', borderRadius: 'var(--btn-radius)', fontSize: '0.85rem', fontWeight: '700', border: 'none', cursor: 'pointer' }}>
             Back to Manage Posts
           </button>
         )}

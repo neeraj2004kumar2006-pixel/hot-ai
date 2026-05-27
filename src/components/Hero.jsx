@@ -42,10 +42,10 @@ const Hero = ({ articles = [], onNavigate }) => {
           </div>
 
           <h2
-            style={{ fontSize: '1.5rem', fontWeight: '800', lineHeight: '1.3', color: '#FFFFFF', cursor: 'pointer', transition: 'color 0.2s ease' }}
+            style={{ fontSize: '1.5rem', fontWeight: '800', lineHeight: '1.3', color: 'var(--text)', cursor: 'pointer', transition: 'color 0.2s ease' }}
             onClick={(e) => handleArticleClick(e, largeArticle)}
             onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
-            onMouseOut={(e) => e.currentTarget.style.color = '#FFFFFF'}
+            onMouseOut={(e) => e.currentTarget.style.color = 'var(--text)'}
           >
             {largeArticle.title}
           </h2>
@@ -94,9 +94,9 @@ const Hero = ({ articles = [], onNavigate }) => {
                   <span>{formatDate(article.publishDate)}</span>
                 </span>
                 <h3
-                  style={{ fontSize: '0.95rem', fontWeight: '700', lineHeight: '1.3', color: '#FFFFFF', transition: 'color 0.2s ease' }}
+                  style={{ fontSize: '0.95rem', fontWeight: '700', lineHeight: '1.3', color: 'var(--text)', transition: 'color 0.2s ease' }}
                   onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
-                  onMouseOut={(e) => e.currentTarget.style.color = '#FFFFFF'}
+                  onMouseOut={(e) => e.currentTarget.style.color = 'var(--text)'}
                 >
                   {truncateText(article.title, 65)}
                 </h3>

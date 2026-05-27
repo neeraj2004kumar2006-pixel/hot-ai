@@ -1,17 +1,18 @@
 /* Hot AI - Global Style Variables, Reset, and Typography System */
 :root {
   /* Color Tokens */
-  --bg-color: #0F1117;
-  --card-bg: #1A1D29;
-  --primary: #00A8FF;
-  --secondary: #7B61FF;
-  --text: #FFFFFF;
-  --text-secondary: #B0B7C3;
-  --border: #2B2F3D;
-  --surface: #131622;
+  --bg-color: #FFF5D7;
+  --card-bg: #FFFFFF;
+  --primary: #FF5E6C;
+  --secondary: #FEB300;
+  --soft-accent: #FFAAAB;
+  --text: #1A1A1A;
+  --text-secondary: #5A5A5A;
+  --border: #E8D5B7;
+  --surface: #FFF9E6;
   --success: #00D68F;
   --danger: #FF6B6B;
-  --warning: #FFD93D;
+  --warning: #FEB300;
 
   /* Layout Tokens */
   --card-radius: 16px;
@@ -113,8 +114,8 @@ button {
 /* Category Badge */
 .category-badge {
   display: inline-block;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: #FFFFFF;
+  background: linear-gradient(135deg, var(--secondary), var(--soft-accent));
+  color: #1A1A1A;
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -167,10 +168,10 @@ button {
 
 .admin-nav button:hover {
   color: var(--text);
-  background: rgba(255,255,255,0.05);
+  background: rgba(0,0,0,0.05);
 }
 
 .admin-nav button.active {
   background: var(--primary);
-  color: #FFFFFF;
+  color: #FFF;
 }

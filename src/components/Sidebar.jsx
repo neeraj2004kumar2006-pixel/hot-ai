@@ -62,8 +62,8 @@ const Sidebar = ({ popularArticles = [], onNavigate }) => {
             <button
               key={topic}
               onClick={() => onNavigate('search', { query: topic })}
-              style={{ background: 'var(--surface, #131622)', border: '1px solid var(--border)', color: 'var(--text-secondary)', padding: '6px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '600', transition: 'var(--transition)', cursor: 'pointer' }}
-              onMouseOver={(e) => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = '#FFFFFF'; }}
+              style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text-secondary)', padding: '6px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '600', transition: 'var(--transition)', cursor: 'pointer' }}
+              onMouseOver={(e) => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--text)'; }}
               onMouseOut={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
             >
               #{topic}
@@ -75,7 +75,7 @@ const Sidebar = ({ popularArticles = [], onNavigate }) => {
       {/* Coming Soon */}
       <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: 'var(--card-radius)', padding: '20px', textAlign: 'center' }}>
         <div style={{ fontSize: '1.2rem', marginBottom: '8px' }}>📬</div>
-        <h4 style={{ fontSize: '0.9rem', fontWeight: '700', color: '#FFFFFF', marginBottom: '6px' }}>Newsletter Signup</h4>
+        <h4 style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--text)', marginBottom: '6px' }}>Newsletter Signup</h4>
         <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '14px' }}>
           Get weekly AI insights and tech tips delivered to your inbox.
         </p>
@@ -94,10 +94,10 @@ const Sidebar = ({ popularArticles = [], onNavigate }) => {
               style={{
                 width: '100%',
                 padding: '8px 12px',
-                background: '#131622',
+                background: 'var(--surface)',
                 border: '1px solid var(--border)',
                 borderRadius: 'var(--btn-radius)',
-                color: '#FFF',
+                color: 'var(--text)',
                 fontSize: '0.8rem',
                 textAlign: 'center'
               }}
@@ -109,7 +109,7 @@ const Sidebar = ({ popularArticles = [], onNavigate }) => {
                 padding: '8px',
                 background: 'var(--primary)',
                 border: 'none',
-                color: '#FFF',
+                color: 'var(--text)',
                 fontWeight: '700',
                 fontSize: '0.8rem',
                 borderRadius: 'var(--btn-radius)',

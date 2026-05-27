@@ -12,7 +12,7 @@ const Category = ({ params = {}, onNavigate }) => {
   return (
     <div style={{ paddingBottom: '30px' }} aria-labelledby="category-page-title">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: '1px solid var(--border)', paddingBottom: '12px', marginBottom: '24px' }}>
-        <h1 id="category-page-title" style={{ fontSize: '1.8rem', fontWeight: '800', color: '#FFFFFF' }}>
+        <h1 id="category-page-title" style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--text)' }}>
           {categoryName}
         </h1>
         <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>

@@ -34,7 +34,7 @@ const NotFound = ({ onNavigate }) => {
         style={{
           fontSize: '5rem',
           fontWeight: '900',
-          background: 'linear-gradient(135deg, var(--primary), #7B61FF)',
+          background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           lineHeight: '1',
@@ -44,7 +44,7 @@ const NotFound = ({ onNavigate }) => {
         404
       </h1>
       
-      <h2 style={{ fontSize: '1.8rem', fontWeight: '800', color: '#FFFFFF', marginBottom: '12px' }}>
+      <h2 style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--text)', marginBottom: '12px' }}>
         Page Not Found
       </h2>
       
@@ -56,7 +56,7 @@ const NotFound = ({ onNavigate }) => {
         onClick={() => onNavigate('home')}
         style={{
           background: 'var(--primary)',
-          color: '#FFFFFF',
+          color: 'var(--text)',
           padding: '14px 28px',
           borderRadius: 'var(--btn-radius)',
           fontSize: '0.9rem',

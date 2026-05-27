@@ -29,7 +29,7 @@ const ImageWithFallback = ({
         width: '100%',
         aspectRatio,
         overflow: 'hidden',
-        backgroundColor: 'var(--surface, #131622)',
+        backgroundColor: 'var(--surface)',
         borderRadius: 'inherit',
         ...style
       }}
@@ -40,7 +40,7 @@ const ImageWithFallback = ({
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(90deg, #1A1D29 25%, #242938 50%, #1A1D29 75%)',
+            background: 'linear-gradient(90deg, var(--surface) 25%, var(--card-bg) 50%, var(--surface) 75%)',
             backgroundSize: '200% 100%',
             animation: 'shimmer 1.8s infinite'
           }}
@@ -58,7 +58,7 @@ const ImageWithFallback = ({
             alignItems: 'center',
             justifyContent: 'center',
             gap: '8px',
-            color: 'var(--text-secondary, #B0B7C3)'
+            color: 'var(--text-secondary)'
           }}
         >
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

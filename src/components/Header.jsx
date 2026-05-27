@@ -34,9 +34,9 @@ const Header = ({ activePage, activeParams, onNavigate }) => {
 
   return (
     <>
-      <header style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '64px', backgroundColor: 'rgba(15,17,23,0.95)', backdropFilter: 'blur(10px)', borderBottom: '1px solid var(--border)', zIndex: 999, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px' }}>
+      <header style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '64px', backgroundColor: 'rgba(255,249,230,0.95)', backdropFilter: 'blur(10px)', borderBottom: '1px solid var(--border)', zIndex: 999, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px' }}>
         {/* Logo */}
-        <a href="#/" onClick={handleLogoClick} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '800', fontSize: '1.3rem', letterSpacing: '1px', background: 'linear-gradient(135deg, #00A8FF, #7B61FF)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', userSelect: 'none' }}>
+        <a href="#/" onClick={handleLogoClick} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '800', fontSize: '1.3rem', letterSpacing: '1px', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', userSelect: 'none' }}>
           HOT AI
         </a>
 

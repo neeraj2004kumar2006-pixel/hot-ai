@@ -24,7 +24,7 @@ const Editorial = ({ onNavigate }) => {
           style={{
             fontSize: '1.8rem',
             fontWeight: '800',
-            color: '#FFFFFF'
+            color: 'var(--text)'
           }}
         >
           Our Editorial Process
@@ -35,7 +35,7 @@ const Editorial = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Research & Verification
         </h2>
         <ul style={{ paddingLeft: '20px', marginBottom: '20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -47,7 +47,7 @@ const Editorial = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           AI Tool Reviews Process
         </h2>
         <ul style={{ paddingLeft: '20px', marginBottom: '20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -59,7 +59,7 @@ const Editorial = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Content Guidelines
         </h2>
         <ul style={{ paddingLeft: '20px', marginBottom: '20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -71,7 +71,7 @@ const Editorial = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Corrections & Updates
         </h2>
         <p style={{ fontSize: '1.05rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>

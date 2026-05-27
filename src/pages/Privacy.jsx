@@ -24,7 +24,7 @@ const Privacy = ({ onNavigate }) => {
           style={{
             fontSize: '1.8rem',
             fontWeight: '800',
-            color: '#FFFFFF'
+            color: 'var(--text)'
           }}
         >
           Privacy Policy
@@ -35,7 +35,7 @@ const Privacy = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Information Collection and Use
         </h2>
         <p style={{ fontSize: '1.05rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>
@@ -49,7 +49,7 @@ const Privacy = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Data Security
         </h2>
         <p style={{ fontSize: '1.05rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>
@@ -64,7 +64,7 @@ const Privacy = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Third-Party Services
         </h2>
         <p style={{ fontSize: '1.05rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>
@@ -79,7 +79,7 @@ const Privacy = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Your Rights
         </h2>
         <p style={{ fontSize: '1.05rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>
@@ -96,7 +96,7 @@ const Privacy = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Changes to This Policy
         </h2>
         <p style={{ fontSize: '1.05rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>

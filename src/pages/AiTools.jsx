@@ -7,7 +7,7 @@ const AiTools = ({ onNavigate }) => {
   return (
     <div style={{ paddingBottom: '30px' }} aria-labelledby="tools-page-title">
       <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '12px', marginBottom: '24px' }}>
-        <h1 id="tools-page-title" style={{ fontSize: '1.8rem', fontWeight: '800', color: '#FFFFFF' }}>
+        <h1 id="tools-page-title" style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--text)' }}>
           Verified AI Tools Directory
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '4px' }}>
@@ -21,13 +21,13 @@ const AiTools = ({ onNavigate }) => {
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
                 <div>
-                  <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#FFFFFF' }}>{tool.name}</h3>
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--text)' }}>{tool.name}</h3>
                   <span style={{ fontSize: '0.7rem', color: 'var(--primary)', fontWeight: '700', textTransform: 'uppercase' }}>{tool.category}</span>
                 </div>
                 {tool.verified && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: '#242938', padding: '4px 8px', borderRadius: '6px' }}>
-                    <span style={{ color: '#00D68F', fontSize: '0.85rem' }}>✓</span>
-                    <span style={{ fontSize: '0.75rem', fontWeight: '700', color: '#FFFFFF' }}>Verified</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'var(--surface)', padding: '4px 8px', borderRadius: '6px' }}>
+                    <span style={{ color: 'var(--success)', fontSize: '0.85rem' }}>✓</span>
+                    <span style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--text)' }}>Verified</span>
                   </div>
                 )}
               </div>
@@ -36,7 +36,7 @@ const AiTools = ({ onNavigate }) => {
 
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '12px' }}>
                 {tool.tags && tool.tags.slice(0, 3).map((tag, i) => (
-                  <span key={i} style={{ fontSize: '0.7rem', background: '#242938', color: 'var(--primary)', padding: '3px 8px', borderRadius: '4px', fontWeight: '600' }}>
+                  <span key={i} style={{ fontSize: '0.7rem', background: 'var(--surface)', color: 'var(--primary)', padding: '3px 8px', borderRadius: '4px', fontWeight: '600' }}>
                     {tag}
                   </span>
                 ))}
@@ -47,7 +47,7 @@ const AiTools = ({ onNavigate }) => {
               <span style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--text-secondary)' }}>
                 {tool.pricing === 'freemium' ? 'Freemium' : tool.pricing === 'free-trial' ? 'Free Trial' : tool.pricing === 'open-source' ? 'Open Source' : 'Paid'}
               </span>
-              <a href={tool.website} target="_blank" rel="noopener noreferrer" style={{ background: 'var(--primary)', color: '#FFFFFF', padding: '6px 12px', borderRadius: 'var(--btn-radius)', fontSize: '0.75rem', fontWeight: '700', transition: 'var(--transition)' }}
+              <a href={tool.website} target="_blank" rel="noopener noreferrer" style={{ background: 'var(--primary)', color: 'var(--text)', padding: '6px 12px', borderRadius: 'var(--btn-radius)', fontSize: '0.75rem', fontWeight: '700', transition: 'var(--transition)' }}
                 onMouseOver={(e) => e.currentTarget.style.filter = 'brightness(1.15)'}
                 onMouseOut={(e) => e.currentTarget.style.filter = 'none'}
               >Visit Site ↗</a>

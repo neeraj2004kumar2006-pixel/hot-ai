@@ -17,8 +17,8 @@ const Article = ({ params = {}, onNavigate }) => {
   if (!article) {
     return (
       <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-        <h2 style={{ fontSize: '1.3rem', fontWeight: '800', color: '#FFF' }}>Article Not Found</h2>
-        <button onClick={() => onNavigate('home')} style={{ background: 'var(--primary)', color: '#FFF', padding: '8px 18px', borderRadius: 'var(--btn-radius)', marginTop: '16px' }}>Go Home</button>
+        <h2 style={{ fontSize: '1.3rem', fontWeight: '800', color: 'var(--text)' }}>Article Not Found</h2>
+        <button onClick={() => onNavigate('home')} style={{ background: 'var(--primary)', color: 'var(--text)', padding: '8px 18px', borderRadius: 'var(--btn-radius)', marginTop: '16px' }}>Go Home</button>
       </div>
     );
   }
@@ -114,7 +114,7 @@ const Article = ({ params = {}, onNavigate }) => {
         </div>
 
         {/* Title */}
-        <h1 style={{ fontSize: '2.2rem', fontWeight: '800', lineHeight: '1.25', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h1 style={{ fontSize: '2.2rem', fontWeight: '800', lineHeight: '1.25', marginBottom: '20px', color: 'var(--text)' }}>
           {article.title}
         </h1>
 
@@ -125,7 +125,7 @@ const Article = ({ params = {}, onNavigate }) => {
               <ImageWithFallback src={article.author?.avatar} alt={article.author?.name} width={36} height={36} />
             </div>
             <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: '600', color: '#FFFFFF' }}>{article.author?.name}</div>
+              <div style={{ fontSize: '0.85rem', fontWeight: '600', color: 'var(--text)' }}>{article.author?.name}</div>
               <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{article.author?.role}</div>
             </div>
           </div>
@@ -149,7 +149,7 @@ const Article = ({ params = {}, onNavigate }) => {
         {/* Tags */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '25px' }}>
           {(article.tags || []).map((tag, i) => (
-            <span key={i} style={{ fontSize: '0.75rem', background: 'rgba(123,97,255,0.15)', color: 'var(--secondary)', padding: '4px 12px', borderRadius: '4px', fontWeight: '600' }}>
+            <span key={i} style={{ fontSize: '0.75rem', background: 'rgba(254,179,0,0.15)', color: 'var(--secondary)', padding: '4px 12px', borderRadius: '4px', fontWeight: '600' }}>
               #{tag}
             </span>
           ))}
@@ -163,7 +163,7 @@ const Article = ({ params = {}, onNavigate }) => {
         )}
 
         {/* Progress Bar */}
-        <div style={{ height: '4px', background: '#2B2F3D', borderRadius: '2px', marginBottom: '30px' }}>
+        <div style={{ height: '4px', background: 'var(--border)', borderRadius: '2px', marginBottom: '30px' }}>
           <div style={{ height: '100%', width: '0%', background: 'linear-gradient(90deg, var(--primary), var(--secondary))', borderRadius: '2px', transition: 'width 0.3s ease' }} id="article-progress-bar" />
         </div>
 

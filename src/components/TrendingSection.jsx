@@ -54,9 +54,9 @@ const TrendingSection = ({ articles = [], onNavigate }) => {
               </div>
 
               <h3
-                style={{ fontSize: '0.85rem', fontWeight: '700', lineHeight: '1.35', color: '#FFFFFF', transition: 'color 0.2s ease' }}
+                style={{ fontSize: '0.85rem', fontWeight: '700', lineHeight: '1.35', color: 'var(--text)', transition: 'color 0.2s ease' }}
                 onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
-                onMouseOut={(e) => e.currentTarget.style.color = '#FFFFFF'}
+                onMouseOut={(e) => e.currentTarget.style.color = 'var(--text)'}
               >
                 {truncateText(article.title, 60)}
               </h3>

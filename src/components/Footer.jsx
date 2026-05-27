@@ -9,14 +9,14 @@ const Footer = ({ onNavigate }) => {
   };
 
   return (
-    <footer style={{ backgroundColor: '#0A0C10', borderTop: '1px solid var(--border)', padding: '30px 20px 20px', marginTop: '40px' }} aria-label="Site Footer">
+    <footer style={{ backgroundColor: 'var(--card-bg)', borderTop: '1px solid var(--border)', padding: '30px 20px 20px', marginTop: '40px' }} aria-label="Site Footer">
       <div style={{ maxWidth: 'var(--max-width)', margin: '0 auto' }}>
         {/* Compact footer ad */}
         <AdBanner slot="footerBanner" />
         <div className="footer-grid">
           {/* Brand */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-            <a href="#/" onClick={(e) => handleLinkClick(e, 'home')} style={{ fontSize: '1.4rem', fontWeight: '800', background: 'linear-gradient(135deg, #00A8FF, #7B61FF)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', width: 'fit-content' }}>
+            <a href="#/" onClick={(e) => handleLinkClick(e, 'home')} style={{ fontSize: '1.4rem', fontWeight: '800', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', width: 'fit-content' }}>
               HOT AI
             </a>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: '1.6', maxWidth: '350px' }}>
@@ -40,7 +40,7 @@ const Footer = ({ onNavigate }) => {
 
           {/* Quick Links */}
           <div>
-            <h4 style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '15px', color: '#FFFFFF', textTransform: 'uppercase' }}>Quick Links</h4>
+            <h4 style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '15px', color: 'var(--text)', textTransform: 'uppercase' }}>Quick Links</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', padding: 0 }}>
               {[
                 { label: 'Home', page: 'home' },
@@ -63,7 +63,7 @@ const Footer = ({ onNavigate }) => {
 
           {/* Legal */}
           <div>
-            <h4 style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '15px', color: '#FFFFFF', textTransform: 'uppercase' }}>Legal & Info</h4>
+            <h4 style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '15px', color: 'var(--text)', textTransform: 'uppercase' }}>Legal & Info</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', padding: 0 }}>
               {[
                 { label: 'About', slug: 'about' },

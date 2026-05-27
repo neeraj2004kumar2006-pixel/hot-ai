@@ -9,7 +9,7 @@ const Trending = ({ onNavigate }) => {
   return (
     <div style={{ paddingBottom: '30px' }} aria-labelledby="trending-page-title">
       <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '12px', marginBottom: '24px' }}>
-        <h1 id="trending-page-title" style={{ fontSize: '1.8rem', fontWeight: '800', color: '#FFFFFF' }}>
+        <h1 id="trending-page-title" style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--text)' }}>
           Trending Now
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '4px' }}>

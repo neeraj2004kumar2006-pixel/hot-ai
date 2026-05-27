@@ -23,7 +23,7 @@ const Toast = ({ message, type = 'success', onClose, duration = 3000 }) => {
       left: '50%',
       transform: 'translateX(-50%)',
       backgroundColor: bgColors[type],
-      color: '#FFF',
+      color: 'var(--text)',
       padding: '12px 24px',
       borderRadius: '8px',
       fontWeight: '600',
@@ -42,7 +42,7 @@ const Toast = ({ message, type = 'success', onClose, duration = 3000 }) => {
       </span>
       <span>{message}</span>
       <button onClick={onClose} style={{
-        background: 'none', border: 'none', color: '#FFF', fontSize: '1.2rem', 
+        background: 'none', border: 'none', color: 'var(--text)', fontSize: '1.2rem', 
         cursor: 'pointer', marginLeft: '12px', padding: 0, lineHeight: 1
       }}>×</button>
       <style>{`

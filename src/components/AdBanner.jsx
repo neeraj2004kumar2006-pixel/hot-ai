@@ -83,13 +83,13 @@ const AdBanner = ({ slot, className = '' }) => {
         style={{
           position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 900,
           display: 'flex', justifyContent: 'center', alignItems: 'center',
-          background: 'rgba(15,17,23,0.95)', backdropFilter: 'blur(8px)',
+          background: 'var(--surface)', backdropFilter: 'blur(8px)',
           borderTop: '1px solid var(--border)', padding: '6px 0',
         }}
         className={className}
       >
         {isVisible ? (
-          <AdSlotContent provider={provider} slotId={slotId} sizes={sizes} responsive={false} label={label} onError={() => setHasError(true)} />
+          <AdSlotContent provider={provider} slotId={slotId} sizes={sizes} responsive={false} label={label} onError={() => setHasError(true)} slotName={slot} />
         ) : (
           <div style={{ width: sizes.width, height: sizes.height }} />
         )}
@@ -114,9 +114,9 @@ const AdBanner = ({ slot, className = '' }) => {
       }}
     >
       {isVisible ? (
-        <AdSlotContent provider={provider} slotId={slotId} sizes={sizes} responsive={responsive} label={label} aspectRatio={aspectRatio} onError={() => setHasError(true)} />
+        <AdSlotContent provider={provider} slotId={slotId} sizes={sizes} responsive={responsive} label={label} aspectRatio={aspectRatio} onError={() => setHasError(true)} slotName={slot} />
       ) : (
-        <div style={{ width: '100%', aspectRatio, maxHeight: `${sizes.height}px`, background: 'linear-gradient(90deg, #131622 25%, #1A1D29 50%, #131622 75%)', backgroundSize: '200% 100%', animation: 'shimmer 1.8s infinite', borderRadius: '8px' }} />
+        <div style={{ width: '100%', aspectRatio, maxHeight: `${sizes.height}px`, background: 'linear-gradient(90deg, var(--surface) 25%, var(--card-bg) 50%, var(--surface) 75%)', backgroundSize: '200% 100%', animation: 'shimmer 1.8s infinite', borderRadius: '8px' }} />
       )}
     </div>
   );
@@ -125,13 +125,23 @@ const AdBanner = ({ slot, className = '' }) => {
 /**
  * Inner content renderer — switches by provider.
  */
-const AdSlotContent = ({ provider, slotId, sizes, responsive, label, aspectRatio, onError }) => {
+const AdSlotContent = ({ provider, slotId, sizes, responsive, label, aspectRatio, onError, slotName }) => {
+  if (provider === 'test') {
+    return (
+      <div style={{ width: '100%', maxWidth: responsive ? '100%' : `${sizes.width}px`, aspectRatio: aspectRatio || `${sizes.width}/${sizes.height}`, maxHeight: `${sizes.height}px`, background: 'var(--surface)', border: '2px dashed var(--soft-accent)', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px', margin: '0 auto', overflow: 'hidden' }}>
+        <span style={{ fontSize: '0.85rem', color: 'var(--primary)', letterSpacing: '1.5px', textTransform: 'uppercase', fontWeight: 'bold' }}>TEST AD</span>
+        <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)' }}>Slot: {slotName || label}</span>
+        <span style={{ fontSize: '0.55rem', color: 'var(--text-secondary)', opacity: 0.6 }}>{sizes.width}×{sizes.height}</span>
+      </div>
+    );
+  }
+
   if (provider === 'adsense' && slotId) {
     return (
       <div style={{ width: '100%', textAlign: 'center' }}>
         <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', opacity: 0.5, marginBottom: '2px', letterSpacing: '1px', textTransform: 'uppercase' }}>Advertisement</div>
         {/* INSERT ADSENSE CODE HERE: Replace div below with <ins className="adsbygoogle" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot={slotId} /> then call (adsbygoogle = window.adsbygoogle || []).push({}); */}
-        <div style={{ width: responsive ? '100%' : `${sizes.width}px`, height: `${sizes.height}px`, background: '#131622', borderRadius: '6px', margin: '0 auto' }} data-ad-slot={slotId} />
+        <div style={{ width: responsive ? '100%' : `${sizes.width}px`, height: `${sizes.height}px`, background: 'var(--surface)', borderRadius: '6px', margin: '0 auto' }} data-ad-slot={slotId} />
       </div>
     );
   }
@@ -141,7 +151,7 @@ const AdSlotContent = ({ provider, slotId, sizes, responsive, label, aspectRatio
       <div style={{ width: '100%', textAlign: 'center' }}>
         <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', opacity: 0.5, marginBottom: '2px', letterSpacing: '1px', textTransform: 'uppercase' }}>Advertisement</div>
         {/* INSERT EZOIC CODE HERE: Replace div below with <div id={`ezoic-pub-ad-placeholder-${slotId}`} /> */}
-        <div style={{ width: responsive ? '100%' : `${sizes.width}px`, height: `${sizes.height}px`, background: '#131622', borderRadius: '6px', margin: '0 auto' }} id={`ezoic-pub-ad-placeholder-${slotId}`} />
+        <div style={{ width: responsive ? '100%' : `${sizes.width}px`, height: `${sizes.height}px`, background: 'var(--surface)', borderRadius: '6px', margin: '0 auto' }} id={`ezoic-pub-ad-placeholder-${slotId}`} />
       </div>
     );
   }
@@ -151,7 +161,7 @@ const AdSlotContent = ({ provider, slotId, sizes, responsive, label, aspectRatio
       <div style={{ width: '100%', textAlign: 'center' }}>
         <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)', opacity: 0.5, marginBottom: '2px', letterSpacing: '1px', textTransform: 'uppercase' }}>Sponsored</div>
         {/* INSERT MANUAL BANNER HERE: Replace with <a href="sponsor-url"><img src="banner.jpg" /></a> */}
-        <div style={{ width: responsive ? '100%' : `${sizes.width}px`, height: `${sizes.height}px`, background: '#131622', borderRadius: '6px', margin: '0 auto' }} />
+        <div style={{ width: responsive ? '100%' : `${sizes.width}px`, height: `${sizes.height}px`, background: 'var(--surface)', borderRadius: '6px', margin: '0 auto' }} />
       </div>
     );
   }
@@ -159,7 +169,7 @@ const AdSlotContent = ({ provider, slotId, sizes, responsive, label, aspectRatio
   // No Provider (Demo/Dev Mode)
   if (import.meta.env.DEV) {
     return (
-      <div style={{ width: '100%', maxWidth: responsive ? '100%' : `${sizes.width}px`, aspectRatio: aspectRatio || `${sizes.width}/${sizes.height}`, maxHeight: `${sizes.height}px`, background: '#0D0F15', border: '1px solid rgba(43,47,61,0.5)', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px', margin: '0 auto', overflow: 'hidden' }}>
+      <div style={{ width: '100%', maxWidth: responsive ? '100%' : `${sizes.width}px`, aspectRatio: aspectRatio || `${sizes.width}/${sizes.height}`, maxHeight: `${sizes.height}px`, background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px', margin: '0 auto', overflow: 'hidden' }}>
         <span style={{ fontSize: '0.55rem', color: 'var(--text-secondary)', opacity: 0.35, letterSpacing: '1.5px', textTransform: 'uppercase', fontWeight: '600' }}>{label || 'Ad'}</span>
         <span style={{ fontSize: '0.5rem', color: 'var(--text-secondary)', opacity: 0.2 }}>{sizes.width}×{sizes.height}</span>
       </div>

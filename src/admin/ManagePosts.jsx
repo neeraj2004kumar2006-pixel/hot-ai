@@ -49,8 +49,8 @@ const ManagePosts = ({ onNavigate }) => {
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: '800', color: '#FFF' }}>Manage Posts</h1>
-        <button onClick={() => onNavigate('admin-create')} style={{ background: 'var(--primary)', color: '#FFF', padding: '8px 18px', borderRadius: 'var(--btn-radius)', fontSize: '0.8rem', fontWeight: '700', transition: 'var(--transition)', cursor: 'pointer', border: 'none' }}
+        <h1 style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--text)' }}>Manage Posts</h1>
+        <button onClick={() => onNavigate('admin-create')} style={{ background: 'var(--primary)', color: 'var(--text)', padding: '8px 18px', borderRadius: 'var(--btn-radius)', fontSize: '0.8rem', fontWeight: '700', transition: 'var(--transition)', cursor: 'pointer', border: 'none' }}
           onMouseOver={(e) => e.currentTarget.style.filter = 'brightness(1.1)'}
           onMouseOut={(e) => e.currentTarget.style.filter = 'none'}
         >+ New Post</button>
@@ -69,7 +69,7 @@ const ManagePosts = ({ onNavigate }) => {
             key={t.id}
             onClick={() => { setSelectedType(t.id); setFilterQuery(''); }}
             style={{
-              background: selectedType === t.id ? 'rgba(0,168,255,0.15)' : 'transparent',
+              background: selectedType === t.id ? 'rgba(255,94,108,0.15)' : 'transparent',
               border: selectedType === t.id ? '1px solid var(--primary)' : '1px solid transparent',
               color: selectedType === t.id ? 'var(--primary)' : 'var(--text-secondary)',
               padding: '6px 14px',
@@ -96,10 +96,10 @@ const ManagePosts = ({ onNavigate }) => {
             width: '100%',
             maxWidth: '360px',
             padding: '8px 12px',
-            background: '#131622',
+            background: 'var(--surface)',
             border: '1px solid var(--border)',
             borderRadius: 'var(--btn-radius)',
-            color: '#FFF',
+            color: 'var(--text)',
             fontSize: '0.82rem'
           }}
         />
@@ -141,23 +141,23 @@ const ManagePosts = ({ onNavigate }) => {
                           <ImageWithFallback src={p.featuredImage?.url} alt={title} width={48} height={34} loading="lazy" />
                         </div>
                       </td>
-                      <td style={{ padding: '10px 14px', color: '#FFF', fontWeight: '600', maxWidth: '260px' }}>{title}</td>
+                      <td style={{ padding: '10px 14px', color: 'var(--text)', fontWeight: '600', maxWidth: '260px' }}>{title}</td>
                       <td style={{ padding: '10px 14px', color: 'var(--primary)', fontSize: '0.76rem', fontWeight: '700' }}>{p.category}</td>
                       <td style={{ padding: '10px 14px', color: 'var(--text-secondary)', fontSize: '0.8rem' }}>{dateStr}</td>
                       <td style={{ padding: '10px 14px' }}>
-                        <span style={{ fontSize: '0.7rem', fontWeight: '700', padding: '3px 10px', borderRadius: '4px', background: isPub ? 'rgba(0,214,143,0.15)' : 'rgba(255,217,61,0.15)', color: isPub ? '#00D68F' : '#FFD93D' }}>
+                        <span style={{ fontSize: '0.7rem', fontWeight: '700', padding: '3px 10px', borderRadius: '4px', background: isPub ? 'rgba(0,214,143,0.15)' : 'rgba(255,217,61,0.15)', color: isPub ? 'var(--success)' : 'var(--warning)' }}>
                           {isPub ? 'Published' : 'Draft'}
                         </span>
                       </td>
                       <td style={{ padding: '10px 14px' }}>
                         <div style={{ display: 'flex', gap: '8px' }}>
                           <button onClick={() => onNavigate('admin-edit', { id: p.id, type: selectedType })} style={{ padding: '5px 12px', borderRadius: '4px', fontSize: '0.72rem', fontWeight: '700', border: '1px solid var(--primary)', color: 'var(--primary)', background: 'transparent', transition: 'var(--transition)', cursor: 'pointer' }}
-                            onMouseOver={(e) => { e.currentTarget.style.background = 'var(--primary)'; e.currentTarget.style.color = '#FFF'; }}
+                            onMouseOver={(e) => { e.currentTarget.style.background = 'var(--primary)'; e.currentTarget.style.color = 'var(--text)'; }}
                             onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--primary)'; }}
                           >Edit</button>
-                          <button onClick={() => confirmDelete(p.id, title)} style={{ padding: '5px 12px', borderRadius: '4px', fontSize: '0.72rem', fontWeight: '700', border: '1px solid #FF6B6B', color: '#FF6B6B', background: 'transparent', transition: 'var(--transition)', cursor: 'pointer' }}
-                            onMouseOver={(e) => { e.currentTarget.style.background = '#FF6B6B'; e.currentTarget.style.color = '#FFF'; }}
-                            onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#FF6B6B'; }}
+                          <button onClick={() => confirmDelete(p.id, title)} style={{ padding: '5px 12px', borderRadius: '4px', fontSize: '0.72rem', fontWeight: '700', border: '1px solid #FF6B6B', color: 'var(--danger)', background: 'transparent', transition: 'var(--transition)', cursor: 'pointer' }}
+                            onMouseOver={(e) => { e.currentTarget.style.background = 'var(--danger)'; e.currentTarget.style.color = 'var(--text)'; }}
+                            onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--danger)'; }}
                           >Delete</button>
                         </div>
                       </td>
@@ -171,7 +171,7 @@ const ManagePosts = ({ onNavigate }) => {
                           <ImageWithFallback src={p.logo} alt={title} width={32} height={32} loading="lazy" />
                         </div>
                       </td>
-                      <td style={{ padding: '10px 14px', color: '#FFF', fontWeight: '600', maxWidth: '260px' }}>{title}</td>
+                      <td style={{ padding: '10px 14px', color: 'var(--text)', fontWeight: '600', maxWidth: '260px' }}>{title}</td>
                       <td style={{ padding: '10px 14px', color: 'var(--primary)', fontSize: '0.76rem', fontWeight: '700' }}>{p.category}</td>
                       <td style={{ padding: '10px 14px', color: 'var(--text-secondary)', fontSize: '0.8rem', textTransform: 'capitalize' }}>{p.pricing}</td>
                       <td style={{ padding: '10px 14px', color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
@@ -180,12 +180,12 @@ const ManagePosts = ({ onNavigate }) => {
                       <td style={{ padding: '10px 14px' }}>
                         <div style={{ display: 'flex', gap: '8px' }}>
                           <button onClick={() => onNavigate('admin-edit', { id: p.id, type: 'tool' })} style={{ padding: '5px 12px', borderRadius: '4px', fontSize: '0.72rem', fontWeight: '700', border: '1px solid var(--primary)', color: 'var(--primary)', background: 'transparent', transition: 'var(--transition)', cursor: 'pointer' }}
-                            onMouseOver={(e) => { e.currentTarget.style.background = 'var(--primary)'; e.currentTarget.style.color = '#FFF'; }}
+                            onMouseOver={(e) => { e.currentTarget.style.background = 'var(--primary)'; e.currentTarget.style.color = 'var(--text)'; }}
                             onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--primary)'; }}
                           >Edit</button>
-                          <button onClick={() => confirmDelete(p.id, title)} style={{ padding: '5px 12px', borderRadius: '4px', fontSize: '0.72rem', fontWeight: '700', border: '1px solid #FF6B6B', color: '#FF6B6B', background: 'transparent', transition: 'var(--transition)', cursor: 'pointer' }}
-                            onMouseOver={(e) => { e.currentTarget.style.background = '#FF6B6B'; e.currentTarget.style.color = '#FFF'; }}
-                            onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#FF6B6B'; }}
+                          <button onClick={() => confirmDelete(p.id, title)} style={{ padding: '5px 12px', borderRadius: '4px', fontSize: '0.72rem', fontWeight: '700', border: '1px solid #FF6B6B', color: 'var(--danger)', background: 'transparent', transition: 'var(--transition)', cursor: 'pointer' }}
+                            onMouseOver={(e) => { e.currentTarget.style.background = 'var(--danger)'; e.currentTarget.style.color = 'var(--text)'; }}
+                            onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--danger)'; }}
                           >Delete</button>
                         </div>
                       </td>

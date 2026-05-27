@@ -24,7 +24,7 @@ const About = ({ onNavigate }) => {
           style={{
             fontSize: '1.8rem',
             fontWeight: '800',
-            color: '#FFFFFF'
+            color: 'var(--text)'
           }}
         >
           About Hot AI
@@ -35,7 +35,7 @@ const About = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Who We Are
         </h2>
         <p style={{ fontSize: '1.05rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>
@@ -47,7 +47,7 @@ const About = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Our Editorial Standards
         </h2>
         <ul style={{ paddingLeft: '20px', marginBottom: '20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -59,31 +59,31 @@ const About = ({ onNavigate }) => {
       </div>
 
       <div className="premium-card" style={{ padding: '30px', marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: '#FFFFFF' }}>
+        <h2 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
           Meet Our Team
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-            <div style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', backgroundColor: '#131622', marginBottom: '15px' }}>
+            <div style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', backgroundColor: 'var(--surface)', marginBottom: '15px' }}>
               <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=60" alt="Sarah Johnson" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#FFFFFF', marginBottom: '5px' }}>Sarah Johnson</h3>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--text)', marginBottom: '5px' }}>Sarah Johnson</h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Senior AI Researcher & Editor-in-Chief</p>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '10px', lineHeight: '1.5' }}>12+ years in AI research and development, former lead at major AI labs.</p>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-            <div style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', backgroundColor: '#131622', marginBottom: '15px' }}>
+            <div style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', backgroundColor: 'var(--surface)', marginBottom: '15px' }}>
               <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=60" alt="Michael Chen" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#FFFFFF', marginBottom: '5px' }}>Michael Chen</h3>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--text)', marginBottom: '5px' }}>Michael Chen</h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Developer Advocate & Technical Writer</p>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '10px', lineHeight: '1.5' }}>8+ years building developer tools and creating technical documentation.</p>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-            <div style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', backgroundColor: '#131622', marginBottom: '15px' }}>
+            <div style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', backgroundColor: 'var(--surface)', marginBottom: '15px' }}>
               <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=60" alt="Alex Rivera" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#FFFFFF', marginBottom: '5px' }}>Alex Rivera</h3>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--text)', marginBottom: '5px' }}>Alex Rivera</h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Mobile Optimization Specialist</p>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '10px', lineHeight: '1.5' }}>Expert in Android and iOS performance optimization and battery life.</p>
           </div>

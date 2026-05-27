@@ -13,7 +13,7 @@
  * lazyLoad: if true, ad only initializes when scrolled into view
  */
 
-const AD_PROVIDER = 'none'; // Change to 'adsense' | 'ezoic' | 'manual' when ready
+const AD_PROVIDER = 'test'; // Change to 'adsense' | 'ezoic' | 'manual' when ready
 
 const adSlots = {
   // ─── HOMEPAGE ──────────────────────────────────────

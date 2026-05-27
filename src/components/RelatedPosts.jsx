@@ -60,9 +60,9 @@ const RelatedPosts = ({ currentCategory, currentTags = [], currentId, onNavigate
                 {article.category}
               </span>
               <h3
-                style={{ fontSize: '0.9rem', fontWeight: '700', lineHeight: '1.3', color: '#FFFFFF', transition: 'color 0.2s ease' }}
+                style={{ fontSize: '0.9rem', fontWeight: '700', lineHeight: '1.3', color: 'var(--text)', transition: 'color 0.2s ease' }}
                 onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
-                onMouseOut={(e) => e.currentTarget.style.color = '#FFFFFF'}
+                onMouseOut={(e) => e.currentTarget.style.color = 'var(--text)'}
               >
                 {truncateText(article.title, 60)}
               </h3>

@@ -71,7 +71,7 @@ const Search = ({ params = {}, onNavigate }) => {
   return (
     <div style={{ paddingBottom: '30px' }} aria-labelledby="search-page-title">
       <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 40px' }}>
-        <h1 id="search-page-title" style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '15px', color: '#FFFFFF' }}>
+        <h1 id="search-page-title" style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '15px', color: 'var(--text)' }}>
           Explore <span style={{ color: 'var(--primary)' }}>Hot AI</span>
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '25px' }}>
@@ -89,7 +89,7 @@ const Search = ({ params = {}, onNavigate }) => {
 
         {results.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--text-secondary)', background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '12px' }}>
-            <p style={{ marginBottom: '10px', fontSize: '1.1rem', color: '#FFFFFF', fontWeight: '600' }}>No matches found</p>
+            <p style={{ marginBottom: '10px', fontSize: '1.1rem', color: 'var(--text)', fontWeight: '600' }}>No matches found</p>
             <p style={{ fontSize: '0.85rem' }}>Try different keywords or browse categories for more content.</p>
           </div>
         ) : (
