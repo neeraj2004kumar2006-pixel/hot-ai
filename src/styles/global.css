@@ -17,8 +17,8 @@
   /* Layout Tokens */
   --card-radius: 16px;
   --btn-radius: 8px;
-  --font-heading: 'Bubblegum Sans', cursive;
-  --font-body: 'Open Sans', sans-serif;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --max-width: 1200px;
 
@@ -101,7 +101,7 @@ button {
 .section-title {
   font-family: var(--font-heading);
   font-size: var(--font-h2);
-  font-weight: 400 !important;
+  font-weight: 700;
   margin-bottom: 24px;
   display: flex;
   align-items: center;
@@ -113,8 +113,6 @@ button {
 
 h1, h2, h3, h4, h5, h6, .logo {
   font-family: var(--font-heading);
-  font-weight: 400 !important;
-  letter-spacing: 0.5px;
 }
 
 /* Universal Card */
