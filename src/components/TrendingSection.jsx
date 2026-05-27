@@ -18,7 +18,7 @@ const TrendingSection = ({ articles = [], onNavigate }) => {
     <section style={{ marginBottom: '60px', position: 'relative' }} aria-labelledby="trending-title">
       <h2 id="trending-title" className="section-title">Trending Now</h2>
 
-      <div style={{ display: 'flex', gap: '20px', overflowX: 'auto', paddingBottom: '30px', margin: '0 -20px', padding: '0 20px 30px', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
+      <div style={{ display: 'flex', gap: '20px', overflowX: 'auto', paddingBottom: '30px', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
         {trendingArticles.map((article, index) => (
           <motion.div
             key={article.id}

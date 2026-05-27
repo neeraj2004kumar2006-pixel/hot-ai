@@ -12,7 +12,7 @@ const Home = ({ onNavigate }) => {
 
   return (
     <div className="two-column-layout">
-      <main aria-label="Main Feed">
+      <main style={{ minWidth: 0 }} aria-label="Main Feed">
         {/* Top banner — below header, above hero */}
         <AdBanner slot="topBanner" />
 
