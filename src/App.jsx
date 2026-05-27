@@ -3,6 +3,8 @@ import { AuthProvider } from './context/AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AdBanner from './components/AdBanner';
+import BackToTop from './components/BackToTop';
+import { AnimatePresence, motion } from 'framer-motion';
 
 // Pages
 import Home from './pages/Home';
@@ -141,6 +143,12 @@ const App = () => {
     }
   };
 
+  const pageVariants = {
+    initial: { opacity: 0, y: 15 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+    exit: { opacity: 0, y: -15, transition: { duration: 0.3, ease: "easeIn" } }
+  };
+
   return (
     <AuthProvider>
       <div className="app-container">
@@ -148,10 +156,21 @@ const App = () => {
           <Header activePage={route.page} activeParams={route.params} onNavigate={handleNavigate} />
         )}
         <main className="main-content">
-          {renderPage()}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${route.page}-${route.params?.slug || route.params?.id || ''}`}
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              {renderPage()}
+            </motion.div>
+          </AnimatePresence>
         </main>
         {!isAdmin && <Footer onNavigate={handleNavigate} />}
         {!isAdmin && <AdBanner slot="mobileSticky" />}
+        {!isAdmin && <BackToTop />}
       </div>
     </AuthProvider>
   );

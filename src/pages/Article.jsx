@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { motion, useScroll } from 'framer-motion';
 import { getArticles } from '../utils/dataStore';
 import RelatedPosts from '../components/RelatedPosts';
 import AdBanner from '../components/AdBanner';
+import AnimatedSection from '../components/AnimatedSection';
 import { generateSlug, updateMetaTags } from '../utils/helpers';
 import ImageWithFallback from '../components/ImageWithFallback';
 
@@ -16,12 +18,15 @@ const Article = ({ params = {}, onNavigate }) => {
   // If there are no articles at all (edge case)
   if (!article) {
     return (
-      <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-        <h2 style={{ fontSize: '1.3rem', fontWeight: '800', color: 'var(--text)' }}>Article Not Found</h2>
+      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '100px 20px', textAlign: 'center' }}>
+        <h1 style={{ fontSize: '2rem', marginBottom: '10px' }}>Article not found</h1>
+        <p style={{ color: 'var(--text-secondary)' }}>The article you are looking for does not exist.</p>
         <button onClick={() => onNavigate('home')} style={{ background: 'var(--primary)', color: 'var(--text)', padding: '8px 18px', borderRadius: 'var(--btn-radius)', marginTop: '16px' }}>Go Home</button>
       </div>
     );
   }
+
+  const { scrollYProgress } = useScroll();
 
   const hasPrev = currentIndex > 0;
   const hasNext = currentIndex !== -1 && currentIndex < articles.length - 1;
@@ -40,7 +45,7 @@ const Article = ({ params = {}, onNavigate }) => {
     }
   };
 
-  // Progress bar
+  // SEO & Meta
   useEffect(() => {
     if (article) {
       document.title = `${article.seoTitle || article.title} - Hot AI`;
@@ -53,29 +58,13 @@ const Article = ({ params = {}, onNavigate }) => {
         articleData: article
       });
     }
-
-    const bar = document.getElementById('article-progress-bar');
-    if (!bar) return;
-    const update = () => {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100)) : 0;
-      bar.style.width = `${pct}%`;
-    };
-    window.addEventListener('scroll', update);
-    update();
-    return () => window.removeEventListener('scroll', update);
   }, [articleId]);
 
-  const formatDate = (d) => d instanceof Date ? d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
-
-  // Split content into paragraphs for ad injection
   const paragraphs = article.content ? article.content.split('\n\n') : [];
 
-  // Share Handlers
   const handleShare = (platform) => {
     const url = window.location.href;
     const title = article.title;
-
     if (platform === 'X') {
       window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank');
     } else if (platform === 'Copy') {
@@ -89,114 +78,113 @@ const Article = ({ params = {}, onNavigate }) => {
   };
 
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-      <article>
-        {/* Breadcrumb */}
-        <nav style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '16px', display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
-          <span style={{ cursor: 'pointer', transition: 'color 0.2s' }} onClick={() => onNavigate('home')}
-            onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
-            onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
-          >Home</span>
-          <span>›</span>
-          <span style={{ cursor: 'pointer', transition: 'color 0.2s' }} onClick={() => onNavigate('category', { name: article.category })}
-            onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
-            onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
-          >{article.category}</span>
-          <span>›</span>
-          <span style={{ color: 'var(--primary)', fontWeight: '600' }}>Article</span>
-        </nav>
+    <>
+      {/* Reading Progress Bar */}
+      <motion.div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '4px',
+          background: 'linear-gradient(90deg, var(--primary), var(--secondary))',
+          transformOrigin: '0%',
+          scaleX: scrollYProgress,
+          zIndex: 1000
+        }}
+      />
+      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 20px' }}>
+        <article>
+          {/* Breadcrumb */}
+          <nav style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '16px', display: 'flex', gap: '6px', alignItems: 'center' }}>
+            <span style={{ cursor: 'pointer' }} onClick={() => onNavigate('home')}>Home</span>
+            <span>›</span>
+            <span style={{ cursor: 'pointer' }} onClick={() => onNavigate('category', { name: article.category })}>{article.category}</span>
+          </nav>
 
-        {/* Category badge & Metadata */}
-        <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '15px', flexWrap: 'wrap' }}>
-          <span className="category-badge">{article.category}</span>
-          <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{formatDate(article.publishDate)}</span>
-          <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{article.readingTime}</span>
-        </div>
-
-        {/* Title */}
-        <h1 style={{ fontSize: '2.2rem', fontWeight: '800', lineHeight: '1.25', marginBottom: '20px', color: 'var(--text)' }}>
-          {article.title}
-        </h1>
-
-        {/* Author details and Share */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border)', paddingBottom: '15px', marginBottom: '25px', flexWrap: 'wrap', gap: '12px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ width: '36px', height: '36px', borderRadius: '50%', overflow: 'hidden', flexShrink: 0 }}>
-              <ImageWithFallback src={article.author?.avatar} alt={article.author?.name} width={36} height={36} />
+          {/* Category & Date */}
+          <AnimatedSection>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '20px' }}>
+              <span className="category-badge">{article.category}</span>
+              <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                {new Date(article.publishDate || Date.now()).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+              </span>
             </div>
-            <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: '600', color: 'var(--text)' }}>{article.author?.name}</div>
-              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{article.author?.role}</div>
+          </AnimatedSection>
+
+          {/* Title */}
+          <AnimatedSection delay={0.1}>
+            <h1 style={{ fontSize: '2.5rem', lineHeight: '1.3', marginBottom: '20px', fontWeight: '800', color: 'var(--text)' }}>
+              {article.title}
+            </h1>
+          </AnimatedSection>
+
+          {/* Author */}
+          <AnimatedSection delay={0.2}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border)', paddingBottom: '25px', marginBottom: '30px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ width: '40px', height: '40px', borderRadius: '50%', overflow: 'hidden' }}>
+                  <ImageWithFallback src={article.author?.avatar} alt={article.author?.name} width={40} height={40} />
+                </div>
+                <div>
+                  <div style={{ fontWeight: '600' }}>{article.author?.name}</div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{article.author?.role}</div>
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                {copied && <span style={{ fontSize: '0.7rem', color: 'var(--success)', fontWeight: 'bold' }}>Link Copied!</span>}
+                {['X', 'Copy', 'Email'].map(p => (
+                  <button key={p} onClick={() => handleShare(p)} style={{ background: 'none', border: '1px solid var(--border)', cursor: 'pointer', padding: '5px 10px', borderRadius: '20px' }}>{p}</button>
+                ))}
+              </div>
             </div>
+          </AnimatedSection>
+
+          {/* Featured Image */}
+          <AnimatedSection delay={0.3}>
+            <div style={{ width: '100%', aspectRatio: '16/9', borderRadius: '12px', overflow: 'hidden', marginBottom: '40px' }}>
+              <ImageWithFallback className="article-featured-img" src={article.featuredImage?.url} alt={article.featuredImage?.alt} width={800} height={450} />
+            </div>
+          </AnimatedSection>
+
+          {/* Content */}
+          <AnimatedSection delay={0.4}>
+            <div className="article-content" style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--text)' }}>
+              {paragraphs.map((p, index) => (
+                <React.Fragment key={index}>
+                  <p style={{ marginBottom: '24px' }}>{p}</p>
+                  {index === 1 && <AdBanner slot="articleInline1" />}
+                  {index === 5 && <AdBanner slot="articleInline2" />}
+                </React.Fragment>
+              ))}
+            </div>
+          </AnimatedSection>
+
+          {/* Tags */}
+          <AnimatedSection delay={0.1}>
+            {article.tags && article.tags.length > 0 && (
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: '40px', paddingTop: '20px', borderTop: '1px solid var(--border)' }}>
+                {article.tags.map((tag, i) => (
+                  <span key={i} style={{ fontSize: '0.8rem', background: 'var(--surface)', padding: '4px 10px', borderRadius: '4px' }}>#{tag}</span>
+                ))}
+              </div>
+            )}
+          </AnimatedSection>
+
+          {/* Navigation */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', padding: '40px 0' }}>
+            <button onClick={handlePrevClick} disabled={!hasPrev} style={{ cursor: hasPrev ? 'pointer' : 'default', opacity: hasPrev ? 1 : 0.5 }}>← Previous</button>
+            <button onClick={handleNextClick} disabled={!hasNext} style={{ cursor: hasNext ? 'pointer' : 'default', opacity: hasNext ? 1 : 0.5 }}>Next →</button>
           </div>
+        </article>
 
-          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }} aria-label="Share">
-            {copied && <span style={{ fontSize: '0.7rem', color: 'var(--success)', fontWeight: 'bold' }}>Link Copied!</span>}
-            {[
-              { label: 'X', icon: '𝕏' },
-              { label: 'Copy', icon: '🔗' },
-              { label: 'Email', icon: '✉️' }
-            ].map(({ label, icon }) => (
-              <span key={label} title={`Share via ${label}`} onClick={() => handleShare(label)}
-                style={{ width: '28px', height: '28px', borderRadius: '50%', border: '1px solid var(--border)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', cursor: 'pointer', transition: 'var(--transition)' }}
-                onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--primary)'}
-                onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--border)'}
-              >{icon}</span>
-            ))}
-          </div>
-        </div>
-
-        {/* Tags */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '25px' }}>
-          {(article.tags || []).map((tag, i) => (
-            <span key={i} style={{ fontSize: '0.75rem', background: 'rgba(254,179,0,0.15)', color: 'var(--secondary)', padding: '4px 12px', borderRadius: '4px', fontWeight: '600' }}>
-              #{tag}
-            </span>
-          ))}
-        </div>
-
-        {/* Cover Image */}
-        {article.featuredImage && (
-          <div style={{ width: '100%', aspectRatio: '16/9', borderRadius: 'var(--card-radius)', overflow: 'hidden', marginBottom: '30px' }}>
-            <ImageWithFallback src={article.featuredImage.url} alt={article.featuredImage.alt} width={article.featuredImage.width} height={article.featuredImage.height} loading="eager" />
-          </div>
-        )}
-
-        {/* Progress Bar */}
-        <div style={{ height: '4px', background: 'var(--border)', borderRadius: '2px', marginBottom: '30px' }}>
-          <div style={{ height: '100%', width: '0%', background: 'linear-gradient(90deg, var(--primary), var(--secondary))', borderRadius: '2px', transition: 'width 0.3s ease' }} id="article-progress-bar" />
-        </div>
-
-        {/* Body with inline ads */}
-        <div style={{ fontSize: '1.05rem', lineHeight: '1.75', color: 'var(--text-secondary)' }}>
-          {paragraphs.map((para, i) => (
-            <React.Fragment key={i}>
-              <p style={{ marginBottom: '20px' }}>{para}</p>
-              {/* Ad after paragraph 2 */}
-              {i === 1 && <AdBanner slot="articleInline1" />}
-              {/* Ad after paragraph 6 (for longer articles) */}
-              {i === 5 && paragraphs.length > 6 && <AdBanner slot="articleInline2" />}
-            </React.Fragment>
-          ))}
-        </div>
-
-        {/* Prev / Next */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', padding: '20px 0', margin: '40px 0' }}>
-          <button onClick={handlePrevClick} disabled={!hasPrev} style={{ opacity: !hasPrev ? 0.4 : 1, display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-secondary)', cursor: hasPrev ? 'pointer' : 'default', background: 'none', border: 'none' }}>
-            ← Previous
-          </button>
-          <button onClick={handleNextClick} disabled={!hasNext} style={{ opacity: !hasNext ? 0.4 : 1, display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-secondary)', cursor: hasNext ? 'pointer' : 'default', background: 'none', border: 'none' }}>
-            Next →
-          </button>
-        </div>
-      </article>
-
-      {/* Pre-Related Posts Ad */}
-      <AdBanner slot="articlePreRelated" />
-
-      {/* Related Posts */}
-      <RelatedPosts currentCategory={article.category} currentTags={article.tags} currentId={article.id} onNavigate={onNavigate} />
-    </div>
+        {/* Related Posts */}
+        <AnimatedSection delay={0.2}>
+          <AdBanner slot="articlePreRelated" />
+          <RelatedPosts currentId={article.id} category={article.category} onNavigate={onNavigate} />
+        </AnimatedSection>
+      </div>
+    </>
   );
 };
 

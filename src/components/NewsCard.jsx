@@ -1,6 +1,7 @@
 import React from 'react';
 import { truncateText, generateSlug } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
+import { motion } from 'framer-motion';
 
 const NewsCard = ({ article, onNavigate }) => {
   const slug = article.slug || generateSlug(article.title);
@@ -21,8 +22,17 @@ const NewsCard = ({ article, onNavigate }) => {
     : '';
 
   return (
-    <article className="premium-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <div style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden', position: 'relative' }}>
+    <motion.article 
+      className="premium-card" 
+      style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}
+      whileHover={{ y: -6, scale: 1.01, boxShadow: '0 12px 30px rgba(0,0,0,0.06)' }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+    >
+      <motion.div 
+        style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden', position: 'relative' }}
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.4 }}
+      >
         <ImageWithFallback
           src={article.featuredImage?.url}
           alt={article.featuredImage?.alt || article.title}
@@ -33,7 +43,7 @@ const NewsCard = ({ article, onNavigate }) => {
         <span className="category-badge" style={{ position: 'absolute', top: '12px', left: '12px', zIndex: 2 }}>
           {article.category}
         </span>
-      </div>
+      </motion.div>
 
       <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', flex: 1, gap: '8px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
@@ -72,7 +82,7 @@ const NewsCard = ({ article, onNavigate }) => {
           </svg>
         </a>
       </div>
-    </article>
+    </motion.article>
   );
 };
 

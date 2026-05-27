@@ -1,5 +1,6 @@
 import React from 'react';
 import AdBanner from './AdBanner';
+import AnimatedSection from './AnimatedSection';
 
 const Footer = ({ onNavigate }) => {
   const handleLinkClick = (e, page, params = {}) => {
@@ -12,11 +13,14 @@ const Footer = ({ onNavigate }) => {
     <footer style={{ backgroundColor: 'var(--card-bg)', borderTop: '1px solid var(--border)', padding: '30px 20px 20px', marginTop: '40px' }} aria-label="Site Footer">
       <div style={{ maxWidth: 'var(--max-width)', margin: '0 auto' }}>
         {/* Compact footer ad */}
-        <AdBanner slot="footerBanner" />
-        <div className="footer-grid">
+        <AnimatedSection>
+          <AdBanner slot="footerBanner" />
+        </AnimatedSection>
+        <div className="footer-grid" style={{ marginTop: '30px' }}>
           {/* Brand */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-            <a href="#/" onClick={(e) => handleLinkClick(e, 'home')} style={{ fontSize: '1.4rem', fontWeight: '800', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', width: 'fit-content' }}>
+          <AnimatedSection delay={0.1}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+              <a href="#/" onClick={(e) => handleLinkClick(e, 'home')} style={{ fontSize: '1.4rem', fontWeight: '800', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', width: 'fit-content' }}>
               HOT AI
             </a>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: '1.6', maxWidth: '350px' }}>
@@ -36,10 +40,12 @@ const Footer = ({ onNavigate }) => {
                 </span>
               ))}
             </div>
-          </div>
+            </div>
+          </AnimatedSection>
 
           {/* Quick Links */}
-          <div>
+          <AnimatedSection delay={0.2}>
+            <div>
             <h4 style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '15px', color: 'var(--text)', textTransform: 'uppercase' }}>Quick Links</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', padding: 0 }}>
               {[
@@ -59,10 +65,12 @@ const Footer = ({ onNavigate }) => {
                 </li>
               ))}
             </ul>
-          </div>
+            </div>
+          </AnimatedSection>
 
           {/* Legal */}
-          <div>
+          <AnimatedSection delay={0.3}>
+            <div>
             <h4 style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '15px', color: 'var(--text)', textTransform: 'uppercase' }}>Legal & Info</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', padding: 0 }}>
               {[
@@ -82,7 +90,8 @@ const Footer = ({ onNavigate }) => {
                 </li>
               ))}
             </ul>
-          </div>
+            </div>
+          </AnimatedSection>
         </div>
 
         {/* Copyright */}

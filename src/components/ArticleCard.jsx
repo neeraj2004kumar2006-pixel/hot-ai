@@ -1,6 +1,7 @@
 import React from 'react';
 import { truncateText, generateSlug } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
+import { motion } from 'framer-motion';
 
 const ArticleCard = ({ article, onNavigate }) => {
   const handleClick = (e) => {
@@ -13,8 +14,10 @@ const ArticleCard = ({ article, onNavigate }) => {
     : '';
 
   return (
-    <div
-      style={{ display: 'flex', gap: '12px', alignItems: 'center', padding: '8px 0', borderBottom: '1px solid var(--border)', cursor: 'pointer' }}
+    <motion.div
+      style={{ display: 'flex', gap: '12px', alignItems: 'center', padding: '8px 8px', borderBottom: '1px solid var(--border)', cursor: 'pointer', borderRadius: '8px' }}
+      whileHover={{ backgroundColor: 'var(--surface)', scale: 1.02, x: 5 }}
+      transition={{ duration: 0.2 }}
       onClick={handleClick}
     >
       <div style={{ width: '70px', height: '50px', borderRadius: '8px', overflow: 'hidden', flexShrink: 0 }}>
@@ -37,7 +40,7 @@ const ArticleCard = ({ article, onNavigate }) => {
         </h4>
         <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{dateStr}</span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { truncateText, generateSlug } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
+import { motion } from 'framer-motion';
 
 const Hero = ({ articles = [], onNavigate }) => {
   if (articles.length === 0) return null;
@@ -18,8 +19,17 @@ const Hero = ({ articles = [], onNavigate }) => {
   return (
     <section className="hero-section">
       {/* Large Featured Card */}
-      <article className="premium-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-        <div style={{ position: 'relative', width: '100%', aspectRatio: '16/10', overflow: 'hidden' }}>
+      <motion.article 
+        className="premium-card" 
+        style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}
+        whileHover={{ y: -6, boxShadow: '0 12px 30px rgba(0,0,0,0.06)' }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+      >
+        <motion.div 
+          style={{ position: 'relative', width: '100%', aspectRatio: '16/10', overflow: 'hidden' }}
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.4 }}
+        >
           <ImageWithFallback
             src={largeArticle.featuredImage?.url}
             alt={largeArticle.featuredImage?.alt || largeArticle.title}
@@ -30,7 +40,7 @@ const Hero = ({ articles = [], onNavigate }) => {
           <span className="category-badge" style={{ position: 'absolute', top: '15px', left: '15px', zIndex: 2 }}>
             {largeArticle.category}
           </span>
-        </div>
+        </motion.div>
 
         <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '10px', flex: 1 }}>
           {/* Metadata row */}
@@ -65,17 +75,21 @@ const Hero = ({ articles = [], onNavigate }) => {
             </svg>
           </a>
         </div>
-      </article>
+      </motion.article>
 
       {/* 3 Smaller Cards */}
       {smallArticles.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', justifyContent: 'space-between' }}>
-          {smallArticles.map((article) => (
-            <div
+          {smallArticles.map((article, idx) => (
+            <motion.div
               key={article.id}
               className="premium-card"
-              style={{ display: 'flex', padding: '12px', gap: '16px', alignItems: 'center', cursor: 'pointer' }}
+              style={{ display: 'flex', padding: '12px', gap: '16px', alignItems: 'center', cursor: 'pointer', overflow: 'hidden' }}
               onClick={(e) => handleArticleClick(e, article)}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 * idx, duration: 0.4 }}
+              whileHover={{ scale: 1.02, x: -4, backgroundColor: 'var(--surface)' }}
             >
               <div style={{ width: '100px', aspectRatio: '4/3', borderRadius: '10px', overflow: 'hidden', flexShrink: 0 }}>
                 <ImageWithFallback
@@ -101,7 +115,7 @@ const Hero = ({ articles = [], onNavigate }) => {
                   {truncateText(article.title, 65)}
                 </h3>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       )}

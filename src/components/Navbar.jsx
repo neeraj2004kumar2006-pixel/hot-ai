@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const MENU_ITEMS = [
   { label: 'Home', target: 'home' },
@@ -55,7 +56,7 @@ const Navbar = ({ activePage, activeParams, onNavigate, isMobile, onCloseMobileM
         const isActive = activePage === item.target || isCatMatch;
         
         return (
-          <li key={item.label}>
+          <li key={item.label} style={{ position: 'relative' }}>
             <a
               href={`#/${item.target}`}
               onClick={(e) => handleItemClick(e, item)}
@@ -69,7 +70,8 @@ const Navbar = ({ activePage, activeParams, onNavigate, isMobile, onCloseMobileM
             >
               {item.label}
               {!isMobile && isActive && (
-                <span 
+                <motion.span 
+                  layoutId="nav-underline"
                   style={{
                     position: 'absolute',
                     bottom: '-6px',
@@ -79,6 +81,7 @@ const Navbar = ({ activePage, activeParams, onNavigate, isMobile, onCloseMobileM
                     background: 'linear-gradient(90deg, var(--primary), var(--secondary))',
                     borderRadius: '2px'
                   }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
             </a>

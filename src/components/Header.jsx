@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import HiddenAdminTrigger from './HiddenAdminTrigger';
 import AdminLoginModal from './AdminLoginModal';
 import { useAuthContext } from '../context/AuthContext';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 
 const Header = ({ activePage, activeParams, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,9 +33,15 @@ const Header = ({ activePage, activeParams, onNavigate }) => {
   const handleAdminTrigger = () => setShowAdminLogin(true);
   const handleLoginSuccess = () => onNavigate('admin-dashboard');
 
+  const { scrollY } = useScroll();
+  const headerHeight = useTransform(scrollY, [0, 100], [72, 60]);
+  const headerBg = useTransform(scrollY, [0, 100], ['rgba(255,249,230,0)', 'rgba(255,249,230,0.95)']);
+  const headerBlur = useTransform(scrollY, [0, 100], ['blur(0px)', 'blur(10px)']);
+  const headerBorder = useTransform(scrollY, [0, 100], ['1px solid rgba(232, 213, 183, 0)', '1px solid rgba(232, 213, 183, 1)']);
+
   return (
     <>
-      <header style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '64px', backgroundColor: 'rgba(255,249,230,0.95)', backdropFilter: 'blur(10px)', borderBottom: '1px solid var(--border)', zIndex: 999, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px' }}>
+      <motion.header style={{ position: 'fixed', top: 0, left: 0, right: 0, height: headerHeight, backgroundColor: headerBg, backdropFilter: headerBlur, WebkitBackdropFilter: headerBlur, borderBottom: headerBorder, zIndex: 999, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px' }}>
         {/* Logo */}
         <a href="#/" onClick={handleLogoClick} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '800', fontSize: '1.3rem', letterSpacing: '1px', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', userSelect: 'none' }}>
           HOT AI
@@ -66,14 +73,22 @@ const Header = ({ activePage, activeParams, onNavigate }) => {
         </div>
 
         {/* Mobile drawer */}
-        {mobileMenuOpen && (
-          <div style={{ position: 'fixed', top: '64px', left: 0, right: 0, bottom: 0, backgroundColor: 'var(--bg-color)', borderTop: '1px solid var(--border)', padding: '20px', zIndex: 1000, display: 'flex', flexDirection: 'column' }}>
-            <Navbar activePage={activePage} activeParams={activeParams} onNavigate={onNavigate} isMobile={true} onCloseMobileMenu={closeMobileMenu} />
-          </div>
-        )}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+              style={{ position: 'fixed', top: '60px', left: 0, right: 0, bottom: 0, backgroundColor: 'var(--bg-color)', borderTop: '1px solid var(--border)', padding: '20px', zIndex: 1000, display: 'flex', flexDirection: 'column' }}
+            >
+              <Navbar activePage={activePage} activeParams={activeParams} onNavigate={onNavigate} isMobile={true} onCloseMobileMenu={closeMobileMenu} />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <HiddenAdminTrigger onTrigger={handleAdminTrigger} />
-      </header>
+      </motion.header>
 
       <AdminLoginModal isOpen={showAdminLogin} onClose={() => setShowAdminLogin(false)} onLoginSuccess={handleLoginSuccess} />
     </>
