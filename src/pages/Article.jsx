@@ -8,6 +8,25 @@ import AnimatedSection from '../components/AnimatedSection';
 import { getArticleSlug, updateMetaTags } from '../utils/helpers';
 import ImageWithFallback from '../components/ImageWithFallback';
 
+const ProgressBar = () => {
+  const { scrollYProgress } = useScroll();
+  return (
+    <motion.div
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: '4px',
+        background: 'var(--primary)',
+        transformOrigin: '0%',
+        scaleX: scrollYProgress,
+        zIndex: 1000
+      }}
+    />
+  );
+};
+
 const Article = ({ onNavigate }) => {
   const { slug } = useParams();
   const articles = getArticles();
@@ -29,7 +48,7 @@ const Article = ({ onNavigate }) => {
     );
   }
 
-  const { scrollYProgress } = useScroll();
+  // Remove useScroll from here
 
   const hasPrev = currentIndex > 0;
   const hasNext = currentIndex !== -1 && currentIndex < articles.length - 1;
@@ -85,19 +104,7 @@ const Article = ({ onNavigate }) => {
   return (
     <>
       {/* Reading Progress Bar */}
-      <motion.div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '4px',
-          background: 'linear-gradient(90deg, var(--primary), var(--secondary))',
-          transformOrigin: '0%',
-          scaleX: scrollYProgress,
-          zIndex: 1000
-        }}
-      />
+      <ProgressBar />
       <div style={{ display: 'flex', maxWidth: '1000px', margin: '0 auto', position: 'relative' }}>
         {/* Floating Share Sidebar (Desktop Only) */}
         <div style={{ width: '60px', display: 'flex', flexDirection: 'column', gap: '15px', paddingTop: '150px', position: 'sticky', top: '0', height: '100vh', paddingLeft: '20px' }}>
