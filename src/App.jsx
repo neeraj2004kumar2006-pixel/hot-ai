@@ -43,8 +43,6 @@ const ScrollToTop = () => {
     if (window.location.hash.startsWith('#/')) {
       const newPath = window.location.hash.substring(1);
       navigate(newPath, { replace: true });
-    } else {
-      window.scrollTo(0, 0);
     }
   }, [pathname, navigate]);
   return null;
@@ -70,34 +68,34 @@ const useLegacyNavigate = () => {
   };
 };
 
+const pageVariants = {
+  initial: { opacity: 0, y: 15 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  exit: { opacity: 0, y: -15, transition: { duration: 0.3, ease: "easeIn" } }
+};
+
+const PageWrapper = ({ children }) => (
+  <motion.div
+    variants={pageVariants}
+    initial="initial"
+    animate="animate"
+    exit="exit"
+  >
+    {children}
+  </motion.div>
+);
+
 const AnimatedRoutes = () => {
   const location = useLocation();
   const onNavigate = useLegacyNavigate();
   const isAdmin = location.pathname.startsWith('/admin-');
-
-  const pageVariants = {
-    initial: { opacity: 0, y: 15 },
-    animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
-    exit: { opacity: 0, y: -15, transition: { duration: 0.3, ease: "easeIn" } }
-  };
-
-  const PageWrapper = ({ children }) => (
-    <motion.div
-      variants={pageVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-    >
-      {children}
-    </motion.div>
-  );
 
   return (
     <>
       <ScrollToTop />
       {!isAdmin && <Header onNavigate={onNavigate} />}
       <main className="main-content">
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<PageWrapper><Home onNavigate={onNavigate} /></PageWrapper>} />
             <Route path="/article/:slug" element={<PageWrapper><Article onNavigate={onNavigate} /></PageWrapper>} />
