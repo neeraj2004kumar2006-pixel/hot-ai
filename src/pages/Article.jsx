@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useScroll } from 'framer-motion';
+import { useParams, Link } from 'react-router-dom';
 import { getArticles } from '../utils/dataStore';
 import RelatedPosts from '../components/RelatedPosts';
 import AdBanner from '../components/AdBanner';
@@ -7,11 +8,13 @@ import AnimatedSection from '../components/AnimatedSection';
 import { generateSlug, updateMetaTags } from '../utils/helpers';
 import ImageWithFallback from '../components/ImageWithFallback';
 
-const Article = ({ params = {}, onNavigate }) => {
-  const articleId = parseInt(params.id, 10);
+const Article = ({ onNavigate }) => {
+  const { slug } = useParams();
   const articles = getArticles();
-  const currentIndex = articles.findIndex((art) => art.id === articleId);
-  const article = currentIndex !== -1 ? articles[currentIndex] : articles[0];
+  
+  // Try to find by slug first
+  let currentIndex = articles.findIndex((art) => generateSlug(art.title) === slug);
+  const article = currentIndex !== -1 ? articles[currentIndex] : null;
 
   const [copied, setCopied] = useState(false);
 
@@ -34,14 +37,14 @@ const Article = ({ params = {}, onNavigate }) => {
   const handlePrevClick = () => {
     if (hasPrev) {
       const prevArt = articles[currentIndex - 1];
-      onNavigate('article', { id: prevArt.id, slug: generateSlug(prevArt.title) });
+      onNavigate('article', { slug: generateSlug(prevArt.title) });
     }
   };
 
   const handleNextClick = () => {
     if (hasNext) {
       const nextArt = articles[currentIndex + 1];
-      onNavigate('article', { id: nextArt.id, slug: generateSlug(nextArt.title) });
+      onNavigate('article', { slug: generateSlug(nextArt.title) });
     }
   };
 
@@ -58,7 +61,7 @@ const Article = ({ params = {}, onNavigate }) => {
         articleData: article
       });
     }
-  }, [article, articleId]);
+  }, [article, slug]);
 
   const paragraphs = article.content ? article.content.split('\n\n') : [];
   const words = paragraphs.join(' ').split(/\s+/).length;
@@ -114,9 +117,9 @@ const Article = ({ params = {}, onNavigate }) => {
           <article>
           {/* Breadcrumb */}
           <nav style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '16px', display: 'flex', gap: '6px', alignItems: 'center' }}>
-            <span style={{ cursor: 'pointer' }} onClick={() => onNavigate('home')}>Home</span>
+            <Link to="/" style={{ color: 'var(--text-secondary)' }}>Home</Link>
             <span>›</span>
-            <span style={{ cursor: 'pointer' }} onClick={() => onNavigate('category', { name: article.category })}>{article.category}</span>
+            <Link to={`/category/${encodeURIComponent(article.category)}`} style={{ color: 'var(--text-secondary)' }}>{article.category}</Link>
           </nav>
 
           {/* Category & Date */}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ArticleCard from './ArticleCard';
 import AdBanner from './AdBanner';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const SIDEBAR_TOPICS = ["ChatGPT", "LLM Fine-Tuning", "Stable Diffusion", "Android ADB", "iOS Shortcuts", "Prompt Engineering"];
 
@@ -60,15 +61,15 @@ const Sidebar = ({ popularArticles = [], onNavigate }) => {
         </h3>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
           {SIDEBAR_TOPICS.map((topic) => (
-            <button
+            <Link
               key={topic}
-              onClick={() => onNavigate('search', { query: topic })}
-              style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text-secondary)', padding: '6px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '600', transition: 'var(--transition)', cursor: 'pointer' }}
+              to={`/search?q=${encodeURIComponent(topic)}`}
+              style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text-secondary)', padding: '6px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '600', transition: 'var(--transition)', cursor: 'pointer', textDecoration: 'none' }}
               onMouseOver={(e) => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--text)'; }}
               onMouseOut={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
             >
               #{topic}
-            </button>
+            </Link>
           ))}
         </div>
       </div>

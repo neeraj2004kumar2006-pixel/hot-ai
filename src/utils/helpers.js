@@ -87,16 +87,43 @@ export const updateMetaTags = ({ title, description, canonicalUrl, url, image, t
     
     const schema = {
       "@context": "https://schema.org",
-      "@type": "NewsArticle",
-      "headline": articleData.title || articleData.name,
-      "image": [ image || "https://hotai.com/default-og.jpg" ],
-      "datePublished": articleData.publishDate,
-      "dateModified": articleData.publishDate,
-      "author": [{
-        "@type": "Person",
-        "name": articleData.author?.name || "Hot AI Admin",
-        "url": "https://hotai.com/page/about"
-      }]
+      "@graph": [
+        {
+          "@type": "NewsArticle",
+          "headline": articleData.title || articleData.name,
+          "image": [ image || "https://hotai.com/default-og.jpg" ],
+          "datePublished": articleData.publishDate,
+          "dateModified": articleData.publishDate,
+          "author": [{
+            "@type": "Person",
+            "name": articleData.author?.name || "Hot AI Admin",
+            "url": "https://hotai.com/page/about"
+          }]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://hotai.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": articleData.category || "Article",
+              "item": `https://hotai.com/category/${encodeURIComponent(articleData.category || 'Article')}`
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": articleData.title || articleData.name,
+              "item": url || "https://hotai.com/"
+            }
+          ]
+        }
+      ]
     };
     schemaScript.textContent = JSON.stringify(schema);
   } else if (schemaScript) {

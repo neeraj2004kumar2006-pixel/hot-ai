@@ -4,6 +4,7 @@ import HiddenAdminTrigger from './HiddenAdminTrigger';
 import AdminLoginModal from './AdminLoginModal';
 import { useAuthContext } from '../context/AuthContext';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Header = ({ activePage, activeParams, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -13,9 +14,7 @@ const Header = ({ activePage, activeParams, onNavigate }) => {
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
-  const handleLogoClick = (e) => {
-    e.preventDefault();
-    onNavigate('home');
+  const handleLogoClick = () => {
     closeMobileMenu();
 
     // Hidden admin: 5 rapid clicks on logo
@@ -43,9 +42,9 @@ const Header = ({ activePage, activeParams, onNavigate }) => {
     <>
       <motion.header style={{ position: 'fixed', top: 0, left: 0, right: 0, height: headerHeight, backgroundColor: headerBg, backdropFilter: headerBlur, WebkitBackdropFilter: headerBlur, borderBottom: headerBorder, zIndex: 999, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px' }}>
         {/* Logo */}
-        <a href="#/" onClick={handleLogoClick} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'var(--font-heading)', fontSize: '1.8rem', letterSpacing: '1px', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', userSelect: 'none' }}>
+        <Link to="/" onClick={handleLogoClick} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'var(--font-heading)', fontSize: '1.8rem', letterSpacing: '1px', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', userSelect: 'none' }}>
           HOT AI
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="desktop-nav" style={{ display: 'block' }}>
@@ -54,7 +53,7 @@ const Header = ({ activePage, activeParams, onNavigate }) => {
 
         {/* Right controls */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-          <button onClick={() => { onNavigate('search'); closeMobileMenu(); }} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)', transition: 'var(--transition)' }}
+          <Link to="/search" onClick={closeMobileMenu} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)', transition: 'var(--transition)' }}
             onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
             onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
             aria-label="Search"
@@ -62,7 +61,7 @@ const Header = ({ activePage, activeParams, onNavigate }) => {
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
-          </button>
+          </Link>
 
           {/* Mobile burger */}
           <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{ display: 'none', flexDirection: 'column', gap: '4px', zIndex: 1001 }} className="mobile-burger-btn" aria-label="Toggle menu">

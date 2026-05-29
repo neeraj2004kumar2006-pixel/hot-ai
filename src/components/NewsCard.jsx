@@ -2,20 +2,13 @@ import React from 'react';
 import { truncateText, generateSlug } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
-const NewsCard = ({ article, onNavigate }) => {
+const MotionLink = motion.create(Link);
+
+const NewsCard = ({ article }) => {
   const slug = article.slug || generateSlug(article.title);
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    if (onNavigate) {
-      if (article.isAiTool) {
-        onNavigate('ai-tools');
-      } else {
-        onNavigate('article', { id: article.id, slug });
-      }
-    }
-  };
+  const toPath = article.isAiTool ? '/ai-tools' : `/article/${slug}`;
 
   const dateStr = article.publishDate instanceof Date
     ? article.publishDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
@@ -23,10 +16,10 @@ const NewsCard = ({ article, onNavigate }) => {
 
   return (
     <div className="layered-card-wrapper" style={{ height: '100%' }}>
-      <motion.article 
+      <MotionLink 
+        to={toPath}
         className="premium-card" 
-        onClick={handleClick}
-        style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}
+        style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden', textDecoration: 'none' }}
         transition={{ duration: 0.3 }}
       >
         <motion.div 
@@ -55,7 +48,6 @@ const NewsCard = ({ article, onNavigate }) => {
 
         <h3
           style={{ fontSize: '1.05rem', fontWeight: '700', lineHeight: '1.4', color: 'var(--text)', cursor: 'pointer', transition: 'color 0.2s ease' }}
-          onClick={handleClick}
           onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
           onMouseOut={(e) => e.currentTarget.style.color = 'var(--text)'}
         >
@@ -72,18 +64,16 @@ const NewsCard = ({ article, onNavigate }) => {
           </span>
         )}
 
-        <a
-          href={article.isAiTool ? '#/ai-tools' : `#/article/${slug}`}
-          onClick={handleClick}
-          style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--primary)', display: 'inline-flex', alignItems: 'center', gap: '4px', marginTop: '4px', width: 'fit-content' }}
+        <span
+          style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--primary)', display: 'inline-flex', alignItems: 'center', gap: '4px', marginTop: '4px', width: 'fit-content', textDecoration: 'none' }}
         >
           {article.isAiTool ? 'View Directory' : 'Read More'}
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
           </svg>
-        </a>
+        </span>
         </div>
-      </motion.article>
+      </MotionLink>
     </div>
   );
 };

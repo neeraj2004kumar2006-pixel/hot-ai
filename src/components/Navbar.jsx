@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
 
 const MENU_ITEMS = [
   { label: 'Home', target: 'home' },
@@ -14,12 +15,10 @@ const MENU_ITEMS = [
   { label: 'Contact', target: 'page', params: { slug: 'contact' } }
 ];
 
-const Navbar = ({ activePage, activeParams, onNavigate, isMobile, onCloseMobileMenu }) => {
-  const handleItemClick = (e, item) => {
-    e.preventDefault();
-    if (onNavigate) {
-      onNavigate(item.target, item.params || {});
-    }
+const Navbar = ({ isMobile, onCloseMobileMenu }) => {
+  const location = useLocation();
+
+  const handleItemClick = () => {
     if (onCloseMobileMenu) {
       onCloseMobileMenu();
     }
@@ -54,14 +53,18 @@ const Navbar = ({ activePage, activeParams, onNavigate, isMobile, onCloseMobileM
   return (
     <ul style={navStyles}>
       {MENU_ITEMS.map((item) => {
-        const isCatMatch = item.target === 'category' && activeParams?.name === item.params?.name;
-        const isActive = activePage === item.target || isCatMatch;
+        let toPath = '/';
+        if (item.target === 'category') toPath = `/category/${encodeURIComponent(item.params.name)}`;
+        else if (item.target === 'page') toPath = `/page/${item.params.slug}`;
+        else if (item.target !== 'home') toPath = `/${item.target}`;
+
+        const isActive = location.pathname === toPath;
         
         return (
           <li key={item.label} style={{ position: 'relative' }}>
-            <a
-              href={`#/${item.target}`}
-              onClick={(e) => handleItemClick(e, item)}
+            <Link
+              to={toPath}
+              onClick={handleItemClick}
               style={linkStyles(isActive)}
               onMouseOver={(e) => {
                 if (!isActive) e.currentTarget.style.color = 'var(--text)';
@@ -86,7 +89,7 @@ const Navbar = ({ activePage, activeParams, onNavigate, isMobile, onCloseMobileM
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
-            </a>
+            </Link>
           </li>
         );
       })}

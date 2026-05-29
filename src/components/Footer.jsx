@@ -1,11 +1,10 @@
 import AdBanner from './AdBanner';
 import AnimatedSection from './AnimatedSection';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
-const Footer = ({ onNavigate }) => {
-  const handleLinkClick = (e, page, params = {}) => {
-    e.preventDefault();
-    if (onNavigate) onNavigate(page, params);
+const Footer = () => {
+  const handleLinkClick = () => {
     window.scrollTo(0, 0);
   };
 
@@ -30,9 +29,9 @@ const Footer = ({ onNavigate }) => {
           {/* Brand */}
           <AnimatedSection delay={0.1}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              <a href="#/" onClick={(e) => handleLinkClick(e, 'home')} style={{ fontSize: '1.4rem', fontWeight: '800', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', width: 'fit-content' }}>
+              <Link to="/" onClick={handleLinkClick} style={{ fontSize: '1.4rem', fontWeight: '800', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', width: 'fit-content' }}>
               HOT AI
-            </a>
+            </Link>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: '1.6', maxWidth: '350px' }}>
               Real AI news, practical tech tutorials, and verified AI tool reviews — no hype, no fluff, just authentic insights.
             </p>
@@ -59,19 +58,19 @@ const Footer = ({ onNavigate }) => {
             <h4 style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '15px', color: 'var(--text)', textTransform: 'uppercase' }}>Quick Links</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', padding: 0 }}>
               {[
-                { label: 'Home', page: 'home' },
-                { label: 'AI News', page: 'category', params: { name: 'AI News' } },
-                { label: 'Tech Tricks', page: 'tech-tricks' },
-                { label: 'AI Tools', page: 'ai-tools' },
-                { label: 'Trending', page: 'trending' }
+                { label: 'Home', page: '/' },
+                { label: 'AI News', page: '/category/AI%20News' },
+                { label: 'Tech Tricks', page: '/tech-tricks' },
+                { label: 'AI Tools', page: '/ai-tools' },
+                { label: 'Trending', page: '/trending' }
               ].map((link) => (
                 <li key={link.label}>
-                  <a href={`#/${link.page}`} onClick={(e) => handleLinkClick(e, link.page, link.params)} style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', transition: 'var(--transition)' }}
+                  <Link to={link.page} onClick={handleLinkClick} style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', transition: 'var(--transition)' }}
                     onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
                     onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -91,12 +90,12 @@ const Footer = ({ onNavigate }) => {
                 { label: 'Contact', slug: 'contact' }
               ].map(({ label, slug }) => (
                 <li key={slug}>
-                  <a href={`#/page/${slug}`} onClick={(e) => handleLinkClick(e, 'page', { slug })} style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}
+                  <Link to={`/page/${slug}`} onClick={handleLinkClick} style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}
                     onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
                     onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

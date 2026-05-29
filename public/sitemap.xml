@@ -6,37 +6,37 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://hotai.com/#/trending</loc>
+    <loc>https://hotai.com/trending</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hotai.com/#/ai-tools</loc>
+    <loc>https://hotai.com/ai-tools</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hotai.com/#/tech-tricks</loc>
+    <loc>https://hotai.com/tech-tricks</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hotai.com/#/page/about</loc>
+    <loc>https://hotai.com/page/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hotai.com/#/page/contact</loc>
+    <loc>https://hotai.com/page/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hotai.com/#/page/privacy</loc>
+    <loc>https://hotai.com/page/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://hotai.com/#/page/terms</loc>
+    <loc>https://hotai.com/page/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

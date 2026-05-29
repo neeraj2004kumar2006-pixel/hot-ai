@@ -2,12 +2,11 @@ import React from 'react';
 import { truncateText, generateSlug } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
-const ArticleCard = ({ article, onNavigate }) => {
-  const handleClick = (e) => {
-    e.preventDefault();
-    if (onNavigate) onNavigate('article', { id: article.id, slug: generateSlug(article.title) });
-  };
+const MotionLink = motion.create(Link);
+
+const ArticleCard = ({ article }) => {
 
   const dateStr = article.publishDate instanceof Date
     ? article.publishDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
@@ -15,11 +14,11 @@ const ArticleCard = ({ article, onNavigate }) => {
 
   return (
     <div className="layered-card-wrapper">
-      <motion.div
+      <MotionLink
+        to={`/article/${generateSlug(article.title)}`}
         className="premium-card"
-        style={{ display: 'flex', gap: '12px', alignItems: 'center', padding: '8px 8px', cursor: 'pointer', borderRadius: '8px' }}
+        style={{ display: 'flex', gap: '12px', alignItems: 'center', padding: '8px 8px', borderRadius: '8px', textDecoration: 'none' }}
         transition={{ duration: 0.2 }}
-        onClick={handleClick}
       >
         <div style={{ width: '70px', height: '50px', borderRadius: '40% 10% 40% 10% / 10% 40% 10% 40%', overflow: 'hidden', flexShrink: 0 }}>
         <ImageWithFallback
@@ -41,7 +40,7 @@ const ArticleCard = ({ article, onNavigate }) => {
         </h4>
         <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{dateStr}</span>
         </div>
-      </motion.div>
+      </MotionLink>
     </div>
   );
 };

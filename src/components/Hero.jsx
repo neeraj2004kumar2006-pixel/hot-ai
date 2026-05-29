@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { truncateText, generateSlug } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
 import { motion, useSpring, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
+const MotionLink = motion.create(Link);
 
 const Hero = ({ articles = [], onNavigate }) => {
   if (articles.length === 0) return null;
 
   const largeArticle = articles[0];
   const smallArticles = articles.slice(1, 4);
-
-  const handleArticleClick = (e, article) => {
-    e.preventDefault();
-    if (onNavigate) onNavigate('article', { id: article.id, slug: generateSlug(article.title) });
-  };
 
   const formatDate = (d) => d instanceof Date ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
 
@@ -51,6 +49,11 @@ const Hero = ({ articles = [], onNavigate }) => {
   return (
     <section className="hero-section" style={{ position: 'relative', padding: '40px 0 80px', overflow: 'hidden' }}>
       
+      {/* SEO H1 Tag - Visually Hidden */}
+      <h1 style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', borderWidth: 0 }}>
+        HOT AI - Real AI News, Practical Tech Tutorials, and AI Tool Reviews
+      </h1>
+
       {/* 1. Giant Organic Floating Blobs */}
       <motion.div 
         animate={{ rotate: 360 }} 
@@ -154,29 +157,28 @@ const Hero = ({ articles = [], onNavigate }) => {
             {largeArticle.readingTime && <><span>•</span><span>{largeArticle.readingTime}</span></>}
           </div>
 
-          <h2
-            style={{ fontSize: '1.5rem', fontWeight: '800', lineHeight: '1.3', color: 'var(--text)', cursor: 'pointer', transition: 'color 0.2s ease' }}
-            onClick={(e) => handleArticleClick(e, largeArticle)}
+          <Link
+            to={`/article/${generateSlug(largeArticle.title)}`}
+            style={{ fontSize: '1.5rem', fontWeight: '800', lineHeight: '1.3', color: 'var(--text)', transition: 'color 0.2s ease', textDecoration: 'none' }}
             onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
             onMouseOut={(e) => e.currentTarget.style.color = 'var(--text)'}
           >
             {largeArticle.title}
-          </h2>
+          </Link>
 
           <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
             {truncateText(largeArticle.excerpt, 160)}
           </p>
 
-          <a
-            href={`#/article/${generateSlug(largeArticle.title)}`}
-            onClick={(e) => handleArticleClick(e, largeArticle)}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--primary)', fontWeight: '700', fontSize: '0.85rem', marginTop: '8px', width: 'fit-content' }}
+          <Link
+            to={`/article/${generateSlug(largeArticle.title)}`}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--primary)', fontWeight: '700', fontSize: '0.85rem', marginTop: '8px', width: 'fit-content', textDecoration: 'none' }}
           >
             Read Full Story
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
             </svg>
-          </a>
+          </Link>
         </div>
       </motion.article>
       </div>
@@ -185,11 +187,11 @@ const Hero = ({ articles = [], onNavigate }) => {
       {smallArticles.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', justifyContent: 'space-between' }}>
           {smallArticles.map((article, idx) => (
-            <motion.div
+            <MotionLink
               key={article.id}
+              to={`/article/${generateSlug(article.title)}`}
               className="premium-card"
-              style={{ display: 'flex', padding: '12px', gap: '16px', alignItems: 'center', cursor: 'pointer', overflow: 'hidden' }}
-              onClick={(e) => handleArticleClick(e, article)}
+              style={{ display: 'flex', padding: '12px', gap: '16px', alignItems: 'center', overflow: 'hidden', textDecoration: 'none' }}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 * idx, duration: 0.4 }}
@@ -218,7 +220,7 @@ const Hero = ({ articles = [], onNavigate }) => {
                   {truncateText(article.title, 65)}
                 </h3>
               </div>
-            </motion.div>
+            </MotionLink>
           ))}
         </div>
       )}
