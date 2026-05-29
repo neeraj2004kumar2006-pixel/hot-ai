@@ -38,6 +38,19 @@ const initializeDB = () => {
 // Always run initialization on import
 initializeDB();
 
+export const getAllContent = () => {
+  try {
+    return [
+      ...getArticles(),
+      ...getTechTricks(),
+      ...getAiTools()
+    ].sort((a, b) => b.id - a.id); // Sort by ID descending (newest first)
+  } catch (e) {
+    console.error('Error fetching all content', e);
+    return [];
+  }
+};
+
 export const getArticles = () => {
   try {
     initializeDB();

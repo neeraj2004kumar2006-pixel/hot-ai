@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
-import { getArticles } from '../utils/dataStore';
+import { getAllContent } from '../utils/dataStore';
 import RelatedPosts from '../components/RelatedPosts';
 import AdBanner from '../components/AdBanner';
 import AnimatedSection from '../components/AnimatedSection';
@@ -31,7 +31,7 @@ const ProgressBar = () => {
 
 const Article = ({ onNavigate }) => {
   const { slug } = useParams();
-  const articles = getArticles();
+  const articles = getAllContent();
   
   // Try to find by slug first
   let currentIndex = articles.findIndex((art) => getArticleSlug(art) === slug);
@@ -72,10 +72,10 @@ const Article = ({ onNavigate }) => {
   // SEO & Meta
   useEffect(() => {
     if (article) {
-      document.title = `${article.seoTitle || article.title} - Hot AI`;
+      document.title = `${article.seoTitle || article.title || article.name} - Hot AI`;
       updateMetaTags({
-        title: `${article.seoTitle || article.title} - Hot AI`,
-        description: article.seoDescription || article.excerpt || article.title,
+        title: `${article.seoTitle || article.title || article.name} - Hot AI`,
+        description: article.seoDescription || article.excerpt || article.title || article.name,
         url: window.location.href,
         image: article.featuredImage?.url,
         type: 'article',
@@ -90,7 +90,7 @@ const Article = ({ onNavigate }) => {
 
   const handleShare = (platform) => {
     const url = window.location.href;
-    const title = article.title;
+    const title = article.title || article.name;
     if (platform === 'X') {
       window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank');
     } else if (platform === 'Copy') {
@@ -147,7 +147,7 @@ const Article = ({ onNavigate }) => {
           {/* Title */}
           <AnimatedSection delay={0.1}>
             <h1 style={{ fontSize: '2.5rem', lineHeight: '1.3', marginBottom: '20px', fontWeight: '800', color: 'var(--text)' }}>
-              {article.title}
+              {article.title || article.name}
             </h1>
           </AnimatedSection>
 
