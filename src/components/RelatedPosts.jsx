@@ -4,7 +4,7 @@ import { getArticleSlug, truncateText } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
 import PremiumCarousel from './PremiumCarousel';
 
-const RelatedPosts = ({ currentCategory, currentTags = [], currentId, onNavigate }) => {
+const RelatedPosts = ({ category, tags, currentId, onNavigate }) => {
   const [related, setRelated] = useState([]);
 
   useEffect(() => {
@@ -15,13 +15,15 @@ const RelatedPosts = ({ currentCategory, currentTags = [], currentId, onNavigate
       ...getAiTools()
     ].filter(a => a.status !== 'draft' && a.id !== currentId);
 
+    const safeTags = tags || [];
+
     // Score them based on relation
     const scored = allContent.map(post => {
       let score = 0;
-      if (post.category === currentCategory) score += 10;
+      if (post.category === category) score += 10;
       
       const postTags = Array.isArray(post.tags) ? post.tags : [];
-      const commonTags = postTags.filter(t => currentTags.includes(t)).length;
+      const commonTags = postTags.filter(t => safeTags.includes(t)).length;
       score += commonTags * 2;
       
       return { post, score };
@@ -31,7 +33,7 @@ const RelatedPosts = ({ currentCategory, currentTags = [], currentId, onNavigate
     scored.sort((a, b) => b.score - a.score || b.post.id - a.post.id);
     
     setRelated(scored.map(s => s.post).slice(0, 3));
-  }, [currentCategory, currentTags, currentId]);
+  }, [category, tags, currentId]);
 
   if (related.length === 0) return null;
 

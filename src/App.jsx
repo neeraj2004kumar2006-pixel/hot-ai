@@ -1,12 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AdBanner from './components/AdBanner';
 import BackToTop from './components/BackToTop';
 import Atmosphere from './components/Atmosphere';
-import { motion } from 'framer-motion';
 
 // Pages
 import Home from './pages/Home';
@@ -80,7 +79,7 @@ const AnimatedRoutes = () => {
       <ScrollToTop />
       {!isAdmin && <Header onNavigate={onNavigate} />}
       <main className="main-content">
-        <Routes location={location} key={location.pathname}>
+        <Routes>
           <Route path="/" element={<Home onNavigate={onNavigate} />} />
           <Route path="/article/:slug" element={<Article onNavigate={onNavigate} />} />
           <Route path="/category/:category" element={<Category onNavigate={onNavigate} />} />

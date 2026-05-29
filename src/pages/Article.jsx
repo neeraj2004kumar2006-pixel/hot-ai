@@ -8,6 +8,8 @@ import AnimatedSection from '../components/AnimatedSection';
 import { getArticleSlug, updateMetaTags } from '../utils/helpers';
 import ImageWithFallback from '../components/ImageWithFallback';
 
+
+
 const ProgressBar = () => {
   const { scrollYProgress } = useScroll();
   return (
@@ -103,7 +105,6 @@ const Article = ({ onNavigate }) => {
 
   return (
     <>
-      {/* Reading Progress Bar */}
       <ProgressBar />
       <div style={{ display: 'flex', maxWidth: '1000px', margin: '0 auto', position: 'relative' }}>
         {/* Floating Share Sidebar (Desktop Only) */}
