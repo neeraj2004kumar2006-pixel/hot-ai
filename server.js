@@ -113,7 +113,7 @@ const generateSlug = (title) => {
 };
 
 // Catch-all route for SPA and Server-Side Meta Injection
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
   const indexPath = path.join(distDir, 'index.html');
   if (!fs.existsSync(indexPath)) {
     return res.status(404).send('Frontend not built. Run npm run build first.');
