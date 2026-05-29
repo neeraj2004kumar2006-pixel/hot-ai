@@ -1,5 +1,5 @@
 import React from 'react';
-import { truncateText, generateSlug } from '../utils/helpers';
+import { truncateText, getArticleSlug } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const MotionLink = motion.create(Link);
 
 const NewsCard = ({ article }) => {
-  const slug = article.slug || generateSlug(article.title);
+  const slug = getArticleSlug(article);
   const toPath = article.isAiTool ? '/ai-tools' : `/article/${slug}`;
 
   const dateStr = article.publishDate instanceof Date

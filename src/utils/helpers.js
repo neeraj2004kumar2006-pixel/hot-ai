@@ -26,6 +26,16 @@ export const generateSlug = (title) => {
 };
 
 /**
+ * Gets the definitive slug for an article, preferring an explicit slug over generation.
+ * @param {object} article - The article object.
+ * @returns {string} The slug to use for routing.
+ */
+export const getArticleSlug = (article) => {
+  if (!article) return '';
+  return article.slug || generateSlug(article.title || article.name);
+};
+
+/**
  * Sets dynamic SEO meta tags in the document head.
  */
 export const updateMetaTags = ({ title, description, canonicalUrl, url, image, type = 'website', articleData }) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { truncateText, generateSlug } from '../utils/helpers';
+import { truncateText, getArticleSlug } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ const ArticleCard = ({ article }) => {
   return (
     <div className="layered-card-wrapper">
       <MotionLink
-        to={`/article/${generateSlug(article.title)}`}
+        to={`/article/${getArticleSlug(article)}`}
         className="premium-card"
         style={{ display: 'flex', gap: '12px', alignItems: 'center', padding: '8px 8px', borderRadius: '8px', textDecoration: 'none' }}
         transition={{ duration: 0.2 }}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getArticles, getTechTricks, getAiTools } from '../utils/dataStore';
-import { generateSlug, truncateText } from '../utils/helpers';
+import { getArticleSlug, truncateText } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
 import PremiumCarousel from './PremiumCarousel';
 
@@ -45,7 +45,7 @@ const RelatedPosts = ({ currentCategory, currentTags = [], currentId, onNavigate
             key={article.id}
             className="premium-card"
             style={{ cursor: 'pointer', minWidth: '280px', maxWidth: '300px', height: '100%' }}
-            onClick={() => onNavigate('article', { id: article.id, slug: generateSlug(article.title) })}
+            onClick={() => onNavigate('article', { id: article.id, slug: getArticleSlug(article) })}
           >
             <div style={{ width: '100%', aspectRatio: '16/10', overflow: 'hidden' }}>
               <ImageWithFallback

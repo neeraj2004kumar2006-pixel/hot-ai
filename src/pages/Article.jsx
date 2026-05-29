@@ -5,7 +5,7 @@ import { getArticles } from '../utils/dataStore';
 import RelatedPosts from '../components/RelatedPosts';
 import AdBanner from '../components/AdBanner';
 import AnimatedSection from '../components/AnimatedSection';
-import { generateSlug, updateMetaTags } from '../utils/helpers';
+import { getArticleSlug, updateMetaTags } from '../utils/helpers';
 import ImageWithFallback from '../components/ImageWithFallback';
 
 const Article = ({ onNavigate }) => {
@@ -13,7 +13,7 @@ const Article = ({ onNavigate }) => {
   const articles = getArticles();
   
   // Try to find by slug first
-  let currentIndex = articles.findIndex((art) => generateSlug(art.title) === slug);
+  let currentIndex = articles.findIndex((art) => getArticleSlug(art) === slug);
   const article = currentIndex !== -1 ? articles[currentIndex] : null;
 
   const [copied, setCopied] = useState(false);
@@ -37,14 +37,14 @@ const Article = ({ onNavigate }) => {
   const handlePrevClick = () => {
     if (hasPrev) {
       const prevArt = articles[currentIndex - 1];
-      onNavigate('article', { slug: generateSlug(prevArt.title) });
+      onNavigate('article', { slug: getArticleSlug(prevArt) });
     }
   };
 
   const handleNextClick = () => {
     if (hasNext) {
       const nextArt = articles[currentIndex + 1];
-      onNavigate('article', { slug: generateSlug(nextArt.title) });
+      onNavigate('article', { slug: getArticleSlug(nextArt) });
     }
   };
 

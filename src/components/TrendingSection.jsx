@@ -1,5 +1,5 @@
 import React from 'react';
-import { generateSlug, truncateText } from '../utils/helpers';
+import { getArticleSlug, truncateText } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
 import { motion } from 'framer-motion';
 import PremiumCarousel from './PremiumCarousel';
@@ -12,7 +12,7 @@ const TrendingSection = ({ articles = [], onNavigate }) => {
 
   const handleArticleClick = (e, article) => {
     e.preventDefault();
-    if (onNavigate) onNavigate('article', { id: article.id, slug: generateSlug(article.title) });
+    if (onNavigate) onNavigate('article', { id: article.id, slug: getArticleSlug(article) });
   };
 
   return (

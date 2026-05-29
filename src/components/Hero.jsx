@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { truncateText, generateSlug } from '../utils/helpers';
+import { truncateText, getArticleSlug } from '../utils/helpers';
 import ImageWithFallback from './ImageWithFallback';
 import { motion, useSpring, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -158,7 +158,7 @@ const Hero = ({ articles = [], onNavigate }) => {
           </div>
 
           <Link
-            to={`/article/${generateSlug(largeArticle.title)}`}
+            to={`/article/${getArticleSlug(largeArticle)}`}
             style={{ fontSize: '1.5rem', fontWeight: '800', lineHeight: '1.3', color: 'var(--text)', transition: 'color 0.2s ease', textDecoration: 'none' }}
             onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
             onMouseOut={(e) => e.currentTarget.style.color = 'var(--text)'}
@@ -171,7 +171,7 @@ const Hero = ({ articles = [], onNavigate }) => {
           </p>
 
           <Link
-            to={`/article/${generateSlug(largeArticle.title)}`}
+            to={`/article/${getArticleSlug(largeArticle)}`}
             style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--primary)', fontWeight: '700', fontSize: '0.85rem', marginTop: '8px', width: 'fit-content', textDecoration: 'none' }}
           >
             Read Full Story
@@ -189,7 +189,7 @@ const Hero = ({ articles = [], onNavigate }) => {
           {smallArticles.map((article, idx) => (
             <MotionLink
               key={article.id}
-              to={`/article/${generateSlug(article.title)}`}
+              to={`/article/${getArticleSlug(article)}`}
               className="premium-card"
               style={{ display: 'flex', padding: '12px', gap: '16px', alignItems: 'center', overflow: 'hidden', textDecoration: 'none' }}
               initial={{ opacity: 0, x: 20 }}
