@@ -13,7 +13,7 @@ const initializeDB = () => {
   if (typeof window === 'undefined') return;
 
   // Force wipe old db to load new massive generated dataset
-  const VERSION_KEY = 'hotai_db_version_3';
+  const VERSION_KEY = 'hotai_db_version_4';
   if (!localStorage.getItem(VERSION_KEY)) {
     localStorage.removeItem(STORAGE_KEYS.ARTICLES);
     localStorage.removeItem(STORAGE_KEYS.TECH);

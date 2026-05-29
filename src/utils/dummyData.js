@@ -1,3 +1,4 @@
+// Auto-generated from batch merger
 export const initialDummyArticles = [
   {
     "id": 10,
@@ -18,7 +19,7 @@ export const initialDummyArticles = [
       "Benchmarks"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?ai,neural",
+      "url": "https://picsum.photos/seed/hotai_10/1000/562",
       "alt": "Abstract visualization of neural network pathways",
       "width": 1000,
       "height": 562
@@ -46,7 +47,7 @@ export const initialDummyArticles = [
       "Compliance"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?ai,law",
+      "url": "https://picsum.photos/seed/hotai_11/1000/562",
       "alt": "Gavel resting on a server rack",
       "width": 1000,
       "height": 562
@@ -74,7 +75,7 @@ export const initialDummyArticles = [
       "OSI"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?ai,server",
+      "url": "https://picsum.photos/seed/hotai_12/1000/562",
       "alt": "Glowing server racks in a dark data center",
       "width": 1000,
       "height": 562
@@ -102,7 +103,7 @@ export const initialDummyArticles = [
       "Audio"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?ai,soundwave",
+      "url": "https://picsum.photos/seed/hotai_13/1000/562",
       "alt": "Digital soundwave visualization",
       "width": 1000,
       "height": 562
@@ -130,7 +131,7 @@ export const initialDummyArticles = [
       "Cloud Computing"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?ai,cybersecurity",
+      "url": "https://picsum.photos/seed/hotai_14/1000/562",
       "alt": "Padlock icon over binary code",
       "width": 1000,
       "height": 562
@@ -157,7 +158,7 @@ export const initialDummyArticles = [
       "Strategy"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?technology,corporate",
+      "url": "https://picsum.photos/seed/hotai_15/1000/562",
       "alt": "Corporate office interior with modern technology",
       "width": 1000,
       "height": 562
@@ -184,7 +185,7 @@ export const initialDummyArticles = [
       "Funding"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?technology,finance",
+      "url": "https://picsum.photos/seed/hotai_16/1000/562",
       "alt": "Abstract digital representation of financial growth and data",
       "width": 1000,
       "height": 562
@@ -211,7 +212,7 @@ export const initialDummyArticles = [
       "Photonics"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?technology,microchip",
+      "url": "https://picsum.photos/seed/hotai_17/1000/562",
       "alt": "Close up of an advanced optical microchip processor",
       "width": 1000,
       "height": 562
@@ -238,7 +239,7 @@ export const initialDummyArticles = [
       "Future of Work"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?technology,automation",
+      "url": "https://picsum.photos/seed/hotai_18/1000/562",
       "alt": "Futuristic visualization of automated tasks and workflows",
       "width": 1000,
       "height": 562
@@ -265,7 +266,7 @@ export const initialDummyArticles = [
       "Integration"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?technology,server",
+      "url": "https://picsum.photos/seed/hotai_19/1000/562",
       "alt": "Glowing server racks in a modern datacenter",
       "width": 1000,
       "height": 562
@@ -292,7 +293,7 @@ export const initialDummyArticles = [
       "Boston Dynamics"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?robot,hydraulic",
+      "url": "https://picsum.photos/seed/hotai_20/1000/562",
       "alt": "A sleek, bipedal robot standing in an industrial setting.",
       "width": 1000,
       "height": 562
@@ -319,7 +320,7 @@ export const initialDummyArticles = [
       "Med-PaLM"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?hospital,stethoscope",
+      "url": "https://picsum.photos/seed/hotai_21/1000/562",
       "alt": "A blurry hospital emergency room with glowing screens.",
       "width": 1000,
       "height": 562
@@ -347,7 +348,7 @@ export const initialDummyArticles = [
       "Disinformation"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?vote,hacker",
+      "url": "https://picsum.photos/seed/hotai_22/1000/562",
       "alt": "A darkened voting booth with a glowing smartphone displaying static.",
       "width": 1000,
       "height": 562
@@ -375,7 +376,7 @@ export const initialDummyArticles = [
       "Robotics"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?abstract,sensory",
+      "url": "https://picsum.photos/seed/hotai_23/1000/562",
       "alt": "A glowing hand reaching out to touch an abstract digital mesh.",
       "width": 1000,
       "height": 562
@@ -403,7 +404,7 @@ export const initialDummyArticles = [
       "Economics"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?server,datacenter",
+      "url": "https://picsum.photos/seed/hotai_24/1000/562",
       "alt": "Endless rows of humming servers inside a massive data center.",
       "width": 1000,
       "height": 562
@@ -430,7 +431,7 @@ export const initialDummyArticles = [
       "Cognitive Science"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?brain,computer",
+      "url": "https://picsum.photos/seed/hotai_30/1000/562",
       "alt": "Abstract rendering of a digital brain network",
       "width": 1000,
       "height": 562
@@ -457,7 +458,7 @@ export const initialDummyArticles = [
       "Policy"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?economy,robot",
+      "url": "https://picsum.photos/seed/hotai_31/1000/562",
       "alt": "A robot handing a glowing coin to a human hand",
       "width": 1000,
       "height": 562
@@ -484,7 +485,7 @@ export const initialDummyArticles = [
       "SEO"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?search,digital",
+      "url": "https://picsum.photos/seed/hotai_32/1000/562",
       "alt": "A glowing magnifying glass over binary code",
       "width": 1000,
       "height": 562
@@ -511,7 +512,7 @@ export const initialDummyArticles = [
       "Mars"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?space,rover",
+      "url": "https://picsum.photos/seed/hotai_33/1000/562",
       "alt": "A futuristic autonomous rover navigating a red Martian landscape",
       "width": 1000,
       "height": 562
@@ -538,7 +539,7 @@ export const initialDummyArticles = [
       "Policy"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?gavel,robot",
+      "url": "https://picsum.photos/seed/hotai_34/1000/562",
       "alt": "A wooden gavel resting next to a robotic hand",
       "width": 1000,
       "height": 562
@@ -565,7 +566,7 @@ export const initialDummyArticles = [
       "Machine Learning"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?transparent,glass",
+      "url": "https://picsum.photos/seed/hotai_35/1000/562",
       "alt": "Glass geometric shapes representing transparency",
       "width": 1000,
       "height": 562
@@ -593,7 +594,7 @@ export const initialDummyArticles = [
       "Tech Industry"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?code,neon",
+      "url": "https://picsum.photos/seed/hotai_36/1000/562",
       "alt": "Neon code snippets on a dark screen",
       "width": 1000,
       "height": 562
@@ -622,7 +623,7 @@ export const initialDummyArticles = [
       "Consumer Tech"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?smartphone,app",
+      "url": "https://picsum.photos/seed/hotai_37/1000/562",
       "alt": "A sleek smartphone displaying various app icons",
       "width": 1000,
       "height": 562
@@ -650,7 +651,7 @@ export const initialDummyArticles = [
       "UX/UI"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?compass,ethics",
+      "url": "https://picsum.photos/seed/hotai_38/1000/562",
       "alt": "A vintage compass resting on drafting paper",
       "width": 1000,
       "height": 562
@@ -678,7 +679,7 @@ export const initialDummyArticles = [
       "Consumer Tech"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?money,subscription",
+      "url": "https://picsum.photos/seed/hotai_39/1000/562",
       "alt": "A credit card resting on top of a smartphone screen",
       "width": 1000,
       "height": 562
@@ -706,7 +707,7 @@ export const initialDummyArticles = [
       "Automation"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?abstract,servers",
+      "url": "https://picsum.photos/seed/hotai_40/1000/562",
       "alt": "Abstract representation of local servers",
       "width": 1000,
       "height": 562
@@ -734,7 +735,7 @@ export const initialDummyArticles = [
       "Machine Learning"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?abstract,neural",
+      "url": "https://picsum.photos/seed/hotai_41/1000/562",
       "alt": "Abstract digital neural network connections",
       "width": 1000,
       "height": 562
@@ -762,7 +763,7 @@ export const initialDummyArticles = [
       "Mobile Apps"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?abstract,canvas",
+      "url": "https://picsum.photos/seed/hotai_42/1000/562",
       "alt": "Abstract colorful canvas representation",
       "width": 1000,
       "height": 562
@@ -790,7 +791,7 @@ export const initialDummyArticles = [
       "Innovation"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?abstract,quantum",
+      "url": "https://picsum.photos/seed/hotai_43/1000/562",
       "alt": "Abstract quantum computing hardware",
       "width": 1000,
       "height": 562
@@ -818,7 +819,7 @@ export const initialDummyArticles = [
       "Llama"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?abstract,rebellion",
+      "url": "https://picsum.photos/seed/hotai_44/1000/562",
       "alt": "Abstract representation of a network breaking free",
       "width": 1000,
       "height": 562
@@ -849,7 +850,7 @@ export const initialTechTricks = [
       "PowerToys"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?computer,motherboard",
+      "url": "https://picsum.photos/seed/hotai_101/1000/562",
       "alt": "A complex motherboard illuminated by neon lights",
       "width": 1000,
       "height": 562
@@ -877,7 +878,7 @@ export const initialTechTricks = [
       "Llama 3"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?computer,chip",
+      "url": "https://picsum.photos/seed/hotai_102/1000/562",
       "alt": "A glowing microchip representing AI processing",
       "width": 1000,
       "height": 562
@@ -906,7 +907,7 @@ export const initialTechTricks = [
       "Zsh"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?computer,matrix",
+      "url": "https://picsum.photos/seed/hotai_103/1000/562",
       "alt": "A dark terminal screen with green code cascading down",
       "width": 1000,
       "height": 562
@@ -934,7 +935,7 @@ export const initialTechTricks = [
       "Firefox"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?computer,encryption",
+      "url": "https://picsum.photos/seed/hotai_104/1000/562",
       "alt": "Abstract visualization of data encryption",
       "width": 1000,
       "height": 562
@@ -962,7 +963,7 @@ export const initialTechTricks = [
       "Dev Drive"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?computer,desk",
+      "url": "https://picsum.photos/seed/hotai_105/1000/562",
       "alt": "A minimalist, multi-monitor developer desk setup",
       "width": 1000,
       "height": 562
@@ -990,7 +991,7 @@ export const initialTechTricks = [
       "Smartphones"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?developer,android,smartphone",
+      "url": "https://picsum.photos/seed/hotai_106/1000/562",
       "alt": "Person holding an Android smartphone with code on screen",
       "width": 1000,
       "height": 562
@@ -1018,7 +1019,7 @@ export const initialTechTricks = [
       "Optimization"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?developer,server,code,containers",
+      "url": "https://picsum.photos/seed/hotai_107/1000/562",
       "alt": "Server racks lit with blue LEDs",
       "width": 1000,
       "height": 562
@@ -1046,7 +1047,7 @@ export const initialTechTricks = [
       "Engineering"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?developer,git,keyboard,terminal",
+      "url": "https://picsum.photos/seed/hotai_108/1000/562",
       "alt": "Close up of a mechanical keyboard with a terminal window open",
       "width": 1000,
       "height": 562
@@ -1074,7 +1075,7 @@ export const initialTechTricks = [
       "Terminal"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?developer,macbook,apple,workspace",
+      "url": "https://picsum.photos/seed/hotai_109/1000/562",
       "alt": "A sleek desk setup featuring a MacBook Pro",
       "width": 1000,
       "height": 562
@@ -1102,7 +1103,7 @@ export const initialTechTricks = [
       "Debugging"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?developer,browser,webdesign,code",
+      "url": "https://picsum.photos/seed/hotai_110/1000/562",
       "alt": "A monitor displaying complex web code alongside browser developer tools",
       "width": 1000,
       "height": 562
@@ -1129,7 +1130,7 @@ export const initialTechTricks = [
       "Developer Tools"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?vscode,code",
+      "url": "https://picsum.photos/seed/hotai_111/1000/562",
       "alt": "A software developer typing on a mechanical keyboard with code on the screen",
       "width": 1000,
       "height": 562
@@ -1156,7 +1157,7 @@ export const initialTechTricks = [
       "Performance"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?smartphone,code",
+      "url": "https://picsum.photos/seed/hotai_112/1000/562",
       "alt": "A close up of a smartphone displaying a complex application interface",
       "width": 1000,
       "height": 562
@@ -1183,7 +1184,7 @@ export const initialTechTricks = [
       "Homelab"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?server,code",
+      "url": "https://picsum.photos/seed/hotai_113/1000/562",
       "alt": "Glowing server racks in a dark data center environment",
       "width": 1000,
       "height": 562
@@ -1210,7 +1211,7 @@ export const initialTechTricks = [
       "Scripting"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?python,code",
+      "url": "https://picsum.photos/seed/hotai_114/1000/562",
       "alt": "A laptop displaying Python code alongside a cup of black coffee",
       "width": 1000,
       "height": 562
@@ -1237,7 +1238,7 @@ export const initialTechTricks = [
       "Workflow"
     ],
     "featuredImage": {
-      "url": "https://source.unsplash.com/random/1000x562/?git,code",
+      "url": "https://picsum.photos/seed/hotai_115/1000/562",
       "alt": "A close-up of a terminal screen showing git command outputs",
       "width": 1000,
       "height": 562
