@@ -81,41 +81,44 @@ const AnimatedRoutes = () => {
     exit: { opacity: 0, y: -15, transition: { duration: 0.3, ease: "easeIn" } }
   };
 
+  const PageWrapper = ({ children }) => (
+    <motion.div
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
+      {children}
+    </motion.div>
+  );
+
   return (
     <>
       <ScrollToTop />
       {!isAdmin && <Header onNavigate={onNavigate} />}
       <main className="main-content">
         <AnimatePresence mode="wait">
-          <motion.div
-            key={location.pathname}
-            variants={pageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
-            <Routes location={location} key={location.pathname}>
-              <Route path="/" element={<Home onNavigate={onNavigate} />} />
-              <Route path="/article/:slug" element={<Article onNavigate={onNavigate} />} />
-              <Route path="/category/:category" element={<Category onNavigate={onNavigate} />} />
-              <Route path="/search" element={<Search onNavigate={onNavigate} />} />
-              <Route path="/trending" element={<Trending onNavigate={onNavigate} />} />
-              <Route path="/ai-tools" element={<AiTools onNavigate={onNavigate} />} />
-              <Route path="/tech-tricks" element={<TechTricks onNavigate={onNavigate} />} />
-              <Route path="/page/about" element={<About onNavigate={onNavigate} />} />
-              <Route path="/page/editorial" element={<Editorial onNavigate={onNavigate} />} />
-              <Route path="/page/contact" element={<Contact onNavigate={onNavigate} />} />
-              <Route path="/page/privacy" element={<Privacy onNavigate={onNavigate} />} />
-              <Route path="/page/terms" element={<Terms onNavigate={onNavigate} />} />
-              
-              <Route path="/admin-dashboard" element={<ProtectedAdminRoute><AdminDashboard onNavigate={onNavigate} /></ProtectedAdminRoute>} />
-              <Route path="/admin-create" element={<ProtectedAdminRoute><CreatePost onNavigate={onNavigate} /></ProtectedAdminRoute>} />
-              <Route path="/admin-manage" element={<ProtectedAdminRoute><ManagePosts onNavigate={onNavigate} /></ProtectedAdminRoute>} />
-              <Route path="/admin-edit/:id" element={<ProtectedAdminRoute><EditPost onNavigate={onNavigate} /></ProtectedAdminRoute>} />
-              
-              <Route path="*" element={<NotFound onNavigate={onNavigate} />} />
-            </Routes>
-          </motion.div>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<PageWrapper><Home onNavigate={onNavigate} /></PageWrapper>} />
+            <Route path="/article/:slug" element={<PageWrapper><Article onNavigate={onNavigate} /></PageWrapper>} />
+            <Route path="/category/:category" element={<PageWrapper><Category onNavigate={onNavigate} /></PageWrapper>} />
+            <Route path="/search" element={<PageWrapper><Search onNavigate={onNavigate} /></PageWrapper>} />
+            <Route path="/trending" element={<PageWrapper><Trending onNavigate={onNavigate} /></PageWrapper>} />
+            <Route path="/ai-tools" element={<PageWrapper><AiTools onNavigate={onNavigate} /></PageWrapper>} />
+            <Route path="/tech-tricks" element={<PageWrapper><TechTricks onNavigate={onNavigate} /></PageWrapper>} />
+            <Route path="/page/about" element={<PageWrapper><About onNavigate={onNavigate} /></PageWrapper>} />
+            <Route path="/page/editorial" element={<PageWrapper><Editorial onNavigate={onNavigate} /></PageWrapper>} />
+            <Route path="/page/contact" element={<PageWrapper><Contact onNavigate={onNavigate} /></PageWrapper>} />
+            <Route path="/page/privacy" element={<PageWrapper><Privacy onNavigate={onNavigate} /></PageWrapper>} />
+            <Route path="/page/terms" element={<PageWrapper><Terms onNavigate={onNavigate} /></PageWrapper>} />
+            
+            <Route path="/admin-dashboard" element={<ProtectedAdminRoute><PageWrapper><AdminDashboard onNavigate={onNavigate} /></PageWrapper></ProtectedAdminRoute>} />
+            <Route path="/admin-create" element={<ProtectedAdminRoute><PageWrapper><CreatePost onNavigate={onNavigate} /></PageWrapper></ProtectedAdminRoute>} />
+            <Route path="/admin-manage" element={<ProtectedAdminRoute><PageWrapper><ManagePosts onNavigate={onNavigate} /></PageWrapper></ProtectedAdminRoute>} />
+            <Route path="/admin-edit/:id" element={<ProtectedAdminRoute><PageWrapper><EditPost onNavigate={onNavigate} /></PageWrapper></ProtectedAdminRoute>} />
+            
+            <Route path="*" element={<PageWrapper><NotFound onNavigate={onNavigate} /></PageWrapper>} />
+          </Routes>
         </AnimatePresence>
       </main>
       {!isAdmin && <Footer onNavigate={onNavigate} />}

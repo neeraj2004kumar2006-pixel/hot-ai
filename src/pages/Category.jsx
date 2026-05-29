@@ -1,9 +1,11 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { getArticles } from '../utils/dataStore';
 import NewsCard from '../components/NewsCard';
 
-const Category = ({ params = {}, onNavigate }) => {
-  const categoryName = params.name || 'AI News';
+const Category = ({ onNavigate }) => {
+  const { category } = useParams();
+  const categoryName = category || 'AI News';
   const articles = getArticles();
   const filteredArticles = articles.filter(
     (art) => art.category.toLowerCase() === categoryName.toLowerCase()

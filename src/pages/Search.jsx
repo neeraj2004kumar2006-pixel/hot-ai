@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { getArticles, getTechTricks, getAiTools } from '../utils/dataStore';
 import SearchBar from '../components/SearchBar';
 import NewsCard from '../components/NewsCard';
 
-const Search = ({ params = {}, onNavigate }) => {
-  const initialQuery = params.query || '';
+const Search = ({ onNavigate }) => {
+  const [searchParams] = useSearchParams();
+  const initialQuery = searchParams.get('q') || '';
   const [searchQuery, setSearchQuery] = useState(initialQuery);
 
   const performSearch = (query) => {
