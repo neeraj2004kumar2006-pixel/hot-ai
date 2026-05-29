@@ -1,0 +1,152 @@
+[
+  {
+    "id": 201,
+    "name": "SynthCode",
+    "category": "Code",
+    "verified": true,
+    "description": "A smart autocomplete extension tailored specifically for Rust and Go developers. It learns your team's internal coding conventions to offer highly contextual snippets.",
+    "tags": ["Autocomplete", "Rust", "Go"],
+    "pricing": "freemium",
+    "website": "https://synthcode.dev"
+  },
+  {
+    "id": 202,
+    "name": "AudioSculpt",
+    "category": "Audio",
+    "verified": false,
+    "description": "Removes background noise and balances EQ levels for podcast audio in a single click. Ideal for creators publishing on tight deadlines without sound engineering backgrounds.",
+    "tags": ["Podcasting", "Noise Reduction"],
+    "pricing": "paid",
+    "website": "https://audiosculpt.io"
+  },
+  {
+    "id": 203,
+    "name": "VividCuts",
+    "category": "Video",
+    "verified": true,
+    "description": "Automatically edits multi-cam interview footage by cutting to the active speaker based on audio cues. Saves hours of manual timeline slicing for YouTube talk shows.",
+    "tags": ["Video Editing", "Multi-cam"],
+    "pricing": "free-trial",
+    "website": "https://vividcuts.app"
+  },
+  {
+    "id": 204,
+    "name": "HueShift AI",
+    "category": "Design",
+    "verified": true,
+    "description": "Analyzes an uploaded logo and instantly generates entire cohesive UI color palettes that meet WCAG accessibility standards. Integrates directly into Figma as a native plugin.",
+    "tags": ["Figma Plugin", "Accessibility", "Color"],
+    "pricing": "open-source",
+    "website": "https://hueshift.dev"
+  },
+  {
+    "id": 205,
+    "name": "DraftSparks",
+    "category": "Writing",
+    "verified": false,
+    "description": "Breaks through writer's block by feeding you unconventional angles and counter-arguments for your opinion pieces. It doesn't write the essay, it just argues with you to sharpen your prose.",
+    "tags": ["Ideation", "Journalism"],
+    "pricing": "freemium",
+    "website": "https://draftsparks.com"
+  },
+  {
+    "id": 206,
+    "name": "TaskOrbit",
+    "category": "Productivity",
+    "verified": true,
+    "description": "An intelligent calendar client that aggressively reschedules your deep work blocks when meetings run over. It negotiates sync times automatically with your colleagues' schedules.",
+    "tags": ["Scheduling", "Calendar"],
+    "pricing": "paid",
+    "website": "https://taskorbit.so"
+  },
+  {
+    "id": 207,
+    "name": "RefactorBuddy",
+    "category": "Code",
+    "verified": true,
+    "description": "Analyzes legacy PHP and Python codebases to propose modular refactoring steps. Allows developers to preview the dependency graph changes before committing.",
+    "tags": ["Refactoring", "Legacy Code"],
+    "pricing": "free-trial",
+    "website": "https://refactorbuddy.io"
+  },
+  {
+    "id": 208,
+    "name": "EchoVoice",
+    "category": "Audio",
+    "verified": false,
+    "description": "Generates high-fidelity voiceovers in localized regional dialects rather than standard broadcast accents. Features over 40 distinct regional variations of English and Spanish.",
+    "tags": ["Text-to-Speech", "Voiceover"],
+    "pricing": "freemium",
+    "website": "https://echovoice.ai"
+  },
+  {
+    "id": 209,
+    "name": "B-Roll Finder",
+    "category": "Video",
+    "verified": true,
+    "description": "Scans your voiceover script and pulls matching public domain stock footage to cover the narration. You can replace scenes with a swipe if the initial match misses the mark.",
+    "tags": ["Stock Footage", "Automation"],
+    "pricing": "paid",
+    "website": "https://brollfinder.video"
+  },
+  {
+    "id": 210,
+    "name": "Vectorize Now",
+    "category": "Design",
+    "verified": true,
+    "description": "Converts pixelated raster images into clean, layered SVG files with surprising accuracy on complex curves. It groups paths logically so designers can easily tweak the final vector.",
+    "tags": ["SVG", "Conversion"],
+    "pricing": "freemium",
+    "website": "https://vectorizenow.com"
+  },
+  {
+    "id": 211,
+    "name": "LoreKeeper",
+    "category": "Writing",
+    "verified": true,
+    "description": "Maintains a running database of your fictional world's rules, character traits, and timelines as you type your manuscript. It flags continuity errors if you contradict something established in chapter two.",
+    "tags": ["Fiction", "Worldbuilding"],
+    "pricing": "free-trial",
+    "website": "https://lorekeeper.app"
+  },
+  {
+    "id": 212,
+    "name": "ClearInbox",
+    "category": "Productivity",
+    "verified": false,
+    "description": "Sorts promotional emails from actual human correspondence, surfacing time-sensitive requests to the top of your feed. It can optionally draft simple decline templates for unwanted pitches.",
+    "tags": ["Email", "Triage"],
+    "pricing": "open-source",
+    "website": "https://clearinbox.xyz"
+  },
+  {
+    "id": 213,
+    "name": "RegexGenie",
+    "category": "Code",
+    "verified": true,
+    "description": "Translates plain English descriptions into complex, optimized regular expressions and explains how they work step-by-step. It also generates edge-case test strings to verify the logic.",
+    "tags": ["Regex", "Developer Tools"],
+    "pricing": "freemium",
+    "website": "https://regexgenie.dev"
+  },
+  {
+    "id": 214,
+    "name": "PodcastStem",
+    "category": "Audio",
+    "verified": true,
+    "description": "Isolates guest dialogue from background cafe chatter or wind noise using a locally run model. Because it runs offline, your unreleased interview files never leave your machine.",
+    "tags": ["Stem Separation", "Offline"],
+    "pricing": "open-source",
+    "website": "https://podcaststem.org"
+  },
+  {
+    "id": 215,
+    "name": "PitchDeck AI",
+    "category": "Design",
+    "verified": true,
+    "description": "Turns a rough text outline into a fully formatted 10-slide investor presentation complete with generated charts. Users just plug in their raw metrics and select a corporate aesthetic.",
+    "tags": ["Presentations", "Pitching"],
+    "pricing": "paid",
+    "website": "https://pitchdeck.ai"
+  }
+]

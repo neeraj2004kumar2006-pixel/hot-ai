@@ -1,0 +1,143 @@
+[
+  {
+    "id": 101,
+    "name": "Beyond the Taskbar: 15 Windows 11 Hacks for Insufferable Power Users",
+    "slug": "windows-11-advanced-power-user-hacks",
+    "category": "Tech Tricks",
+    "readingTime": "8 min read",
+    "author": {
+      "name": "Marcus Thorne",
+      "role": "Senior Technical Editor",
+      "avatar": "https://i.pravatar.cc/150?u=marcusthorne"
+    },
+    "publishDate": "2026-03-12T09:45:00Z",
+    "tags": [
+      "Windows 11",
+      "Productivity",
+      "OS",
+      "PowerToys"
+    ],
+    "featuredImage": {
+      "url": "https://source.unsplash.com/random/1000x562/?computer,motherboard",
+      "alt": "A complex motherboard illuminated by neon lights",
+      "width": 1000,
+      "height": 562
+    },
+    "excerpt": "Tired of the default Windows 11 experience? We strip back the consumer-friendly veneer to reveal the command-line tricks and hidden settings power users actually rely on.",
+    "content": "# Beyond the Taskbar: 15 Windows 11 Hacks for Insufferable Power Users\n\nEvery time Microsoft releases an operating system, the routine is the same. The marketing team talks up the rounded corners, the centered taskbar, and the fluid animations. Meanwhile, the rest of us immediately start digging for the registry edits and command-line utilities needed to make the machine actually work for a living.\n\nWindows 11 has been out long enough that the ecosystem of tweaks has matured. You no longer have to rely on sketchy GitHub repos with single-digit stars to fix the start menu. Today, we're skipping the basic stuff—you already know how to uninstall TikTok and pin apps. We are looking at the foundational changes that turn Windows 11 from a tablet-curious OS into an uncompromising workstation.\n\n## 1. WinGet is the Only Way to Install Software\n\nIf you are still downloading `.exe` files from vendor websites, you are wasting hours of your life. Windows Package Manager (`winget`) is baked into Windows 11 and it is spectacular. Open PowerShell and try this:\n\n`winget install --id=Mozilla.Firefox -e  && winget install --id=Microsoft.PowerToys -e`\n\nYou can chain your entire core software stack into a single script. When you get a new machine, you run one line of text, grab a coffee, and come back to a fully provisioned system. More importantly, `winget upgrade --all` will update every supported application on your system simultaneously. No more clicking through setup wizards or dealing with updater services running in the background.\n\n## 2. PowerToys Run Replaces the Start Menu\n\nThe Windows Start menu search is fundamentally broken. It prioritizes Bing web results over local files and takes half a second too long to open. The fix is Microsoft's own PowerToys. Specifically, PowerToys Run.\n\nHit `Alt + Space` and a minimalist search bar appears in the center of your screen. It’s a direct clone of macOS Spotlight or Alfred. It finds files instantly, calculates math equations, converts units, and executes system commands. You will never press the Windows key to search again.\n\n## 3. God Mode Still Exists (And You Still Need It)\n\nMicrosoft has been slowly strangling the classic Control Panel for a decade, trying to force everything into the modern Settings app. The problem? The modern Settings app hides crucial networking and hardware menus behind five clicks.\n\nCreate a new folder on your desktop and rename it exactly to this:\n\n`GodMode.{ED7BA470-8E54-465E-825C-99712043E01C}`\n\nThe folder icon will change to a Control Panel icon. Open it, and you will find every single configuration menu in Windows neatly organized in a massive, searchable list. It is the ultimate administrative backdoor.\n\n## 4. Reclaiming Context Menus\n\nThe Windows 11 \"Show more options\" context menu is a usability disaster. It forces you to click twice just to use 7-Zip or Git Bash. You can revert to the classic Windows 10 context menu with a single registry edit.\n\nOpen an elevated Command Prompt and paste:\n\n`reg.exe add \"HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32\" /f /ve`\n\nRestart `explorer.exe` from Task Manager. The full context menu is back. No extra clicks.\n\n## 5. Aggressive Telemetry Blocking\n\nWindows 11 is incredibly chatty out of the box. While basic privacy settings are a good start, they do not touch the underlying diagnostic tracking. If you want a quiet network, look into O&O ShutUp10++ (yes, it works flawlessly on 11). It provides a granular, toggle-based interface for disabling over 100 telemetry endpoints. Be warned: if you disable everything, Windows Update and the Microsoft Store will break. Stick to the \"Recommended\" settings unless you have a dedicated weekend to troubleshoot.\n\n## The Bottom Line\n\nWindows 11 is an incredibly stable and performant OS hidden beneath a layer of unnecessary padding. By utilizing package managers, leaning on PowerToys, and rejecting the dumbed-down UI elements, you can build an environment that stays completely out of your way.",
+    "status": "published"
+  },
+  {
+    "id": 102,
+    "name": "Squeezing Llama 3 on a Laptop: The Definitive Guide to Local LLM Optimization",
+    "slug": "squeezing-llama-3-laptop-local-llm-optimization",
+    "category": "Tech Tricks",
+    "readingTime": "9 min read",
+    "author": {
+      "name": "Elena Rostova",
+      "role": "AI Systems Analyst",
+      "avatar": "https://i.pravatar.cc/150?u=elenarostova"
+    },
+    "publishDate": "2026-02-18T14:20:00Z",
+    "tags": [
+      "AI",
+      "Local LLM",
+      "Hardware",
+      "Llama 3"
+    ],
+    "featuredImage": {
+      "url": "https://source.unsplash.com/random/1000x562/?computer,chip",
+      "alt": "A glowing microchip representing AI processing",
+      "width": 1000,
+      "height": 562
+    },
+    "excerpt": "Getting an LLM to run locally is easy. Getting it to run fast requires ruthless vRAM management, precise quantization choices, and context window trimming. Here is how it is done.",
+    "content": "# Squeezing Llama 3 on a Laptop: The Definitive Guide to Local LLM Optimization\n\nRunning large language models locally used to be the exclusive domain of researchers with server racks full of A100s. Then `llama.cpp` dropped, quantization techniques improved rapidly, and suddenly people were running wildly capable models on five-year-old gaming rigs. \n\nBut there is a massive gap between \"getting a model to run\" and \"getting a model to run fast enough to actually use.\" If your local LLM is spitting out tokens slower than a dial-up modem, you are leaving performance on the table. Here is how to ruthlessly optimize your hardware for local inference.\n\n## The vRAM Bottleneck\n\nLet’s clear up a common misconception: your CPU speed hardly matters. Your system RAM speed matters a bit. But Video RAM (vRAM) on your GPU is the absolute king of local inference. \n\nThe math is brutal. An 8B parameter model like Llama 3 at FP16 precision needs roughly 16GB of vRAM just to load into memory. Most consumer laptops have 6GB or 8GB. This is where quantization comes in, but you have to choose your format wisely.\n\n## GGUF vs. EXL2: Choose Your Fighter\n\nIf you are running on a machine with a dedicated Nvidia GPU, you should probably be using EXL2. It is an extremely fast quantization format designed specifically for GPU inference. It requires your entire model to fit into vRAM, but if it does, the token generation speed is blistering.\n\nIf you have a Mac, or a PC where the model is larger than your vRAM, you must use GGUF. GGUF allows you to offload layers to the GPU while keeping the rest in system RAM. \n\n**The Golden Rule of Offloading:** Always offload the maximum number of layers your GPU can handle without running out of vRAM. If you push one layer too many and the model spills over into system memory swap, your tokens-per-second will drop from 40 to 0.5 instantly.\n\n## Managing Context Windows\n\nThe context window (the amount of text the model can \"remember\" in a single session) eats memory at an alarming rate. Llama 3 supports an 8k context window natively.\n\nHere is the trick: you almost never need 8k tokens for casual chatting or coding assistance. By hard-capping your context window to 4096 or even 2048 in your runner (like LM Studio or Ollama), you free up massive amounts of vRAM. This allows you to run a slightly larger model or offload more layers to the GPU.\n\n## Flash Attention is Mandatory\n\nIf your runner supports Flash Attention, turn it on. It is an algorithmic optimization that drastically reduces the memory usage and computational requirements of the attention mechanism in Transformers. It essentially makes long-context processing viable on consumer hardware. In `llama.cpp` or text-generation-webui, this is often a simple checkbox or a `--flash-attn` flag.\n\n## CPU Threads: Less is Sometimes More\n\nIf you are forced to run pure CPU inference (bless your patience), your instinct might be to assign every available CPU thread to the process. This is almost always a mistake.\n\nModern CPUs have performance cores and efficiency cores. Assigning an inference task to efficiency cores often slows down the entire pipeline, as the faster cores have to wait for the slower cores to finish their math. Additionally, assigning too many threads creates overhead. The sweet spot is usually matching the thread count to the number of physical performance cores on your CPU. Test it. You will often find that 8 threads runs faster than 16.\n\n## The Path Forward\n\nLocal AI is advancing so quickly that optimization guides become outdated in months. But the core principles remain: manage your vRAM like a miser, pick the right quantization format for your silicon, and ruthlessly trim your context window. Get those right, and you'll have an elite AI assistant entirely divorced from the cloud.",
+    "status": "published"
+  },
+  {
+    "id": 103,
+    "name": "Stop Reaching for Your Mouse: 40 Terminal Shortcuts to Multiply Your Speed",
+    "slug": "stop-reaching-mouse-terminal-shortcuts",
+    "category": "Tech Tricks",
+    "readingTime": "7 min read",
+    "author": {
+      "name": "David Chen",
+      "role": "Lead Developer Advocate",
+      "avatar": "https://i.pravatar.cc/150?u=davidchen"
+    },
+    "publishDate": "2026-01-05T11:10:00Z",
+    "tags": [
+      "Terminal",
+      "Linux",
+      "Productivity",
+      "Bash",
+      "Zsh"
+    ],
+    "featuredImage": {
+      "url": "https://source.unsplash.com/random/1000x562/?computer,matrix",
+      "alt": "A dark terminal screen with green code cascading down",
+      "width": 1000,
+      "height": 562
+    },
+    "excerpt": "Watching a seasoned systems engineer use a terminal is like watching a magic trick. It's time to build the muscle memory and stop relying on the arrow keys.",
+    "content": "# Stop Reaching for Your Mouse: 40 Terminal Shortcuts to Multiply Your Speed\n\nWatching a seasoned systems engineer use a terminal is like watching a sleight-of-hand magic trick. Directories change, files are modified, and logs are parsed before you can even track what was typed. This isn’t because they type 200 words per minute. It’s because they never touch the mouse, and they use every shortcut their shell provides.\n\nWhether you are using Bash or Zsh, your shell is built on the Readline library. This means your terminal has a massive suite of text-editing shortcuts baked in. If you are still using the left and right arrow keys to navigate long commands, it is time to upgrade your workflow.\n\n## Navigating the Line\n\nThe most common mistake beginners make is holding down the left arrow key to fix a typo at the beginning of a line. \n\n*   `Ctrl + A`: Jump instantly to the beginning of the line.\n*   `Ctrl + E`: Jump instantly to the end of the line.\n*   `Alt + F`: Move forward exactly one word.\n*   `Alt + B`: Move backward exactly one word.\n\nOnce you build the muscle memory for `Alt + B`, you will navigate commands significantly faster. If you are on macOS and `Alt + B` types a weird symbol, you need to go into your terminal settings and check the box that says \"Use Option as Meta key.\"\n\n## Ruthless Editing\n\nBackspacing a long file path character by character is painful. Use these instead:\n\n*   `Ctrl + W`: Delete the word preceding the cursor. This is invaluable when you tab-complete the wrong directory and want to wipe it out instantly.\n*   `Ctrl + U`: Delete everything from the cursor to the beginning of the line. Excellent for bailing out of a command you messed up.\n*   `Ctrl + K`: Delete everything from the cursor to the end of the line.\n*   `Ctrl + Y`: Paste (yank) whatever you just deleted with `Ctrl + W`, `Ctrl + U`, or `Ctrl + K`.\n\n## History is Your Best Friend\n\nPressing the up arrow to find a command you ran ten minutes ago is incredibly inefficient. \n\n*   `Ctrl + R`: Reverse search history. Start typing part of the command, and your shell will find the most recent match. Press `Ctrl + R` again to cycle through older matches. \n\n*Pro-tip: If you haven't installed `fzf` (Fuzzy Finder), do it today. It replaces the default `Ctrl + R` behavior with an incredibly fast, interactive, fuzzy-searchable list of your entire command history.*\n\n*   `!!`: Run the last command. Most commonly used as `sudo !!` when you get a \"Permission denied\" error and need to rerun the command with root privileges.\n*   `!$`: Expands to the last argument of the previous command. If you run `mkdir /var/log/myapp` and then want to go there, simply type `cd !$`.\n\n## Terminal Control\n\nSometimes the terminal itself gets in your way. \n\n*   `Ctrl + L`: Clear the screen. It is much faster than typing `clear`.\n*   `Ctrl + C`: Send an interrupt signal. You probably know this one, but remember it kills the current running process.\n*   `Ctrl + Z`: Suspend the current process and push it to the background. You can bring it back later by typing `fg` (foreground).\n*   `Ctrl + D`: Send an EOF (End of File) marker. In an empty shell, this will log you out and close the terminal.\n\n## Building the Muscle Memory\n\nReading a list of shortcuts won't make you faster. Pick exactly three shortcuts from this list today—I highly recommend `Ctrl + A`, `Ctrl + E`, and `Ctrl + W`—and force yourself to use them. Tape a sticky note to your monitor if you have to. Once those three are automatic, come back and grab three more. Within a month, you will be flying through your shell.",
+    "status": "published"
+  },
+  {
+    "id": 104,
+    "name": "Locking Down the Modern Browser: A Paranoid User's Guide to Digital Invisibility",
+    "slug": "locking-down-modern-browser-privacy-guide",
+    "category": "Tech Tricks",
+    "readingTime": "10 min read",
+    "author": {
+      "name": "Sarah Jenkins",
+      "role": "Cybersecurity Correspondent",
+      "avatar": "https://i.pravatar.cc/150?u=sarahjenkins"
+    },
+    "publishDate": "2026-04-02T16:55:00Z",
+    "tags": [
+      "Privacy",
+      "Security",
+      "Browser",
+      "Firefox"
+    ],
+    "featuredImage": {
+      "url": "https://source.unsplash.com/random/1000x562/?computer,encryption",
+      "alt": "Abstract visualization of data encryption",
+      "width": 1000,
+      "height": 562
+    },
+    "excerpt": "Incognito Mode is a lie and basic ad blockers are not enough. If you want to stop canvas fingerprinting and telemetry, you need to dive into advanced configuration.",
+    "content": "# Locking Down the Modern Browser: A Paranoid User's Guide to Digital Invisibility\n\nThe modern web is fundamentally hostile to privacy. The browser you use every day is essentially a leaky ship, constantly broadcasting your hardware specifications, reading habits, and behavioral patterns to ad networks and tracking firms. \n\nSwitching to \"Incognito Mode\" does virtually nothing. A basic ad blocker is a good start, but it's only a band-aid. If you want to actually lock down your browsing environment and minimize your digital footprint, you have to get your hands dirty. Here is the paranoid user's guide to browser hardening.\n\n## 1. Ditch Chrome. Seriously.\n\nGoogle is an advertising company. Expecting Chrome to protect your privacy from advertisers is a conflict of interest. While Chromium-based alternatives like Brave or Vivaldi offer better defaults, Firefox remains the premier choice for serious privacy hardening, largely due to its `about:config` menu and deep extension support.\n\n## 2. Hardening Firefox via about:config\n\nFirefox out of the box is decent, but it still includes telemetry and standard web features that leak data. Type `about:config` into your URL bar, accept the risk, and start modifying:\n\n*   `privacy.resistFingerprinting = true`: This is the nuclear option for privacy. It spoofs your screen resolution, timezone, and user agent to blend in with a massive crowd of other users. It will break some site layouts, but it drastically reduces fingerprinting.\n*   `media.peerconnection.enabled = false`: This disables WebRTC. WebRTC is a protocol used for browser-based voice and video chat, but it has a nasty habit of leaking your true IP address even if you are using a VPN. Disable it unless you strictly need it for browser-based Zoom calls.\n*   `network.dns.disablePrefetch = true`: Browsers try to guess what links you will click and pre-resolve the DNS to save milliseconds. This means you are making DNS requests to servers you never even intended to visit. Turn it off.\n\n## 3. uBlock Origin: Hard Mode\n\nYou probably have uBlock Origin installed. But you are likely using it in \"Easy Mode.\" \n\nOpen the uBlock settings, check \"I am an advanced user,\" and learn to use the dynamic filtering matrix. This allows you to globally block all third-party scripts and frames by default, and only whitelist them on a per-site basis when something breaks. It is tedious for the first week, but eventually, you build a custom ruleset that makes the web incredibly fast and totally silent.\n\n## 4. Compartmentalization with Containers\n\nIf you must use Google or Facebook services for work, do not let them track you across the rest of the web. \n\nUse the \"Firefox Multi-Account Containers\" extension. This allows you to isolate cookie jars. You can open a \"Work\" tab, log into Google, and Google will have zero visibility into what you are doing in your \"Personal\" tabs. It essentially sandboxes corporate trackers into their own little prisons.\n\n## 5. The Canvas Fingerprinting Problem\n\nCookies are old news. Today, trackers use HTML5 Canvas to draw a hidden, invisible shape on your screen. Because every graphics card and font rendering engine draws the shape slightly differently, trackers can use the micro-variations to create a unique fingerprint of your machine.\n\nUsing `privacy.resistFingerprinting` in Firefox helps mitigate this, but dedicated extensions like CanvasBlocker can spoof these readouts, feeding trackers randomly generated garbage data instead of your actual hardware profile.\n\n## Acceptance\n\nPerfect privacy is a myth. Short of unplugging your router, you will always leave some trace. The goal of hardening your browser isn't to become a ghost; it is to make tracking you so economically unviable and technically frustrating that data brokers simply give up and move on to an easier target.",
+    "status": "published"
+  },
+  {
+    "id": 105,
+    "name": "The Ultimate Windows 11 Developer Environment: WSL2, Dev Drive, and PowerToys",
+    "slug": "ultimate-windows-11-developer-environment",
+    "category": "Tech Tricks",
+    "readingTime": "8 min read",
+    "author": {
+      "name": "James Alister",
+      "role": "Senior Technical Editor",
+      "avatar": "https://i.pravatar.cc/150?u=jamesalister"
+    },
+    "publishDate": "2026-05-10T10:30:00Z",
+    "tags": [
+      "Windows 11",
+      "Development",
+      "WSL2",
+      "Dev Drive"
+    ],
+    "featuredImage": {
+      "url": "https://source.unsplash.com/random/1000x562/?computer,desk",
+      "alt": "A minimalist, multi-monitor developer desk setup",
+      "width": 1000,
+      "height": 562
+    },
+    "excerpt": "Windows is no longer a hostile environment for developers. With the right configuration of WSL2, custom ReFS volumes, and window managers, it competes directly with macOS.",
+    "content": "# The Ultimate Windows 11 Developer Environment: WSL2, Dev Drive, and PowerToys\n\nFor a very long time, developing on Windows felt like a punishment. If you weren't building .NET enterprise applications, you were fighting path lengths, line ending conflicts, and an utterly bizarre terminal experience. You inevitably bought a Mac or dual-booted Linux.\n\nThat era is over. Microsoft has spent the last five years aggressively courting developers, and Windows 11 is the culmination of that effort. By combining a few specific subsystems, Windows 11 has quietly become one of the most powerful, flexible development environments on the market. Here is how to set it up properly.\n\n## 1. WSL2: A Real Linux Kernel\n\nThe Windows Subsystem for Linux (WSL) version 2 is not an emulator or a translation layer. It is a real, lightweight utility VM running a genuine Linux kernel. \n\nThe mistake most people make is storing their project files in the Windows file system (e.g., `C:\\\\Users\\\\name\\\\projects`) and accessing them from Linux. This creates massive cross-OS file system overhead, making `npm install` or Git operations painfully slow. \n\n**The Fix:** Always store your code inside the Linux file system (`~\\/projects` in your WSL instance). VS Code has a brilliant \"WSL\" extension that lets you open an editor in Windows that directly manipulates the Linux files natively. You get the UI of Windows and the raw I/O speed of Linux.\n\n## 2. Taming WSL2 Memory with .wslconfig\n\nWSL2 has a bad habit of consuming all available system RAM for file caching, eventually bringing your host machine to its knees. \n\nYou must create a `.wslconfig` file in your Windows user directory (`C:\\\\Users\\\\<YourName>\\\\.wslconfig`) to set hard limits. A standard configuration looks like this:\n\n```ini\n[wsl2]\nmemory=8GB\nprocessors=4\nswap=2GB\n```\n\nThis keeps WSL2 highly performant without letting it cannibalize your machine while you have Docker containers running.\n\n## 3. The ReFS Dev Drive\n\nIntroduced recently in Windows 11, Dev Drive is a new storage volume optimized entirely for developer workloads. It uses the Resilient File System (ReFS) instead of NTFS, and applies specific Microsoft Defender antivirus exclusions that stop your security software from scanning millions of tiny `node_modules` files during compilation.\n\nIf you are building large JavaScript projects, compiling Rust, or working with massive repositories, creating a dedicated 50GB Dev Drive for your code can improve build times by 15-30%. It is the closest thing to a free hardware upgrade Microsoft has ever offered.\n\n## 4. Windows Terminal: The Unsung Hero\n\nThe default Command Prompt is dead. Windows Terminal is now the default, and it is a genuinely fantastic piece of software. It supports tabs, panes, GPU text rendering, and highly customizable JSON profiles. \n\nSpend ten minutes customizing your `settings.json`. Set your default profile to your WSL2 Ubuntu instance. Install a Nerd Font (like FiraCode Nerd Font) and configure Oh My Zsh with a robust theme like Powerlevel10k. The result is a terminal experience that goes toe-to-toe with iTerm2 on macOS.\n\n## 5. PowerToys FancyZones for Ultrawide Management\n\nIf you code on a large 4K monitor or an ultrawide, the default Windows window snapping is inadequate. PowerToys includes a utility called FancyZones that lets you draw custom grid layouts on your screen. \n\nYou can create a massive central zone for VS Code, a narrow vertical slice for your browser, and a quadrant for your terminal. Hold `Shift` while dragging a window, and it automatically drops into your custom zone. It is essential for managing dense information workspaces.\n\n## Conclusion\n\nWindows 11 requires a bit of assembly to reach its final form. But once you route your files correctly through WSL2, format a Dev Drive, and configure your terminal, you get a machine that seamlessly runs PC games at night and compiles raw Linux binaries during the day.",
+    "status": "published"
+  }
+]
