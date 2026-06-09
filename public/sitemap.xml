@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://hotai.com/</loc>
+    <loc>https://hot-ai-three.vercel.app/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://hotai.com/trending</loc>
+    <loc>https://hot-ai-three.vercel.app/trending</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hotai.com/ai-tools</loc>
+    <loc>https://hot-ai-three.vercel.app/ai-tools</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hotai.com/tech-tricks</loc>
+    <loc>https://hot-ai-three.vercel.app/tech-tricks</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hotai.com/page/about</loc>
+    <loc>https://hot-ai-three.vercel.app/page/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hotai.com/page/contact</loc>
+    <loc>https://hot-ai-three.vercel.app/page/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hotai.com/page/privacy</loc>
+    <loc>https://hot-ai-three.vercel.app/page/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://hotai.com/page/terms</loc>
+    <loc>https://hot-ai-three.vercel.app/page/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
